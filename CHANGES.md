@@ -7,3 +7,4 @@ přidat sekci s často kladenými dotazy - ❓odkaz ✅ - page ❌
 přidat sekci s woltem a bolt food plus foodora - ❓odkaz ✅ - page ❌
 Jak je dotazník tak to napojit rovnou na email - ez TODO
 Auta udělat tak aby vyskočilo okno kde jsou fotky a popis - MODAL TODO
+F author
