@@ -1,7 +1,13 @@
-import CarRental from '@/components/CarRental';
-import ContactSection from '@/components/ContactSection';
-import Layout from '@/components/Layout';
-import { CheckIcon, BoltIcon, TruckIcon, UserIcon, DevicePhoneMobileIcon } from '@heroicons/react/24/outline';
+import CarRental from "@/components/CarRental";
+import ContactSection from "@/components/ContactSection";
+import Layout from "@/components/Layout";
+import {
+  CheckIcon,
+  BoltIcon,
+  TruckIcon,
+  UserIcon,
+  DevicePhoneMobileIcon,
+} from "@heroicons/react/24/outline";
 
 export default function HomePage() {
   return (
@@ -13,8 +19,8 @@ export default function HomePage() {
             Join Prague's Leading Taxi Fleet
           </h1>
           <p className="text-xl mb-12 max-w-2xl mx-auto">
-            Maximize your earnings with our advanced booking system, premium rates, 
-            and 24/7 driver support
+            Maximize your earnings with our advanced booking system, premium
+            rates, and 24/7 driver support
           </p>
           <div className="flex justify-center space-x-4">
             <button className="bg-indigo-500 hover:bg-indigo-400 px-8 py-4 rounded-lg text-lg font-semibold transition-colors">
@@ -28,7 +34,7 @@ export default function HomePage() {
       </section>
 
       {/* Stats Section */}
-      <section className="bg-indigo-50 py-20 px-4">
+      {/* <section className="bg-indigo-50 py-20 px-4">
         <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-8 text-center">
           {[
             { number: '300+', title: 'Vozidel', description: 'v provozu' },
@@ -43,22 +49,28 @@ export default function HomePage() {
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* Opportunity Section */}
       <section className="py-20 px-4 bg-white">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-3xl font-bold mb-6">Hledáte novou pracovní příležitost jako řidič nebo kurýr?</h2>
+            <h2 className="text-3xl font-bold mb-6">
+              Hledáte novou pracovní příležitost jako řidič nebo kurýr?
+            </h2>
             <p className="text-lg text-gray-600 mb-8">
-              U nás si můžete vyzkoušet jak práci řidiče, tak i kurýra. A zjistit, která z mobilních aplikací vám nejvíce vyhovuje. Spolupracujeme totiž se všemi! Aplikace můžete u nás i kombinovat a vydělat si tak nadstandardní peníze a zároveň pracovat kdy se vám to hodí!
+              U nás si můžete vyzkoušet jak práci řidiče, tak i kurýra. A
+              zjistit, která z mobilních aplikací vám nejvíce vyhovuje.
+              Spolupracujeme totiž se všemi! Aplikace můžete u nás i kombinovat
+              a vydělat si tak nadstandardní peníze a zároveň pracovat kdy se
+              vám to hodí!
             </p>
             <div className="space-y-4">
               {[
-                'Proč jezdit s námi?',
-                'Mohu si od vás půjčit auto?',
-                'Kam vám můžu napsat?',
-                'Jak funguje spolupráce s naší flotilou?',
+                "Proč jezdit s námi?",
+                "Mohu si od vás půjčit auto?",
+                "Kam vám můžu napsat?",
+                "Jak funguje spolupráce s naší flotilou?",
               ].map((question, index) => (
                 <div key={index} className="flex items-center">
                   <CheckIcon className="w-6 h-6 text-green-500 mr-3" />
@@ -74,8 +86,10 @@ export default function HomePage() {
       {/* Requirements Section */}
       <section className="py-20 px-4 bg-indigo-900 text-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold mb-12 text-center">Co budete potřebovat k jízdě?</h2>
-          
+          <h2 className="text-3xl font-bold mb-12 text-center">
+            Co budete potřebovat k jízdě?
+          </h2>
+
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             {/* Taxi Driver Requirements */}
             <div className="bg-white text-gray-900 p-8 rounded-xl">
@@ -85,10 +99,10 @@ export default function HomePage() {
               </div>
               <ul className="space-y-4">
                 {[
-                  'Vlastní auto max 20 let staré nebo od nás půjčené',
-                  'Řidičský průkaz a žlutou kartu',
-                  'Mít alespoň 21 let',
-                  'Aplikace BOLT, UBER, LIFTAGO*',
+                  "Vlastní auto max 20 let staré nebo od nás půjčené",
+                  "Řidičský průkaz a žlutou kartu",
+                  "Mít alespoň 21 let",
+                  "Aplikace BOLT, UBER, LIFTAGO*",
                 ].map((item, index) => (
                   <li key={index} className="flex items-start">
                     <CheckIcon className="w-5 h-5 text-green-500 mr-2 mt-1" />
@@ -106,9 +120,9 @@ export default function HomePage() {
               </div>
               <ul className="space-y-4">
                 {[
-                  'Dopravní prostředek bez omezení (kolo, koloběžka, skútr, auto)',
-                  'Mít alespoň 15 let',
-                  'Aplikaci BOLT FOOD, WOLT, FOODORA*',
+                  "Dopravní prostředek bez omezení (kolo, koloběžka, skútr, auto)",
+                  "Mít alespoň 15 let",
+                  "Aplikaci BOLT FOOD, WOLT, FOODORA*",
                 ].map((item, index) => (
                   <li key={index} className="flex items-start">
                     <CheckIcon className="w-5 h-5 text-green-500 mr-2 mt-1" />
@@ -124,7 +138,8 @@ export default function HomePage() {
             <div className="flex items-start">
               <DevicePhoneMobileIcon className="w-6 h-6 mr-3 flex-shrink-0" />
               <p>
-                *Nemáte aplikace nebo vám nefungují? Nevadí! Zdarma vám je pomůžeme zaregistrovat a zprovoznit. Napište nám zprávu!
+                *Nemáte aplikace nebo vám nefungují? Nevadí! Zdarma vám je
+                pomůžeme zaregistrovat a zprovoznit. Napište nám zprávu!
               </p>
             </div>
           </div>
@@ -149,6 +164,6 @@ export default function HomePage() {
 
       <CarRental />
       <ContactSection />
-      </>
+    </>
   );
 }

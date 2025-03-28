@@ -1,27 +1,34 @@
 // components/ContactSection.jsx
-import { ChatBubbleBottomCenterTextIcon, EnvelopeIcon, MapPinIcon, GlobeAltIcon } from '@heroicons/react/24/outline';
+import {
+  ChatBubbleBottomCenterTextIcon,
+  EnvelopeIcon,
+  MapPinIcon,
+  GlobeAltIcon,
+} from "@heroicons/react/24/outline";
 
 export default function ContactSection() {
   return (
     <section className="bg-indigo-900 text-white p-20 px-4">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold mb-12 text-center">Kontaktujte nás</h2>
-        
+        <h2 className="text-3xl font-bold mb-12 text-center">
+          Kontaktujte nás
+        </h2>
+
         <div className="grid md:grid-cols-2 gap-12">
           {/* Left Column - Contact Methods */}
           <div className="space-y-8">
             <p className="text-xl text-center md:text-left">
               Komunikujte s námi rychle a online
             </p>
-            
+
             <div className="space-y-6">
               <div className="flex items-center">
                 <ChatBubbleBottomCenterTextIcon className="w-8 h-8 mr-4" />
                 <div>
                   <h3 className="font-semibold">FB Messenger</h3>
-                  <a 
-                    href="https://m.me/driverhomecz" 
-                    target="_blank" 
+                  <a
+                    href="https://m.me/driverhomecz"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="text-indigo-100 hover:text-white"
                   >
@@ -29,28 +36,28 @@ export default function ContactSection() {
                   </a>
                 </div>
               </div>
-              
-              <div className="flex items-center">
+
+              {/* <div className="flex items-center">
                 <ChatBubbleBottomCenterTextIcon className="w-8 h-8 mr-4" />
                 <div>
                   <h3 className="font-semibold">Whatsapp</h3>
-                  <a 
-                    href="https://wa.me/734167255" 
-                    target="_blank" 
+                  <a
+                    href="https://wa.me/734167255"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="text-indigo-100 hover:text-white"
                   >
                     734 167 255
                   </a>
                 </div>
-              </div>
+              </div> */}
 
               <div className="flex items-center">
                 <EnvelopeIcon className="w-8 h-8 mr-4" />
                 <div>
                   <h3 className="font-semibold">Email</h3>
-                  <a 
-                    href="mailto:info@driverhome.cz" 
+                  <a
+                    href="mailto:info@driverhome.cz"
                     className="text-indigo-100 hover:text-white"
                   >
                     info@driverhome.cz
@@ -62,7 +69,9 @@ export default function ContactSection() {
                 <MapPinIcon className="w-8 h-8 mr-4" />
                 <div>
                   <h3 className="font-semibold">Kde nás najdete?</h3>
-                  <p className="text-indigo-100">Vlněna 5, Trnitá, 602 00 Brno</p>
+                  <p className="text-indigo-100">
+                    Vlněna 5, Trnitá, 602 00 Brno
+                  </p>
                 </div>
               </div>
             </div>
@@ -73,9 +82,9 @@ export default function ContactSection() {
             <div>
               <h3 className="text-xl font-semibold mb-4">Naše sítě</h3>
               <div className="space-y-4">
-                <a 
-                  href="https://facebook.com/driverhomecz" 
-                  target="_blank" 
+                <a
+                  href="https://facebook.com/driverhomecz"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center hover:text-white"
                 >
