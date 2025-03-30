@@ -33,24 +33,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      {/* <section className="bg-indigo-50 py-20 px-4">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-8 text-center">
-          {[
-            { number: '300+', title: 'Vozidel', description: 'v provozu' },
-            { number: '315+', title: 'Řidičů', description: 'DriverHome' },
-            { number: '700+', title: 'Kurýrů', description: 'DriverHome' },
-            { number: '5.000+', title: 'Přepravených', description: 'zákazníků týdně' },
-          ].map((stat, index) => (
-            <div key={index} className="p-6">
-              <div className="text-4xl font-bold text-indigo-900 mb-2">{stat.number}</div>
-              <h3 className="text-xl font-semibold mb-1">{stat.title}</h3>
-              <p className="text-gray-600 text-sm">{stat.description}</p>
-            </div>
-          ))}
-        </div>
-      </section> */}
-
       {/* Opportunity Section */}
       <section className="py-20 px-4 bg-white">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
@@ -145,22 +127,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* CTA Section */}
-      {/* <section className="py-20 px-4 bg-gray-50">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-6">Začněte pracovat již zítra!</h2>
-          <p className="mb-8 text-lg text-gray-600">Stačí vyplnit jednoduchý formulář a my se vám ozveme do 24 hodin</p>
-          <div className="flex justify-center space-x-4">
-            <button className="bg-indigo-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-indigo-700 transition-colors">
-              Přihlásit se jako řidič
-            </button>
-            <button className="bg-gray-800 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-700 transition-colors">
-              Přihlásit se jako kurýr
-            </button>
-          </div>
-        </div>
-      </section> */}
 
       <CarRental />
       <ContactSection />
