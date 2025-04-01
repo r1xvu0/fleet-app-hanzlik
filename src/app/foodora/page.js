@@ -14,7 +14,7 @@ export default function FoodoraPage() {
   return (
     <>
       {/* Hero Section - Foodora Red */}
-      <section className="bg-[#d70f64] text-white py-32 px-4">
+      <section className="bg-[#DF1067] text-white py-32 px-4">
         <div className="max-w-6xl mx-auto text-center">
           <ShoppingBagIcon className="h-20 w-20 mx-auto mb-6 text-[#f8a735]" />
           <h1 className="text-4xl font-bold mb-6">Doručujte s Foodora</h1>
@@ -23,7 +23,7 @@ export default function FoodoraPage() {
       </section>
 
       {/* Stats - Foodora Colors */}
-      <div className="bg-white py-16 px-4">
+      {/* <div className="bg-white py-16 px-4">
         <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 text-center">
           {[
             {
@@ -54,10 +54,10 @@ export default function FoodoraPage() {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
 
       {/* How It Works */}
-      <section className="bg-[#fef2f5] py-20 px-4">
+      {/* <section className="bg-[#fef2f5] py-20 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold mb-12 text-center text-[#d70f64]">
             Jak začít
@@ -79,12 +79,12 @@ export default function FoodoraPage() {
             )}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Requirements */}
       <section className="py-20 px-4 bg-white">
         <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
-          <div className="bg-[#d70f64] text-white p-8 rounded-xl">
+          <div className="bg-[#DF1067] text-white p-8 rounded-xl">
             <h3 className="text-xl font-bold mb-4">Požadavky</h3>
             <ul className="space-y-4">
               {[
@@ -100,7 +100,7 @@ export default function FoodoraPage() {
               ))}
             </ul>
           </div>
-          <div className="bg-[#f8a735] text-[#d70f64] p-8 rounded-xl">
+          <div className="bg-[#DF1067] text-white p-8 rounded-xl">
             <h3 className="text-xl font-bold mb-4">Výhody</h3>
             <ul className="space-y-4">
               {[
@@ -122,9 +122,9 @@ export default function FoodoraPage() {
       <section>
         <FoodDeliveryCalculator
           brandColors={{
-            text: "text-[#f8a735]",
-            accent: "[#f8a735]",
-            border: "border-[#f8a735]",
+            text: "text-[#DF1067]",
+            accent: "[#DF1067]",
+            border: "border-[#DF1067]",
           }}
           rates={{
             perDelivery: 30,
@@ -135,9 +135,9 @@ export default function FoodoraPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-[#d70f64] text-white py-20 px-4">
+      <section className="bg-[#DF1067] text-white py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <DevicePhoneMobileIcon className="h-12 w-12 mx-auto mb-6" />
+          <DevicePhoneMobileIcon className="h-12 w-12 mx-auto mb-6 text-[#f8a735]" />
           <h2 className="text-3xl font-bold mb-6">Začněte ihned!</h2>
           <button className="bg-[#f8a735] text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-[#e8972a] transition-colors">
             Připojit se k Foodora

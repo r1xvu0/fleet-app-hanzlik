@@ -10,7 +10,7 @@ export default function Layout({ children }) {
       <footer className="bg-gray-800 text-gray-300 mt-20">
         <div className="max-w-6xl mx-auto px-4 py-12 grid md:grid-cols-3 gap-8">
           <div>
-            <h3 className="text-white text-xl font-bold mb-4">TaxiFleet</h3>
+            <h3 className="text-white text-xl font-bold mb-4">Flotila Praha</h3>
             <p className="text-sm">
               Connecting professional drivers since 2025
             </p>

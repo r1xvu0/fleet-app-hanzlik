@@ -14,7 +14,7 @@ export default function BoltPage() {
   return (
     <>
       {/* Hero Section - Bolt Black & Green */}
-      <section className="bg-black text-white py-32 px-4">
+      <section className="bg-[#34BB78] text-white py-32 px-4">
         <div className="max-w-6xl mx-auto text-center">
           <BoltIcon className="h-20 w-20 mx-auto mb-6 text-[#8CFF00]" />
           <h1 className="text-4xl font-bold mb-6">
@@ -27,7 +27,7 @@ export default function BoltPage() {
       </section>
 
       {/* Benefits Grid */}
-      <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 py-20 px-4">
+      {/* <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 py-20 px-4">
         {[
           {
             icon: ChartBarIcon,
@@ -57,10 +57,10 @@ export default function BoltPage() {
             <p className="text-gray-600">{item.text}</p>
           </div>
         ))}
-      </div>
+      </div> */}
 
       {/* How It Works */}
-      <section className="bg-[#f8f9fa] py-20 px-4">
+      {/* <section className="bg-[#f8f9fa] py-20 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold mb-12 text-center">
             Jak začít s Bolt
@@ -80,14 +80,14 @@ export default function BoltPage() {
             )}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Earnings Calculator */}
       <section>
         <EarningsCalculator
           brandColors={{
-            text: "text-[#8CFF00]",
-            accent: "[#8CFF00]",
+            text: "text-[#34BB78]",
+            accent: "[#34BB78]",
           }}
           rates={{
             perRide: 45, // Kč per ride
@@ -97,7 +97,7 @@ export default function BoltPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-[#8CFF00] py-20 px-4">
+      <section className="bg-[#34BB78] py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-6 text-black">
             Začněte vydělávat již dnes!

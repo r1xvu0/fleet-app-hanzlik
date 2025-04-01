@@ -13,7 +13,7 @@ export default function UberPage() {
   return (
     <>
       {/* Hero Section - Uber Black */}
-      <section className="bg-[#09091A] text-white py-32 px-4">
+      <section className="bg-[#000000] text-white py-32 px-4">
         <div className="max-w-6xl mx-auto text-center">
           <ShoppingBagIcon className="h-20 w-20 mx-auto mb-6 text-[#3FC3C6]" />
           <h1 className="text-4xl font-bold mb-6">
@@ -24,7 +24,7 @@ export default function UberPage() {
       </section>
 
       {/* Stats Section - Uber Blue */}
-      <div className="bg-white py-16 px-4">
+      {/* <div className="bg-white py-16 px-4">
         <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 text-center">
           {[
             {
@@ -58,10 +58,10 @@ export default function UberPage() {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
 
       {/* How It Works */}
-      <section className="bg-[#F8F9FA] py-20 px-4">
+      {/* <section className="bg-[#F8F9FA] py-20 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold mb-12 text-center text-[#09091A]">
             Jak začít s Uber
@@ -83,12 +83,12 @@ export default function UberPage() {
             )}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Requirements & Benefits */}
       <section className="py-20 px-4 bg-white">
         <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
-          <div className="bg-[#09091A] text-white p-8 rounded-xl shadow-xl">
+          <div className="bg-[#000000] text-white p-8 rounded-xl shadow-xl">
             <h3 className="text-xl font-bold mb-4">Požadavky pro řidiče</h3>
             <ul className="space-y-4">
               {[
@@ -104,7 +104,7 @@ export default function UberPage() {
               ))}
             </ul>
           </div>
-          <div className="bg-[#3FC3C6] text-[#09091A] p-8 rounded-xl shadow-xl">
+          <div className="bg-[#000000] text-white p-8 rounded-xl shadow-xl">
             <h3 className="text-xl font-bold mb-4">Výhody s námi</h3>
             <ul className="space-y-4">
               {[
@@ -137,13 +137,13 @@ export default function UberPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-[#09091A] text-white py-20 px-4">
+      <section className="bg-[#000000] text-white py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <DevicePhoneMobileIcon className="h-12 w-12 mx-auto mb-6 text-[#3FC3C6]" />
           <h2 className="text-3xl font-bold mb-6">
             Začněte vydělávat již dnes!
           </h2>
-          <button className="bg-[#3FC3C6] text-[#09091A] px-8 py-4 rounded-lg text-lg font-semibold hover:bg-[#35ADB0] transition-colors">
+          <button className="bg-white text-[#000000] px-8 py-4 rounded-lg text-lg font-semibold hover:bg-[#35ADB0] transition-colors">
             Připojit se k Uber
           </button>
         </div>

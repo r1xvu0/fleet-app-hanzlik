@@ -16,14 +16,14 @@ export default function BoltFoodPage() {
       {/* Hero Section - Bolt Black & Pink */}
       <section className="bg-black text-white py-32 px-4">
         <div className="max-w-6xl mx-auto text-center">
-          <ShoppingBagIcon className="h-20 w-20 mx-auto mb-6 text-[#ff3d69]" />
+          <ShoppingBagIcon className="h-20 w-20 mx-auto mb-6 text-white" />
           <h1 className="text-4xl font-bold mb-6">Spolupracujte s Bolt Food</h1>
           <p className="text-xl">Leader v rychlém doručování jídla</p>
         </div>
       </section>
 
       {/* Stats Section */}
-      <div className="bg-white py-16 px-4">
+      {/* <div className="bg-white py-16 px-4">
         <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 text-center">
           {[
             {
@@ -54,10 +54,10 @@ export default function BoltFoodPage() {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
 
       {/* How It Works */}
-      <section className="bg-gray-50 py-20 px-4">
+      {/* <section className="bg-gray-50 py-20 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold mb-12 text-center">
             4 kroky k výdělkům
@@ -77,7 +77,7 @@ export default function BoltFoodPage() {
             )}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Requirements */}
       <section className="py-20 px-4 bg-white">
@@ -92,13 +92,13 @@ export default function BoltFoodPage() {
                 "Časová flexibilita",
               ].map((item, index) => (
                 <li key={index} className="flex items-center">
-                  <CheckIcon className="w-5 h-5 text-[#ff3d69] mr-2" />
+                  <CheckIcon className="w-5 h-5 text-white mr-2" />
                   {item}
                 </li>
               ))}
             </ul>
           </div>
-          <div className="bg-[#ff3d69] text-white p-8 rounded-xl shadow-lg">
+          <div className="bg-black text-white p-8 rounded-xl shadow-lg">
             <h3 className="text-xl font-bold mb-4">Výhody</h3>
             <ul className="space-y-4">
               {[
@@ -108,7 +108,7 @@ export default function BoltFoodPage() {
                 "VIP podpora",
               ].map((item, index) => (
                 <li key={index} className="flex items-center">
-                  <CheckIcon className="w-5 h-5 text-black mr-2" />
+                  <CheckIcon className="w-5 h-5 text-white mr-2" />
                   {item}
                 </li>
               ))}
@@ -120,9 +120,9 @@ export default function BoltFoodPage() {
       <section>
         <FoodDeliveryCalculator
           brandColors={{
-            text: "text-[#8CFF00]",
+            text: "text-black",
             accent: "[#8CFF00]",
-            border: "border-[#8CFF00]",
+            border: "border-black",
           }}
           rates={{
             perDelivery: 35,
@@ -135,7 +135,7 @@ export default function BoltFoodPage() {
       {/* CTA */}
       <section className="bg-black text-white py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <DevicePhoneMobileIcon className="h-12 w-12 mx-auto mb-6 text-[#ff3d69]" />
+          <DevicePhoneMobileIcon className="h-12 w-12 mx-auto mb-6 text-white" />
           <h2 className="text-3xl font-bold mb-6">
             Začněte vydělávat ještě dnes!
           </h2>

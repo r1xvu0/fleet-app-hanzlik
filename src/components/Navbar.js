@@ -13,7 +13,7 @@ export const TopBar = () => (
       <div className="flex items-center space-x-4">
         <div className="flex items-center">
           <EnvelopeIcon className="w-4 h-4 mr-1" />
-          <span>support@taxifleet.cz</span>
+          <span>flotila.praha1@gmail.com</span>
         </div>
       </div>
       <div className="flex items-center">
@@ -29,7 +29,7 @@ export const MainNavigation = () => (
     <div className="max-w-6xl mx-auto px-4 py-4">
       <div className="flex justify-between items-center">
         <Link href="/" className="text-2xl font-bold text-indigo-900">
-          TaxiFleet
+          Flotila Praha
         </Link>
         <div className="hidden md:flex space-x-8">
           <Link href="/about" className="hover:text-indigo-600">
@@ -108,7 +108,7 @@ export const SecondaryNavigation = () => (
           className="hover:text-indigo-600 flex items-center"
         >
           <ChatBubbleBottomCenterTextIcon className="w-4 h-4 mr-1" />
-          E-Mail: patrikhanzlik@gmail.com
+          E-Mail: flotila.praha1@gmail.com
         </a>
       </div>
     </div>
