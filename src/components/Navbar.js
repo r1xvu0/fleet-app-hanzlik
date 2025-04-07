@@ -28,7 +28,7 @@ export const MainNavigation = () => (
   <nav className="bg-white shadow-sm">
     <div className="max-w-6xl mx-auto px-4 py-4">
       <div className="flex justify-between items-center">
-        <Link href="/" className="text-2xl font-bold text-indigo-900">
+        <Link href="/" className="text-3xl font-bold text-indigo-900">
           Flotila Praha
         </Link>
         <div className="hidden md:flex space-x-8">
@@ -57,7 +57,7 @@ export const ServicesBar = () => (
         <Link href="/uber" className="hover:text-indigo-600">
           Uber
         </Link>
-        <Link href="/wolt" className="hover:text-indigo-600">
+        {/* <Link href="/wolt" className="hover:text-indigo-600">
           Wolt
         </Link>
         <Link href="/bolt-food" className="hover:text-indigo-600">
@@ -65,7 +65,7 @@ export const ServicesBar = () => (
         </Link>
         <Link href="/foodora" className="hover:text-indigo-600">
           Foodora
-        </Link>
+        </Link> */}
       </div>
     </div>
   </div>

@@ -17,72 +17,74 @@ export default function EarningsCalculator({ brandColors, rates }) {
 
   return (
     <div className="bg-white p-8 rounded-xl shadow-xl">
-      <h2 className={`text-2xl font-bold mb-6 ${brandColors.text}`}>
+      <h2 className={`text-2xl font-bold mb-6 text-center ${brandColors.text}`}>
         Kalkulačka výdělků
       </h2>
 
-      <div className="space-y-8">
-        {/* Rides Input */}
-        <div>
-          <label className="block mb-4 text-lg font-medium">
-            Počet jízd denně: {rides}
-          </label>
-          <input
-            type="range"
-            min="5"
-            max="50"
-            value={rides}
-            onChange={(e) => setRides(Number(e.target.value))}
-            className={`w-full accent-${brandColors.accent}`}
-          />
-          <div className="text-sm text-gray-500 mt-2">
-            Průměr: 15-25 jízd/den
-          </div>
-        </div>
-
-        {/* Hours Input */}
-        <div>
-          <label className="block mb-4 text-lg font-medium">
-            Hodin týdně: {hours}
-          </label>
-          <input
-            type="range"
-            min="10"
-            max="60"
-            value={hours}
-            onChange={(e) => setHours(Number(e.target.value))}
-            className={`w-full accent-${brandColors.accent}`}
-          />
-        </div>
-
-        {/* Results */}
-        <div className="space-y-4">
-          <div className="flex justify-between items-center">
-            <span>Základní výdělek:</span>
-            <span className={`font-bold ${brandColors.text}`}>
-              {baseEarnings.toLocaleString()} Kč/den
-            </span>
+      <div className="flex justify-center items-center">
+        <div className="space-y-8 w-[50%]">
+          {/* Rides Input */}
+          <div>
+            <label className="block mb-4 text-lg font-medium">
+              Počet jízd denně: {rides}
+            </label>
+            <input
+              type="range"
+              min="5"
+              max="50"
+              value={rides}
+              onChange={(e) => setRides(Number(e.target.value))}
+              className={`w-full accent-${brandColors.accent}`}
+            />
+            <div className="text-sm text-gray-500 mt-2">
+              Průměr: 15-25 jízd/den
+            </div>
           </div>
 
-          {bonus > 0 && (
+          {/* Hours Input */}
+          <div>
+            <label className="block mb-4 text-lg font-medium">
+              Hodin týdně: {hours}
+            </label>
+            <input
+              type="range"
+              min="10"
+              max="60"
+              value={hours}
+              onChange={(e) => setHours(Number(e.target.value))}
+              className={`w-full accent-${brandColors.accent}`}
+            />
+          </div>
+
+          {/* Results */}
+          <div className="space-y-4">
             <div className="flex justify-between items-center">
-              <span>Bonus za plný úvazek:</span>
+              <span>Základní výdělek:</span>
               <span className={`font-bold ${brandColors.text}`}>
-                +{bonus.toLocaleString()} Kč
+                {baseEarnings.toLocaleString()} Kč/den
               </span>
             </div>
-          )}
 
-          <div className="flex justify-between items-center border-t pt-4">
-            <span className="font-bold">Celkem:</span>
-            <span className={`text-2xl font-bold ${brandColors.text}`}>
-              {weekly.toLocaleString()} Kč/týden
-            </span>
-          </div>
+            {bonus > 0 && (
+              <div className="flex justify-between items-center">
+                <span>Bonus za plný úvazek:</span>
+                <span className={`font-bold ${brandColors.text}`}>
+                  +{bonus.toLocaleString()} Kč
+                </span>
+              </div>
+            )}
 
-          <div className="text-sm text-gray-500 flex items-center">
-            <InformationCircleIcon className="w-5 h-5 mr-2" />
-            Odhad měsíčního výdělku: {monthly.toLocaleString()} Kč
+            <div className="flex justify-between items-center border-t pt-4">
+              <span className="font-bold">Celkem:</span>
+              <span className={`text-2xl font-bold ${brandColors.text}`}>
+                {weekly.toLocaleString()} Kč/týden
+              </span>
+            </div>
+
+            <div className="text-sm text-gray-500 flex items-center">
+              <InformationCircleIcon className="w-5 h-5 mr-2" />
+              Odhad měsíčního výdělku: {monthly.toLocaleString()} Kč
+            </div>
           </div>
         </div>
       </div>
