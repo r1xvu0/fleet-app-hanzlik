@@ -64,14 +64,14 @@ import {
                     Nejoblíbenější
                   </div>
                 )}
-                <h3 className="text-2xl font-bold mb-2">{plan.title}</h3>
-                <div className="text-4xl font-bold mb-4">{plan.price}</div>
+                <h3 className="text-2xl font-bold mb-2 text-gray-900">{plan.title}</h3>
+                <div className="text-4xl font-bold mb-4 text-gray-900">{plan.price}</div>
                 <p className="text-gray-600 mb-6">{plan.description}</p>
                 <ul className="space-y-4 mb-8">
                   {plan.features.map((feature, fIndex) => (
                     <li key={fIndex} className="flex items-center">
                       <CheckIcon className="w-5 h-5 text-green-500 mr-2" />
-                      {feature}
+                      <span className="text-gray-700">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -91,15 +91,15 @@ import {
         {/* Comparison Table */}
         <section className="bg-indigo-50 py-20 px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold mb-12 text-center">Podrobné srovnání</h2>
+            <h2 className="text-3xl font-bold mb-12 text-center text-black">Podrobné srovnání</h2>
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
                   <tr>
-                    <th className="text-left py-4">Funkce</th>
-                    <th className="text-left py-4">Standard</th>
-                    <th className="text-left py-4">Professional</th>
-                    <th className="text-left py-4">Enterprise</th>
+                    <th className="text-left py-4 text-gray-800">Funkce</th>
+                    <th className="text-left py-4 text-gray-800">Standard</th>
+                    <th className="text-left py-4 text-gray-800">Professional</th>
+                    <th className="text-left py-4 text-gray-800">Enterprise</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -110,10 +110,10 @@ import {
                     { feature: 'Výběr výdělku', standard: 'Týdenní', pro: 'Denní', enterprise: 'Okamžitý' }
                   ].map((row, index) => (
                     <tr key={index} className="border-t">
-                      <td className="py-4 font-semibold">{row.feature}</td>
-                      <td className="py-4">{row.standard}</td>
-                      <td className="py-4">{row.pro}</td>
-                      <td className="py-4">{row.enterprise}</td>
+                      <td className="py-4 font-semibold text-gray-800">{row.feature}</td>
+                      <td className="py-4 text-gray-700">{row.standard}</td>
+                      <td className="py-4 text-gray-700">{row.pro}</td>
+                      <td className="py-4 text-gray-700">{row.enterprise}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -125,7 +125,7 @@ import {
         {/* FAQ */}
         <section className="py-20 px-4 bg-white">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold mb-12 text-center">Časté dotazy</h2>
+            <h2 className="text-3xl font-bold mb-12 text-center text-black">Časté dotazy</h2>
             <div className="space-y-6">
               {[
                 {
@@ -142,8 +142,8 @@ import {
                 }
               ].map((faq, index) => (
                 <div key={index} className="border rounded-lg p-6 hover:border-indigo-100 transition-colors">
-                  <h3 className="font-semibold text-lg mb-2">{faq.question}</h3>
-                  <p className="text-gray-600">{faq.answer}</p>
+                  <h3 className="font-semibold text-lg mb-2 text-gray-900">{faq.question}</h3>
+                  <p className="text-gray-700">{faq.answer}</p>
                 </div>
               ))}
             </div>

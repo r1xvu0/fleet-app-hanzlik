@@ -1,27 +1,92 @@
 // components/CarRental.jsx
-import { ArrowRightIcon, TruckIcon } from '@heroicons/react/24/outline';
+import { ArrowRightIcon, TruckIcon, CheckIcon, CurrencyDollarIcon, ClockIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
 
 export default function CarRental() {
   return (
-    <section className="py-20 px-4 bg-gray-50">
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-        <div>
-          <h2 className="text-3xl font-bold mb-6">Nabídka našich vozů</h2>
-          <p className="text-lg text-gray-600 mb-8">
-            Auta do nájmu od 3 500,- Kč/týden včetně flotily, servisu a pojištění.
+    <section className="py-24 px-4 bg-gradient-to-b from-white to-indigo-50 overflow-hidden relative">
+      {/* Background decorative elements */}
+      <div className="absolute right-0 top-0 w-96 h-96 bg-indigo-100 rounded-full -mr-48 -mt-48 opacity-50"></div>
+      <div className="absolute left-0 bottom-0 w-96 h-96 bg-indigo-100 rounded-full -ml-48 -mb-48 opacity-50"></div>
+      
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-indigo-900">Nabídka našich vozů</h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Široký výběr kvalitních vozů k pronájmu nebo do odkupu za výhodných podmínek
           </p>
-          <p className="text-gray-600 mb-8">
-            Nemáte vlastní auto a nechcete platit stále někde nájem? Vemte si od nás auto do odkupu! 
-            Po 3 měsících spolupráce s námi si můžete vybrat auto podle vašich představ a my vám ho koupíme. 
-            My vám pak z výdělku místo nájmu strháváme dopředu dohodnutou splátku auta. Po zaplacení poslední 
-            splátky je auto vaše. Další splátky/nájem již neplatíte, jelikož jezdíte s vlastním autem!
-          </p>
-          <button className="bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-colors flex items-center">
-            Zobrazit nabídku
-            <ArrowRightIcon className="w-5 h-5 ml-2" />
-          </button>
         </div>
-        <div className="bg-gray-100 h-96 rounded-xl"></div>
+        
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="order-2 md:order-1">
+            <div className="bg-white p-8 rounded-2xl shadow-xl">
+              <div className="flex items-center mb-6">
+                <div className="bg-indigo-100 p-3 rounded-xl">
+                  <TruckIcon className="w-8 h-8 text-indigo-600" />
+                </div>
+                <h3 className="text-2xl font-bold ml-4 text-indigo-900">Pronájem vozů</h3>
+              </div>
+              
+              <div className="space-y-4 mb-8">
+                <div className="flex items-start">
+                  <CheckIcon className="w-5 h-5 text-green-500 mr-2 mt-1 flex-shrink-0" />
+                  <p className="text-gray-700">Auta do nájmu od <span className="font-semibold text-indigo-900">3 500,- Kč/týden</span> včetně flotily, servisu a pojištění</p>
+                </div>
+                <div className="flex items-start">
+                  <CheckIcon className="w-5 h-5 text-green-500 mr-2 mt-1 flex-shrink-0" />
+                  <p className="text-gray-700">Několik modelů k dispozici podle vašich preferencí</p>
+                </div>
+                <div className="flex items-start">
+                  <CheckIcon className="w-5 h-5 text-green-500 mr-2 mt-1 flex-shrink-0" />
+                  <p className="text-gray-700">Možnost kdykoliv změnit auto podle aktuálních potřeb</p>
+                </div>
+              </div>
+              
+              <div className="border-t border-gray-200 pt-6 mb-6">
+                <h4 className="text-xl font-semibold mb-4 text-indigo-900">Auto do odkupu</h4>
+                <p className="text-gray-600 mb-6">
+                  Nemáte vlastní auto a nechcete platit stále někde nájem? Vemte si od nás auto do odkupu! 
+                  Po 3 měsících spolupráce s námi si můžete vybrat auto podle vašich představ a my vám ho koupíme. 
+                  My vám pak z výdělku místo nájmu strháváme dopředu dohodnutou splátku auta.
+                </p>
+                <div className="bg-indigo-50 p-4 rounded-xl text-indigo-900 font-medium">
+                  Po zaplacení poslední splátky je auto vaše. Další splátky/nájem již neplatíte, jelikož jezdíte s vlastním autem!
+                </div>
+              </div>
+              
+              <Link href="/cars" className="bg-indigo-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-indigo-700 transition-all flex items-center justify-center md:justify-start w-full md:w-auto shadow-lg hover:shadow-xl">
+                Zobrazit nabídku
+                <ArrowRightIcon className="w-5 h-5 ml-2" />
+              </Link>
+            </div>
+          </div>
+          
+          <div className="order-1 md:order-2 rounded-2xl overflow-hidden shadow-xl">
+            <div className="relative h-96 bg-gradient-to-r from-indigo-500 to-indigo-700 flex items-center justify-center">
+              <img 
+                src="https://placehold.co/800x600/indigo/white?text=Fleet+Cars" 
+                alt="Naše vozy" 
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-indigo-900/80 to-transparent p-6">
+                <div className="grid grid-cols-3 gap-4 text-center text-white">
+                  <div>
+                    <div className="font-bold text-2xl">10+</div>
+                    <div className="text-sm">Modelů vozů</div>
+                  </div>
+                  <div>
+                    <div className="font-bold text-2xl">24/7</div>
+                    <div className="text-sm">Technická podpora</div>
+                  </div>
+                  <div>
+                    <div className="font-bold text-2xl">100%</div>
+                    <div className="text-sm">Pojištění</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

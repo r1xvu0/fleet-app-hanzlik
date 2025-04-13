@@ -15,10 +15,18 @@ export default function BenefitsPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-indigo-900 text-white py-32 px-4">
-        <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-4xl font-bold mb-6">Výhody spolupráce s námi</h1>
-          <p className="text-xl">
+      <section className="relative bg-gradient-to-br from-indigo-900 via-indigo-800 to-indigo-950 text-white py-32 px-4 overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute right-0 top-0 -mt-10 -mr-10 w-40 h-40 bg-indigo-400 rounded-full"></div>
+          <div className="absolute left-0 bottom-0 -mb-10 -ml-10 w-40 h-40 bg-indigo-400 rounded-full"></div>
+          <div className="absolute right-1/3 top-1/4 w-24 h-24 bg-indigo-500 rounded-full"></div>
+          <div className="absolute left-1/4 bottom-1/3 w-16 h-16 bg-indigo-600 rounded-full"></div>
+        </div>
+        
+        <div className="max-w-6xl mx-auto text-center relative z-10">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">Výhody spolupráce s námi</h1>
+          <p className="text-xl text-indigo-100">
             Proč se řidiči vracejí a doporučují nás dalším
           </p>
         </div>
@@ -64,7 +72,7 @@ export default function BenefitsPage() {
               className="p-8 border rounded-xl hover:border-indigo-200 transition-colors"
             >
               <benefit.icon className="h-12 w-12 text-indigo-600 mb-6" />
-              <h3 className="text-xl font-bold mb-3">{benefit.title}</h3>
+              <h3 className="text-xl font-bold mb-3 text-gray-900">{benefit.title}</h3>
               <p className="text-gray-600">{benefit.description}</p>
             </div>
           ))}
@@ -74,16 +82,16 @@ export default function BenefitsPage() {
       {/* Comparison Section */}
       <section className="bg-indigo-50 py-20 px-4">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-12 text-center">
+          <h2 className="text-3xl font-bold mb-12 text-center text-gray-900">
             Proč zvolit nás?
           </h2>
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
                 <tr>
-                  <th className="text-left py-4"></th>
-                  <th className="text-left py-4">Naše flotila</th>
-                  <th className="text-left py-4">Samostatný řidič</th>
+                  <th className="text-left py-4 text-gray-900"></th>
+                  <th className="text-left py-4 text-gray-900">Naše flotila</th>
+                  <th className="text-left py-4 text-gray-900">Samostatný řidič</th>
                 </tr>
               </thead>
               <tbody>
@@ -107,9 +115,9 @@ export default function BenefitsPage() {
                   { feature: "Bonusové programy", us: "Ano", others: "Ne" },
                 ].map((row, index) => (
                   <tr key={index} className="border-t">
-                    <td className="py-4 font-semibold">{row.feature}</td>
-                    <td className="py-4 text-green-600">{row.us}</td>
-                    <td className="py-4 text-gray-400">{row.others}</td>
+                    <td className="py-4 font-semibold text-gray-800">{row.feature}</td>
+                    <td className="py-4 text-green-600 font-medium">{row.us}</td>
+                    <td className="py-4 text-gray-500">{row.others}</td>
                   </tr>
                 ))}
               </tbody>
@@ -153,7 +161,7 @@ export default function BenefitsPage() {
               ].map((testimonial, index) => (
                 <div key={index} className="relative pl-10">
                   <ChatBubbleBottomCenterTextIcon className="w-8 h-8 absolute left-0 top-1 text-indigo-200" />
-                  <p className="text-lg mb-2">"{testimonial.text}"</p>
+                  <p className="text-lg mb-2 text-white">{testimonial.text}</p>
                   <p className="text-indigo-200">{testimonial.author}</p>
                 </div>
               ))}
@@ -166,7 +174,7 @@ export default function BenefitsPage() {
       {/* CTA Section */}
       <section className="bg-white py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-6">Přidejte se k nejlepším</h2>
+          <h2 className="text-3xl font-bold mb-6 text-gray-900">Přidejte se k nejlepším</h2>
           <p className="mb-8 text-lg text-gray-600">
             Začněte vydělávat již zítra
           </p>
