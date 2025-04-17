@@ -26,7 +26,7 @@ export default function BoltPage() {
         
         <div className="max-w-7xl mx-auto text-center relative z-10">
           <div className="bg-white/10 p-6 rounded-full w-24 h-24 mx-auto mb-8 backdrop-blur-sm flex items-center justify-center">
-            <BoltIcon className="h-16 w-16 text-[#8CFF00]" />
+            <BoltIcon className="h-16 w-16 text-white" />
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
             Spolupracujte s Bolt přes naši flotilu

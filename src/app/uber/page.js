@@ -26,7 +26,7 @@ export default function UberPage() {
         
         <div className="max-w-7xl mx-auto text-center relative z-10">
           <div className="bg-white/10 p-6 rounded-full w-24 h-24 mx-auto mb-8 backdrop-blur-sm flex items-center justify-center">
-            <ShoppingBagIcon className="h-16 w-16 text-[#3FC3C6]" />
+            <ShoppingBagIcon className="h-16 w-16 text-white" />
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
             Spolupracujte s Uber přes naši flotilu
@@ -35,7 +35,7 @@ export default function UberPage() {
             Největší síť řidičů v České republice
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-6 sm:space-x-6">
-            <Link href="/contact" className="bg-[#3FC3C6] hover:bg-[#35ADB0] text-black px-8 py-4 rounded-xl text-lg font-semibold transition-all shadow-lg hover:shadow-xl">
+            <Link href="/contact" className="bg-white hover:bg-gray-300 text-black px-8 py-4 rounded-xl text-lg font-semibold transition-all shadow-lg hover:shadow-xl">
               Připojit se k Uber
               <ArrowRightIcon className="w-5 h-5 ml-2 inline-block" />
             </Link>
