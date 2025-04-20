@@ -23,7 +23,7 @@ export default function BoltPage() {
           <div className="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-[#8CFF00]"></div>
           <div className="absolute -left-24 -bottom-24 w-96 h-96 rounded-full bg-[#8CFF00]"></div>
         </div>
-        
+
         <div className="max-w-7xl mx-auto text-center relative z-10">
           <div className="bg-white/10 p-6 rounded-full w-24 h-24 mx-auto mb-8 backdrop-blur-sm flex items-center justify-center">
             <BoltIcon className="h-16 w-16 text-white" />
@@ -35,11 +35,17 @@ export default function BoltPage() {
             Nejvyšší výdělky v Praze s prémiovou podporou
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-6 sm:space-x-6">
-            <Link href="/contact" className="bg-[#212121] hover:bg-[#3a3a3a] text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all shadow-lg hover:shadow-xl">
+            <Link
+              href="/contact"
+              className="bg-[#212121] hover:bg-[#3a3a3a] text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all shadow-lg hover:shadow-xl"
+            >
               Přihlásit se k Bolt
               <ArrowRightIcon className="w-5 h-5 ml-2 inline-block" />
             </Link>
-            <Link href="/how-it-works" className="border-2 border-white/30 backdrop-blur-sm bg-white/10 hover:bg-white/20 px-8 py-4 rounded-xl text-lg font-semibold transition-all">
+            <Link
+              href="/how-it-works"
+              className="border-2 border-white/30 backdrop-blur-sm bg-white/10 hover:bg-white/20 px-8 py-4 rounded-xl text-lg font-semibold transition-all"
+            >
               Více informací
             </Link>
           </div>
@@ -89,7 +95,7 @@ export default function BoltPage() {
       </section> */}
 
       {/* How It Works */}
-      <section className="bg-gradient-to-b from-gray-50 to-white py-20 px-4">
+      {/* <section className="bg-gradient-to-b from-gray-50 to-white py-20 px-4">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold mb-12 text-center text-gray-900">
             Jak začít s Bolt
@@ -104,7 +110,7 @@ export default function BoltPage() {
                     </span>
                   </div>
                   <h3 className="font-semibold text-xl text-gray-900">{step}</h3>
-                  {/* Line connector between steps */}
+                  Line connector between steps
                   {index < 3 && (
                     <div className="hidden md:block absolute top-1/3 left-[60%] w-[80%] h-0.5 bg-gray-200"></div>
                   )}
@@ -113,7 +119,7 @@ export default function BoltPage() {
             )}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Requirements & Benefits */}
       <section className="py-20 px-4 bg-white">
@@ -188,15 +194,21 @@ export default function BoltPage() {
           <div className="absolute right-0 top-0 w-64 h-64 bg-[#8CFF00] rounded-full"></div>
           <div className="absolute left-0 bottom-0 w-64 h-64 bg-[#8CFF00] rounded-full"></div>
         </div>
-        
+
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <h2 className="text-3xl font-bold mb-8 text-white">
             Začněte vydělávat již dnes!
           </h2>
           <div className="max-w-xl mx-auto mb-10 text-white/80">
-            <p>Připojte se k našemu týmu profesionálních řidičů a využijte všech výhod, které Bolt ve spolupráci s naší flotilou nabízí.</p>
+            <p>
+              Připojte se k našemu týmu profesionálních řidičů a využijte všech
+              výhod, které Bolt ve spolupráci s naší flotilou nabízí.
+            </p>
           </div>
-          <Link href="/contact" className="inline-flex items-center bg-black text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-gray-900 transition-all shadow-lg hover:shadow-xl">
+          <Link
+            href="/contact"
+            className="inline-flex items-center bg-black text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-gray-900 transition-all shadow-lg hover:shadow-xl"
+          >
             Přihlásit se k Bolt
             <ArrowRightIcon className="w-5 h-5 ml-2" />
           </Link>

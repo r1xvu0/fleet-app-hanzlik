@@ -23,7 +23,7 @@ export default function UberPage() {
           <div className="absolute -right-20 -top-20 w-96 h-96 rounded-full bg-[#3FC3C6]"></div>
           <div className="absolute -left-20 -bottom-20 w-96 h-96 rounded-full bg-[#3FC3C6]"></div>
         </div>
-        
+
         <div className="max-w-7xl mx-auto text-center relative z-10">
           <div className="bg-white/10 p-6 rounded-full w-24 h-24 mx-auto mb-8 backdrop-blur-sm flex items-center justify-center">
             <ShoppingBagIcon className="h-16 w-16 text-white" />
@@ -35,11 +35,17 @@ export default function UberPage() {
             Největší síť řidičů v České republice
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-6 sm:space-x-6">
-            <Link href="/contact" className="bg-white hover:bg-gray-300 text-black px-8 py-4 rounded-xl text-lg font-semibold transition-all shadow-lg hover:shadow-xl">
+            <Link
+              href="/contact"
+              className="bg-white hover:bg-gray-300 text-black px-8 py-4 rounded-xl text-lg font-semibold transition-all shadow-lg hover:shadow-xl"
+            >
               Připojit se k Uber
               <ArrowRightIcon className="w-5 h-5 ml-2 inline-block" />
             </Link>
-            <Link href="/how-it-works" className="border-2 border-white/30 backdrop-blur-sm bg-white/10 hover:bg-white/20 px-8 py-4 rounded-xl text-lg font-semibold transition-all">
+            <Link
+              href="/how-it-works"
+              className="border-2 border-white/30 backdrop-blur-sm bg-white/10 hover:bg-white/20 px-8 py-4 rounded-xl text-lg font-semibold transition-all"
+            >
               Zjistit více
             </Link>
           </div>
@@ -91,7 +97,7 @@ export default function UberPage() {
       </section> */}
 
       {/* How It Works */}
-      <section className="bg-gradient-to-b from-gray-50 to-white py-20 px-4">
+      {/* <section className="bg-gradient-to-b from-gray-50 to-white py-20 px-4">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold mb-12 text-center text-gray-900">
             Jak začít s Uber
@@ -108,7 +114,7 @@ export default function UberPage() {
                   <h3 className="font-semibold text-xl text-gray-900">
                     {step}
                   </h3>
-                  {/* Line connector between steps */}
+                  Line connector between steps
                   {index < 3 && (
                     <div className="hidden md:block absolute top-1/3 left-[60%] w-[80%] h-0.5 bg-gray-200"></div>
                   )}
@@ -117,7 +123,7 @@ export default function UberPage() {
             )}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Requirements & Benefits */}
       <section className="py-20 px-4 bg-white">
@@ -192,16 +198,20 @@ export default function UberPage() {
           <div className="absolute right-0 top-0 w-64 h-64 bg-[#3FC3C6] rounded-full"></div>
           <div className="absolute left-0 bottom-0 w-64 h-64 bg-[#3FC3C6] rounded-full"></div>
         </div>
-        
+
         <div className="max-w-5xl mx-auto text-center relative z-10">
           <DevicePhoneMobileIcon className="h-16 w-16 mx-auto mb-6 text-[#3FC3C6]" />
           <h2 className="text-3xl md:text-4xl font-bold mb-8">
             Začněte vydělávat již dnes!
           </h2>
           <p className="text-gray-300 mb-10 max-w-2xl mx-auto">
-            Připojte se k Uber přes naši flotilu a získejte nejlepší podmínky na trhu. Naši specialisté vám pomohou s registrací a prvními kroky.
+            Připojte se k Uber přes naši flotilu a získejte nejlepší podmínky na
+            trhu. Naši specialisté vám pomohou s registrací a prvními kroky.
           </p>
-          <Link href="/contact" className="bg-[#3FC3C6] hover:bg-[#35ADB0] text-black px-8 py-4 rounded-xl text-lg font-semibold transition-all shadow-lg hover:shadow-xl inline-flex items-center">
+          <Link
+            href="/contact"
+            className="bg-[#3FC3C6] hover:bg-[#35ADB0] text-black px-8 py-4 rounded-xl text-lg font-semibold transition-all shadow-lg hover:shadow-xl inline-flex items-center"
+          >
             Připojit se k Uber
             <ArrowRightIcon className="w-5 h-5 ml-2" />
           </Link>
