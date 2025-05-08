@@ -1,3 +1,5 @@
+'use client'
+
 // components/ContactSection.jsx
 import {
   ChatBubbleBottomCenterTextIcon,
@@ -7,10 +9,25 @@ import {
   PhoneIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import { useEffect } from "react";
 
 export default function ContactSection() {
+  // Add effect to handle scrolling to form when page loads with a hash
+  useEffect(() => {
+    // Window checks inside useEffect are safe as this only runs client-side
+    if (window.location.hash === '#contact-form') {
+      // Use setTimeout to ensure the page has fully loaded
+      setTimeout(() => {
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+          contactForm.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  }, []);
+
   return (
-    <section className="relative overflow-hidden py-20 px-4">
+    <section className="relative overflow-hidden py-20 px-4" id="contact-form">
       {/* Background with gradient effect */}
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-950 to-indigo-900 z-0"></div>
       

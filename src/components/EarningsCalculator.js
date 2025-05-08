@@ -11,7 +11,6 @@ import {
 } from "@heroicons/react/24/outline";
 
 export default function EarningsCalculator() {
-  const [rides, setRides] = useState(15);
   const [hours, setHours] = useState(40);
   const [platform, setPlatform] = useState("bolt");
 
@@ -20,21 +19,21 @@ export default function EarningsCalculator() {
     bolt: {
       name: "Bolt",
       color: "from-indigo-600 to-indigo-700",
-      perRide: 220,
+      hourlyRate: 350,
       bonus: 1500,
       commission: 15
     },
     uber: {
       name: "Uber",
       color: "from-black to-gray-800",
-      perRide: 240,
+      hourlyRate: 350,
       bonus: 1200,
       commission: 15
     },
     // liftago: {
     //   name: "Liftago",
     //   color: "from-green-600 to-green-700",
-    //   perRide: 260,
+    //   hourlyRate: 350,
     //   bonus: 1000,
     //   commission: 16
     // }
@@ -43,11 +42,12 @@ export default function EarningsCalculator() {
   const rates = platformData[platform];
 
   // Calculation logic
-  const baseEarnings = rides * rates.perRide;
+  const hourlyEarnings = rates.hourlyRate;
+  const dailyHours = hours / 5; // Assume 5 workdays per week
+  const dailyEarnings = dailyHours * hourlyEarnings;
   const bonus = hours >= 40 ? rates.bonus : 0;
-  const total = baseEarnings + bonus;
-  const weekly = total * 5; // Workdays in a week
-  const monthly = weekly * 4;
+  const weeklyEarnings = (hours * hourlyEarnings) + bonus;
+  const monthly = weeklyEarnings * 4;
   const yearlyEstimate = monthly * 12;
 
   return (
@@ -88,27 +88,6 @@ export default function EarningsCalculator() {
               </div>
             </div>
 
-            {/* Rides Input */}
-            <div className="mb-8">
-              <label className="block mb-3 font-medium text-gray-700 flex justify-between">
-                <span>Počet jízd denně:</span>
-                <span className="text-indigo-600 font-bold">{rides}</span>
-              </label>
-              <input
-                type="range"
-                min="5"
-                max="50"
-                value={rides}
-                onChange={(e) => setRides(Number(e.target.value))}
-                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-indigo-600"
-              />
-              <div className="flex justify-between text-sm text-gray-500 mt-2">
-                <span>5</span>
-                <span>Průměr: 15-25</span>
-                <span>50</span>
-              </div>
-            </div>
-
             {/* Hours Input */}
             <div className="mb-8">
               <label className="block mb-3 font-medium text-gray-700 flex justify-between">
@@ -127,6 +106,19 @@ export default function EarningsCalculator() {
                 <span>10</span>
                 <span>40 (plný úvazek)</span>
                 <span>60</span>
+              </div>
+            </div>
+
+            {/* Hourly Rate Information */}
+            <div className="mb-8 bg-indigo-50 p-4 rounded-lg">
+              <div className="flex items-start">
+                <CurrencyDollarIcon className="w-5 h-5 text-indigo-600 mr-2 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-medium text-gray-700">Hodinová sazba: {hourlyEarnings} Kč</p>
+                  <p className="text-sm text-gray-600 mt-1">
+                    Fixní hodinová sazba za vaši práci.
+                  </p>
+                </div>
               </div>
             </div>
 
@@ -155,8 +147,8 @@ export default function EarningsCalculator() {
                   <ClockIcon className="w-5 h-5 mr-2" />
                   Denní odhad
                 </div>
-                <div className="text-3xl font-bold">{total.toLocaleString()} Kč</div>
-                <div className="text-sm text-indigo-200 mt-2">{rides} jízd × {rates.perRide} Kč</div>
+                <div className="text-3xl font-bold">{Math.round(dailyEarnings).toLocaleString()} Kč</div>
+                <div className="text-sm text-indigo-200 mt-2">{Math.round(dailyHours)} hodin × {hourlyEarnings} Kč</div>
               </div>
               
               <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20">
@@ -164,8 +156,8 @@ export default function EarningsCalculator() {
                   <ClockIcon className="w-5 h-5 mr-2" />
                   Týdenní odhad
                 </div>
-                <div className="text-3xl font-bold">{weekly.toLocaleString()} Kč</div>
-                <div className="text-sm text-indigo-200 mt-2">5 pracovních dnů</div>
+                <div className="text-3xl font-bold">{Math.round(weeklyEarnings).toLocaleString()} Kč</div>
+                <div className="text-sm text-indigo-200 mt-2">{hours} hodin × {hourlyEarnings} Kč</div>
               </div>
               
               <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20">
@@ -173,7 +165,7 @@ export default function EarningsCalculator() {
                   <ClockIcon className="w-5 h-5 mr-2" />
                   Měsíční odhad
                 </div>
-                <div className="text-3xl font-bold">{monthly.toLocaleString()} Kč</div>
+                <div className="text-3xl font-bold">{Math.round(monthly).toLocaleString()} Kč</div>
                 <div className="text-sm text-indigo-200 mt-2">4 týdny</div>
               </div>
             </div>
@@ -197,7 +189,7 @@ export default function EarningsCalculator() {
             <div className="border-t border-indigo-700 pt-6 mt-6">
               <div className="flex justify-between items-center">
                 <div className="text-xl">Roční potenciál:</div>
-                <div className="text-2xl font-bold">{yearlyEstimate.toLocaleString()} Kč</div>
+                <div className="text-2xl font-bold">{Math.round(yearlyEstimate).toLocaleString()} Kč</div>
               </div>
               <p className="text-indigo-200 mt-4 text-sm">
                 Nezapomeňte, že výdělky se mohou lišit v závislosti na sezóně, lokalitě a dalších faktorech.

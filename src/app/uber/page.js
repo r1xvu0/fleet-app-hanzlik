@@ -153,7 +153,7 @@ export default function UberPage() {
                 ))}
               </ul>
             </div>
-            <div className="bg-gradient-to-br from-[#3FC3C6] to-[#35ADB0] text-white p-8 rounded-2xl shadow-xl transition-transform hover:scale-[1.02]">
+            <div className="bg-gradient-to-br from-[#000000] to-[#1A1A1A] text-white p-8 rounded-2xl shadow-xl transition-transform hover:scale-[1.02]">
               <div className="mb-6 flex items-center">
                 <div className="bg-white/10 p-3 rounded-xl mr-4">
                   <StarIcon className="w-8 h-8 text-white" />
@@ -162,7 +162,7 @@ export default function UberPage() {
               </div>
               <ul className="space-y-5">
                 {[
-                  "Nejnižší provize na trhu",
+                  "Pravidelné týdenní výplaty",
                   "24/7 podpora v češtině",
                   "Komplexní pojištění vozidla",
                   "Zcela flexibilní pracovní rozvrh",

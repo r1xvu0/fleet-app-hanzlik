@@ -2,7 +2,7 @@
 
 // components/Navbar.jsx
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   PhoneIcon,
   MapPinIcon,
@@ -11,6 +11,40 @@ import {
   Bars3Icon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
+
+// Helper component for smooth scrolling
+const ContactButton = ({ children, mobile = false, onMobileClick = () => {} }) => {
+  const handleClick = (e) => {
+    // If this is a mobile button, run the provided callback
+    if (mobile) {
+      onMobileClick();
+    }
+    
+    // Only check window properties in event handlers, not during rendering
+    if (typeof window !== 'undefined' && window.location.pathname === '/contact') {
+      e.preventDefault();
+      
+      // Get the contact form element
+      const contactForm = document.getElementById('contact-form');
+      if (contactForm) {
+        contactForm.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
+  return (
+    <Link 
+      href="/contact#contact-form" 
+      onClick={handleClick}
+      className={mobile ? 
+        "bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-medium transition-colors inline-block w-fit" : 
+        "bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+      }
+    >
+      {children}
+    </Link>
+  );
+};
 
 export const TopBar = () => (
   <div className="bg-gradient-to-r from-indigo-900 to-indigo-800 text-white py-2 px-4">
@@ -31,6 +65,20 @@ export const TopBar = () => (
 
 export const MainNavigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Effect to handle scrolling to the contact form when the page loads with the #contact-form hash
+  useEffect(() => {
+    // Window checks inside useEffect are safe as this only runs client-side
+    if (window.location.pathname === '/contact' && window.location.hash === '#contact-form') {
+      // Use setTimeout to ensure the page has fully loaded
+      setTimeout(() => {
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+          contactForm.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  }, []);
 
   return (
     <nav className="bg-white shadow-lg">
@@ -59,9 +107,7 @@ export const MainNavigation = () => {
             <Link href="/how-it-works" className="text-gray-700 hover:text-indigo-600 font-medium py-2 transition-colors">
               Jak to funguje
             </Link> */}
-            <Link href="/contact" className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-medium transition-colors">
-              Kontaktujte nás
-            </Link>
+            <ContactButton>Kontaktujte nás</ContactButton>
           </div>
 
           {/* Mobile Navigation Button */}
@@ -118,13 +164,12 @@ export const MainNavigation = () => {
               >
                 Jak to funguje
               </Link>
-              <Link 
-                href="/contact" 
-                className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-medium transition-colors inline-block w-fit"
-                onClick={() => setIsMenuOpen(false)}
+              <ContactButton 
+                mobile={true} 
+                onMobileClick={() => setIsMenuOpen(false)}
               >
                 Kontaktujte nás
-              </Link>
+              </ContactButton>
             </div>
           </div>
         )}

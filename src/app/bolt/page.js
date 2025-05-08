@@ -158,7 +158,7 @@ export default function BoltPage() {
               </div>
               <ul className="space-y-5">
                 {[
-                  "Nejnižší provize na trhu",
+                  "Pravidelné týdenní výplaty",
                   "24/7 podpora v češtině",
                   "Komplexní pojištění vozidla",
                   "Zcela flexibilní pracovní rozvrh",

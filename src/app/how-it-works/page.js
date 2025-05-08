@@ -2,7 +2,6 @@
 import { 
     DocumentTextIcon, 
     ShieldCheckIcon, 
-    AcademicCapIcon, 
     TruckIcon, 
     ClockIcon, 
     QuestionMarkCircleIcon,
@@ -60,12 +59,6 @@ import {
                     title: "Ověření Dokumentů",
                     description: "Náš tým zkontroluje váš řidičský průkaz, profesní průkaz a další potřebné dokumenty",
                     time: "24h proces"
-                  },
-                  {
-                    icon: AcademicCapIcon,
-                    title: "Školení",
-                    description: "Absolvujete krátké online školení a praktický trénink s naším instruktorem",
-                    time: "2-4 hodiny"
                   },
                   {
                     icon: TruckIcon,
