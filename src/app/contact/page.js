@@ -1,4 +1,6 @@
 // app/contact/page.js
+'use client'
+
 import {
   CheckIcon,
   BoltIcon,
@@ -13,6 +15,7 @@ import {
   ClockIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import ContactSection from "@/components/ContactSection";
 
 export default function ContactPage() {
   return (
@@ -82,159 +85,49 @@ export default function ContactPage() {
         ))}
       </div>
 
-      {/* Contact Form + Map */}
-      <div className="bg-gradient-to-b from-white to-gray-50 py-20 px-4" id="contact-form">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
+      {/* Contact Form Section - Using the ContactSection component */}
+      <ContactSection />
+      
+      {/* Additional Information Section */}
+      <div className="bg-gradient-to-b from-indigo-950 to-indigo-900 py-16 px-4">
+        <div className="max-w-6xl mx-auto">
           <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
-            <h2 className="text-2xl font-bold mb-2 text-gray-900">Napište nám</h2>
-            <p className="text-gray-600 mb-8">Vyplňte formulář a my se vám co nejdříve ozveme</p>
+            <h2 className="text-2xl font-bold mb-6 text-gray-900 flex items-center">
+              <DocumentTextIcon className="w-6 h-6 text-indigo-600 mr-3" />
+              Důležité informace
+            </h2>
             
-            <form className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block mb-2 text-gray-700 font-medium">Vaše jméno</label>
-                  <input 
-                    type="text" 
-                    className="w-full p-3 border border-gray-300 rounded-lg text-gray-800 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors" 
-                    placeholder="Jan Novák"
-                  />
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="flex items-start">
+                <div className="bg-indigo-100 p-2 rounded-lg mr-4 mt-1">
+                  <CheckIcon className="w-5 h-5 text-indigo-600" />
                 </div>
                 <div>
-                  <label className="block mb-2 text-gray-700 font-medium">Email</label>
-                  <input 
-                    type="email" 
-                    className="w-full p-3 border border-gray-300 rounded-lg text-gray-800 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors" 
-                    placeholder="jan@example.com"
-                  />
+                  <h3 className="font-medium text-gray-900">Pracovní doba</h3>
+                  <p className="text-gray-700">Pondělí - Pátek: 8:00 - 20:00</p>
+                  <p className="text-gray-700">Víkendy: 10:00 - 18:00</p>
                 </div>
               </div>
-
-              <div className="grid md:grid-cols-2 gap-6">
-                {/* Nationality Dropdown */}
-                <div>
-                  <label className="block mb-2 text-gray-700 font-medium">Národnost</label>
-                  <select className="w-full p-3 border border-gray-300 rounded-lg bg-white text-gray-800 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors">
-                    <option value="" className="text-gray-800">Vyberte národnost</option>
-                    <option value="CZ" className="text-gray-800">Česká republika</option>
-                    <option value="SK" className="text-gray-800">Slovenská republika</option>
-                    <option value="PL" className="text-gray-800">Polsko</option>
-                    <option value="DE" className="text-gray-800">Německo</option>
-                    <option value="UA" className="text-gray-800">Ukrajina</option>
-                    <option value="OTHER" className="text-gray-800">Jiné</option>
-                  </select>
-                </div>
-
-                {/* Phone Number */}
-                <div>
-                  <label className="block mb-2 text-gray-700 font-medium">Telefonní číslo</label>
-                  <input 
-                    type="tel" 
-                    className="w-full p-3 border border-gray-300 rounded-lg text-gray-800 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors" 
-                    placeholder="+420 123 456 789"
-                  />
-                </div>
-              </div>
-
-              {/* Languages Checkboxes */}
-              <div>
-                <label className="block mb-3 text-gray-700 font-medium">Ovládané jazyky</label>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                  {[
-                    { value: "cs", label: "Čeština" },
-                    { value: "sk", label: "Slovenština" },
-                    { value: "en", label: "Angličtina" },
-                    { value: "de", label: "Němčina" },
-                    { value: "pl", label: "Polština" },
-                    { value: "uk", label: "Ukrajinština" }
-                  ].map((language, index) => (
-                    <label key={index} className="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
-                      <input
-                        type="checkbox"
-                        name="languages[]"
-                        value={language.value}
-                        className="w-4 h-4 text-indigo-600 focus:ring-indigo-500 mr-3"
-                      />
-                      <span className="text-gray-700">{language.label}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <label className="block mb-2 text-gray-700 font-medium">Zpráva</label>
-                <textarea
-                  rows="4"
-                  className="w-full p-3 border border-gray-300 rounded-lg text-gray-800 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
-                  placeholder="Popište nám, s čím potřebujete pomoci..."
-                ></textarea>
-              </div>
-
-              <div className="flex justify-between items-center">
-                <div className="text-sm text-gray-500 flex items-center">
-                  <ClockIcon className="w-4 h-4 mr-1" />
-                  Odpovídáme do 24 hodin
-                </div>
-                <button className="bg-indigo-600 text-white px-8 py-3 rounded-lg hover:bg-indigo-700 transition-colors flex items-center">
-                  <EnvelopeIcon className="w-5 h-5 mr-2" />
-                  Odeslat zprávu
-                </button>
-              </div>
-            </form>
-          </div>
-
-          <div className="space-y-8">
-            <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
-              <h2 className="text-2xl font-bold mb-6 text-gray-900 flex items-center">
-                <DocumentTextIcon className="w-6 h-6 text-indigo-600 mr-3" />
-                Důležité informace
-              </h2>
               
-              <div className="space-y-4">
-                <div className="flex items-start">
-                  <div className="bg-indigo-100 p-2 rounded-lg mr-4 mt-1">
-                    <CheckIcon className="w-5 h-5 text-indigo-600" />
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-gray-900">Pracovní doba</h3>
-                    <p className="text-gray-700">Pondělí - Pátek: 8:00 - 20:00</p>
-                    <p className="text-gray-700">Víkendy: 10:00 - 18:00</p>
-                  </div>
+              <div className="flex items-start">
+                <div className="bg-indigo-100 p-2 rounded-lg mr-4 mt-1">
+                  <CheckIcon className="w-5 h-5 text-indigo-600" />
                 </div>
-                
-                <div className="flex items-start">
-                  <div className="bg-indigo-100 p-2 rounded-lg mr-4 mt-1">
-                    <CheckIcon className="w-5 h-5 text-indigo-600" />
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-gray-900">Adresa kanceláře</h3>
-                    <p className="text-gray-700">Pražská 123, Praha 1</p>
-                    <p className="text-gray-700">15000 Praha, Česká republika</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="bg-indigo-100 p-2 rounded-lg mr-4 mt-1">
-                    <CheckIcon className="w-5 h-5 text-indigo-600" />
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-gray-900">Technická podpora</h3>
-                    <p className="text-gray-700">Nepřetržitě 24/7</p>
-                    <p className="text-gray-700">Podpora při technických problémech v terénu</p>
-                  </div>
+                <div>
+                  <h3 className="font-medium text-gray-900">Adresa kanceláře</h3>
+                  <p className="text-gray-700">Pražská 123, Praha 1</p>
+                  <p className="text-gray-700">15000 Praha, Česká republika</p>
                 </div>
               </div>
-            </div>
-            
-            <div className="bg-white p-4 rounded-xl shadow-lg border border-gray-100 h-96 relative">
-              <div className="absolute inset-0 p-4">
-                <div className="w-full h-full bg-indigo-50 rounded-lg flex items-center justify-center">
-                  <div className="text-center">
-                    <MapPinIcon className="w-12 h-12 text-indigo-400 mx-auto mb-4" />
-                    <h3 className="text-xl font-bold text-gray-900">Mapa kanceláře</h3>
-                    <p className="text-gray-600 max-w-xs mx-auto mt-2">
-                      Google Maps integraci si můžete přidat dle potřeby
-                    </p>
-                  </div>
+              
+              <div className="flex items-start">
+                <div className="bg-indigo-100 p-2 rounded-lg mr-4 mt-1">
+                  <CheckIcon className="w-5 h-5 text-indigo-600" />
+                </div>
+                <div>
+                  <h3 className="font-medium text-gray-900">Technická podpora</h3>
+                  <p className="text-gray-700">Nepřetržitě 24/7</p>
+                  <p className="text-gray-700">Podpora při problémech v terénu</p>
                 </div>
               </div>
             </div>
@@ -248,12 +141,12 @@ export default function ContactPage() {
           <h2 className="text-3xl font-bold mb-4">Připraveni začít jezdit?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">Registrujte se ještě dnes a začněte si vydělávat jako řidič s naší flotilou.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/how-it-works" className="px-8 py-3 bg-white text-indigo-600 rounded-lg font-medium hover:bg-indigo-50 transition-colors inline-block">
-              Jak to funguje
-            </Link>
-            <Link href="/cars" className="px-8 py-3 border border-white hover:bg-white/10 rounded-lg font-medium transition-colors inline-block">
-              Prohlédnout vozy
-            </Link>
+            <a href="#contact-form" className="px-8 py-3 bg-white text-indigo-600 font-medium rounded-lg hover:bg-gray-100 transition-colors">
+              Kontaktovat nás
+            </a>
+            <a href="/cars" className="px-8 py-3 bg-indigo-700 text-white font-medium rounded-lg hover:bg-indigo-800 transition-colors">
+              Prohlédnout vozidla
+            </a>
           </div>
         </div>
       </section>

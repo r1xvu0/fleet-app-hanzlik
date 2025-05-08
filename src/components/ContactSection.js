@@ -5,13 +5,108 @@ import {
   ChatBubbleBottomCenterTextIcon,
   EnvelopeIcon,
   MapPinIcon,
-  GlobeAltIcon,
   PhoneIcon,
+  ClockIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function ContactSection() {
+  // Form state
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    nationality: '',
+    phoneNumber: '',
+    languages: [],
+    message: ''
+  });
+  
+  // Form status
+  const [status, setStatus] = useState({
+    submitted: false,
+    submitting: false,
+    info: { error: false, msg: null }
+  });
+  
+  // Handle input changes
+  const handleChange = e => {
+    const { name, value, type } = e.target;
+    
+    if (type === 'checkbox') {
+      // Handle checkbox (languages)
+      const isChecked = e.target.checked;
+      
+      setFormData(prevData => {
+        if (isChecked) {
+          // Add the language
+          return {
+            ...prevData,
+            languages: [...prevData.languages, value]
+          };
+        } else {
+          // Remove the language
+          return {
+            ...prevData,
+            languages: prevData.languages.filter(lang => lang !== value)
+          };
+        }
+      });
+    } else {
+      // Handle regular inputs
+      setFormData({
+        ...formData,
+        [name]: value
+      });
+    }
+  };
+  
+  // Handle form submission
+  const handleSubmit = async e => {
+    e.preventDefault();
+    setStatus(prevStatus => ({ ...prevStatus, submitting: true }));
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+      
+      const data = await response.json();
+      
+      if (response.ok) {
+        setStatus({
+          submitted: true,
+          submitting: false,
+          info: { error: false, msg: data.message }
+        });
+        setFormData({
+          name: '',
+          email: '',
+          nationality: '',
+          phoneNumber: '',
+          languages: [],
+          message: ''
+        });
+      } else {
+        setStatus({
+          submitted: false,
+          submitting: false,
+          info: { error: true, msg: data.message }
+        });
+      }
+    } catch (error) {
+      setStatus({
+        submitted: false,
+        submitting: false,
+        info: { error: true, msg: 'Něco se pokazilo. Zkuste to prosím znovu.' }
+      });
+    }
+  };
+
   // Add effect to handle scrolling to form when page loads with a hash
   useEffect(() => {
     // Window checks inside useEffect are safe as this only runs client-side
@@ -51,47 +146,147 @@ export default function ContactSection() {
           {/* Left Column - Contact Form */}
           <div className="bg-white/10 backdrop-blur-sm border border-indigo-300/20 rounded-2xl p-8 shadow-xl">
             <h3 className="text-2xl font-semibold mb-6 text-white">Napište nám</h3>
-            <form className="space-y-6">
-              <div className="grid grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-indigo-200 mb-2 text-sm">Vaše jméno</label>
-                  <input 
-                    type="text" 
-                    className="w-full px-4 py-3 rounded-lg bg-white/5 border border-indigo-300/20 text-white focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all"
-                    placeholder="Jan Novák"
-                  />
+            
+            {status.submitted ? (
+              <div className="bg-green-500/20 border border-green-500/30 rounded-lg p-6 text-center">
+                <div className="text-green-300 text-xl mb-2">Děkujeme za vaši zprávu!</div>
+                <p className="text-white">{status.info.msg}</p>
+                <button 
+                  onClick={() => setStatus({ submitted: false, submitting: false, info: { error: false, msg: null } })}
+                  className="mt-4 bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-2 px-4 rounded-lg transition-all shadow-lg hover:shadow-xl"
+                >
+                  Odeslat další zprávu
+                </button>
+              </div>
+            ) : (
+              <form className="space-y-6" onSubmit={handleSubmit}>
+                {status.info.error && (
+                  <div className="bg-red-500/20 border border-red-500/30 rounded-lg p-4 text-red-300">
+                    {status.info.msg}
+                  </div>
+                )}
+                
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="name" className="block text-indigo-200 mb-2 text-sm">Vaše jméno</label>
+                    <input 
+                      id="name"
+                      name="name"
+                      type="text" 
+                      className="w-full px-4 py-3 rounded-lg bg-white/5 border border-indigo-300/20 text-white focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all"
+                      placeholder="Jan Novák"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="block text-indigo-200 mb-2 text-sm">Email</label>
+                    <input 
+                      id="email"
+                      name="email"
+                      type="email" 
+                      className="w-full px-4 py-3 rounded-lg bg-white/5 border border-indigo-300/20 text-white focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all"
+                      placeholder="jan@example.com"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
                 </div>
-                <div>
-                  <label className="block text-indigo-200 mb-2 text-sm">Váš email</label>
-                  <input 
-                    type="email" 
-                    className="w-full px-4 py-3 rounded-lg bg-white/5 border border-indigo-300/20 text-white focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all"
-                    placeholder="jan@example.com"
-                  />
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  {/* Nationality Dropdown */}
+                  <div>
+                    <label htmlFor="nationality" className="block text-indigo-200 mb-2 text-sm">Národnost</label>
+                    <select 
+                      id="nationality"
+                      name="nationality"
+                      className="w-full px-4 py-3 rounded-lg bg-white/5 border border-indigo-300/20 text-white focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all"
+                      value={formData.nationality}
+                      onChange={handleChange}
+                    >
+                      <option value="" className="text-gray-800">Vyberte národnost</option>
+                      <option value="CZ" className="text-gray-800">Česká republika</option>
+                      <option value="SK" className="text-gray-800">Slovenská republika</option>
+                      <option value="PL" className="text-gray-800">Polsko</option>
+                      <option value="DE" className="text-gray-800">Německo</option>
+                      <option value="UA" className="text-gray-800">Ukrajina</option>
+                      <option value="OTHER" className="text-gray-800">Jiné</option>
+                    </select>
+                  </div>
+
+                  {/* Phone Number */}
+                  <div>
+                    <label htmlFor="phoneNumber" className="block text-indigo-200 mb-2 text-sm">Telefonní číslo</label>
+                    <input 
+                      id="phoneNumber"
+                      name="phoneNumber"
+                      type="tel" 
+                      className="w-full px-4 py-3 rounded-lg bg-white/5 border border-indigo-300/20 text-white focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all"
+                      placeholder="+420 123 456 789"
+                      value={formData.phoneNumber}
+                      onChange={handleChange}
+                    />
+                  </div>
                 </div>
-              </div>
-              <div>
-                <label className="block text-indigo-200 mb-2 text-sm">Předmět</label>
-                <input 
-                  type="text" 
-                  className="w-full px-4 py-3 rounded-lg bg-white/5 border border-indigo-300/20 text-white focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all"
-                  placeholder="Spolupráce s flotilou"
-                />
-              </div>
-              <div>
-                <label className="block text-indigo-200 mb-2 text-sm">Zpráva</label>
-                <textarea 
-                  className="w-full px-4 py-3 rounded-lg bg-white/5 border border-indigo-300/20 text-white focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all h-32"
-                  placeholder="Vaše zpráva..."
-                ></textarea>
-              </div>
-              <button 
-                type="submit" 
-                className="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-3 px-6 rounded-lg transition-all shadow-lg hover:shadow-xl"
-              >
-                Odeslat zprávu
-              </button>
-            </form>
+
+                {/* Languages Checkboxes */}
+                <div>
+                  <label className="block text-indigo-200 mb-3 text-sm">Ovládané jazyky</label>
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                    {[
+                      { value: "cs", label: "Čeština" },
+                      { value: "sk", label: "Slovenština" },
+                      { value: "en", label: "Angličtina" },
+                      { value: "de", label: "Němčina" },
+                      { value: "pl", label: "Polština" },
+                      { value: "uk", label: "Ukrajinština" }
+                    ].map((language, index) => (
+                      <label key={index} className="flex items-center p-2 border border-indigo-300/20 rounded-lg hover:bg-white/5 transition-colors">
+                        <input
+                          type="checkbox"
+                          name="languages"
+                          value={language.value}
+                          checked={formData.languages.includes(language.value)}
+                          onChange={handleChange}
+                          className="w-4 h-4 text-indigo-600 focus:ring-indigo-500 mr-3"
+                        />
+                        <span className="text-white">{language.label}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="block text-indigo-200 mb-2 text-sm">Zpráva</label>
+                  <textarea 
+                    id="message"
+                    name="message"
+                    className="w-full px-4 py-3 rounded-lg bg-white/5 border border-indigo-300/20 text-white focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all h-32"
+                    placeholder="Popište nám, s čím potřebujete pomoci..."
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                  ></textarea>
+                </div>
+
+                <div className="flex justify-between items-center">
+                  <div className="text-sm text-indigo-200 flex items-center">
+                    <ClockIcon className="w-4 h-4 mr-1" />
+                    Odpovídáme do 24 hodin
+                  </div>
+                  <button 
+                    type="submit" 
+                    className="bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-3 px-6 rounded-lg transition-all shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
+                    disabled={status.submitting}
+                  >
+                    <EnvelopeIcon className="w-5 h-5 mr-2" />
+                    {status.submitting ? 'Odesílání...' : 'Odeslat zprávu'}
+                  </button>
+                </div>
+              </form>
+            )}
           </div>
 
           {/* Right Column - Contact Methods */}
