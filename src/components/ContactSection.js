@@ -19,39 +19,50 @@ export default function ContactSection() {
     nationality: '',
     phoneNumber: '',
     languages: [],
-    message: ''
+    message: '',
+    euDriverLicense: false,
+    licenseIssuanceDate: '',
+    gender: ''
   });
   
   // Form status
   const [status, setStatus] = useState({
     submitted: false,
     submitting: false,
-    info: { error: false, msg: null }
+    info: { error: false, msg: null, subscribed: false }
   });
   
   // Handle input changes
   const handleChange = e => {
-    const { name, value, type } = e.target;
+    const { name, value, type, checked } = e.target;
     
     if (type === 'checkbox') {
-      // Handle checkbox (languages)
-      const isChecked = e.target.checked;
-      
-      setFormData(prevData => {
-        if (isChecked) {
-          // Add the language
-          return {
-            ...prevData,
-            languages: [...prevData.languages, value]
-          };
-        } else {
-          // Remove the language
-          return {
-            ...prevData,
-            languages: prevData.languages.filter(lang => lang !== value)
-          };
-        }
-      });
+      if (name === 'euDriverLicense') {
+        // Handle EU driver license checkbox
+        setFormData({
+          ...formData,
+          [name]: checked
+        });
+      } else {
+        // Handle language checkboxes
+        const isChecked = checked;
+        
+        setFormData(prevData => {
+          if (isChecked) {
+            // Add the language
+            return {
+              ...prevData,
+              languages: [...prevData.languages, value]
+            };
+          } else {
+            // Remove the language
+            return {
+              ...prevData,
+              languages: prevData.languages.filter(lang => lang !== value)
+            };
+          }
+        });
+      }
     } else {
       // Handle regular inputs
       setFormData({
@@ -61,9 +72,35 @@ export default function ContactSection() {
     }
   };
   
+  // Validate the form before submission
+  const validateForm = () => {
+    // Check if EU driver license is checked
+    if (!formData.euDriverLicense) {
+      setStatus({
+        submitted: false,
+        submitting: false,
+        info: { 
+          error: true, 
+          msg: 'Pro odeslání formuláře je nutné potvrdit, že máte řidičský průkaz vydaný v rámci EU.',
+          details: null,
+          subscribed: false
+        }
+      });
+      return false;
+    }
+    
+    return true;
+  };
+  
   // Handle form submission
   const handleSubmit = async e => {
     e.preventDefault();
+    
+    // Validate the form
+    if (!validateForm()) {
+      return;
+    }
+    
     setStatus(prevStatus => ({ ...prevStatus, submitting: true }));
     
     try {
@@ -81,7 +118,12 @@ export default function ContactSection() {
         setStatus({
           submitted: true,
           submitting: false,
-          info: { error: false, msg: data.message }
+          info: { 
+            error: false, 
+            msg: data.message,
+            subscribed: data.subscribed,
+            subscriberEmail: data.subscriberEmail
+          }
         });
         setFormData({
           name: '',
@@ -89,20 +131,35 @@ export default function ContactSection() {
           nationality: '',
           phoneNumber: '',
           languages: [],
-          message: ''
+          message: '',
+          euDriverLicense: false,
+          licenseIssuanceDate: '',
+          gender: ''
         });
       } else {
+        console.error('Contact form submission failed:', data);
         setStatus({
           submitted: false,
           submitting: false,
-          info: { error: true, msg: data.message }
+          info: { 
+            error: true, 
+            msg: data.error || 'Něco se pokazilo. Zkuste to prosím znovu.',
+            details: data.details,
+            subscribed: data.subscribed || false
+          }
         });
       }
     } catch (error) {
+      console.error('Error submitting contact form:', error);
       setStatus({
         submitted: false,
         submitting: false,
-        info: { error: true, msg: 'Něco se pokazilo. Zkuste to prosím znovu.' }
+        info: { 
+          error: true, 
+          msg: 'Něco se pokazilo. Zkuste to prosím znovu.',
+          details: error.message,
+          subscribed: false
+        }
       });
     }
   };
@@ -151,8 +208,17 @@ export default function ContactSection() {
               <div className="bg-green-500/20 border border-green-500/30 rounded-lg p-6 text-center">
                 <div className="text-green-300 text-xl mb-2">Děkujeme za vaši zprávu!</div>
                 <p className="text-white">{status.info.msg}</p>
+                
+                {status.info.subscribed && (
+                  <div className="mt-3 p-3 bg-green-600/20 rounded-lg">
+                    <p className="text-green-300">
+                      Váš e-mail byl přidán do našeho seznamu odběratelů a budete dostávat naše novinky a nabídky.
+                    </p>
+                  </div>
+                )}
+                
                 <button 
-                  onClick={() => setStatus({ submitted: false, submitting: false, info: { error: false, msg: null } })}
+                  onClick={() => setStatus({ submitted: false, submitting: false, info: { error: false, msg: null, subscribed: false } })}
                   className="mt-4 bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-2 px-4 rounded-lg transition-all shadow-lg hover:shadow-xl"
                 >
                   Odeslat další zprávu
@@ -162,7 +228,12 @@ export default function ContactSection() {
               <form className="space-y-6" onSubmit={handleSubmit}>
                 {status.info.error && (
                   <div className="bg-red-500/20 border border-red-500/30 rounded-lg p-4 text-red-300">
-                    {status.info.msg}
+                    <div className="font-medium mb-1">{status.info.msg}</div>
+                    {status.info.details && (
+                      <div className="text-sm mt-2">
+                        <pre className="whitespace-pre-wrap">{JSON.stringify(status.info.details, null, 2)}</pre>
+                      </div>
+                    )}
                   </div>
                 )}
                 
@@ -231,7 +302,64 @@ export default function ContactSection() {
                   </div>
                 </div>
 
-                {/* Languages Checkboxes */}
+                {/* Driver Info Section */}
+                <div className="pt-3 pb-3 border-t border-indigo-700/30">
+                  <h4 className="text-xl font-semibold text-white mb-4">Informace o řidiči</h4>
+                  
+                  <div className="grid md:grid-cols-2 gap-6 mb-4">
+                    {/* Gender Dropdown */}
+                    <div>
+                      <label htmlFor="gender" className="block text-indigo-200 mb-2 text-sm">Pohlaví</label>
+                      <select 
+                        id="gender"
+                        name="gender"
+                        className="w-full px-4 py-3 rounded-lg bg-white/5 border border-indigo-300/20 text-white focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all"
+                        value={formData.gender}
+                        onChange={handleChange}
+                        required
+                      >
+                        <option value="" className="text-gray-800">Vyberte pohlaví</option>
+                        <option value="M" className="text-gray-800">Muž</option>
+                        <option value="F" className="text-gray-800">Žena</option>
+                      </select>
+                    </div>
+                    
+                    {/* Driver's License Issuance Date */}
+                    <div>
+                      <label htmlFor="licenseIssuanceDate" className="block text-indigo-200 mb-2 text-sm">
+                        Datum prvního vydání ŘP (na zadní straně)
+                      </label>
+                      <input 
+                        id="licenseIssuanceDate"
+                        name="licenseIssuanceDate"
+                        type="date" 
+                        className="w-full px-4 py-3 rounded-lg bg-white/5 border border-indigo-300/20 text-white focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all"
+                        value={formData.licenseIssuanceDate}
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                  </div>
+                  
+                  {/* EU Driver's License Checkbox */}
+                  <div className="mb-4">
+                    <div className="flex items-center p-3 border border-indigo-300/20 rounded-lg bg-indigo-900/30">
+                      <input
+                        type="checkbox"
+                        name="euDriverLicense"
+                        id="euDriverLicense"
+                        checked={formData.euDriverLicense}
+                        onChange={handleChange}
+                        className="w-5 h-5 text-indigo-600 focus:ring-indigo-500 mr-3"
+                        required
+                      />
+                      <label htmlFor="euDriverLicense" className="text-white font-medium">
+                        Potvrzuji, že můj řidičský průkaz byl vydán v rámci Evropské unie
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
                 <div>
                   <label className="block text-indigo-200 mb-3 text-sm">Ovládané jazyky</label>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
@@ -269,6 +397,19 @@ export default function ContactSection() {
                     onChange={handleChange}
                     required
                   ></textarea>
+                  
+                  <div className="mt-2 flex items-center">
+                    <input
+                      type="checkbox"
+                      name="newsletter"
+                      id="newsletter"
+                      className="w-4 h-4 text-indigo-600 focus:ring-indigo-500 mr-3"
+                      defaultChecked
+                    />
+                    <label htmlFor="newsletter" className="text-indigo-200 text-sm">
+                      Souhlasím s přijímáním newsletteru a aktuálních nabídek.
+                    </label>
+                  </div>
                 </div>
 
                 <div className="flex justify-between items-center">

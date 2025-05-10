@@ -1,57 +1,111 @@
+import { NextResponse } from 'next/server';
+
 export async function POST(request) {
   try {
-    const formData = await request.json();
+    const body = await request.json();
     
-    // Validate form data
-    const { name, email, message } = formData;
+    // Log the request body for debugging
+    console.log('Contact form submission:', body);
     
-    if (!name || !email || !message) {
-      return Response.json(
-        { success: false, message: 'Chybí povinné údaje.' },
-        { status: 400 }
-      );
-    }
+    const backendUrl = process.env.BACKEND_API_URL || 'http://localhost:8080';
     
-    // Ensure languages is an array
-    if (formData.languages && !Array.isArray(formData.languages)) {
-      formData.languages = [];
-    }
-    
-    // Send to the mail service - Updated URL to match new backend structure
-    const response = await fetch('http://localhost:8080/api/mail/contact', {
+    const response = await fetch(`${backendUrl}/api/contact`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Accept': 'application/json',
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(body),
     });
-    
-    if (!response.ok) {
-      let errorMessage = 'Chyba při odesílání zprávy.';
-      
-      try {
-        const errorData = await response.json();
-        if (errorData && errorData.message) {
-          errorMessage = errorData.message;
-        }
-      } catch (jsonError) {
-        console.error('Error parsing error response:', jsonError);
-        // Use status text if available or default message
-        errorMessage = response.statusText || errorMessage;
-      }
-      
-      return Response.json(
-        { success: false, message: errorMessage },
-        { status: response.status }
-      );
+
+    // Log the response status and headers
+    console.log('Backend response status:', response.status);
+    console.log('Backend response headers:', Object.fromEntries(response.headers.entries()));
+
+    let data;
+    const contentType = response.headers.get('content-type');
+    if (contentType && contentType.includes('application/json')) {
+      data = await response.json();
+    } else {
+      data = await response.text();
     }
     
-    return Response.json({ success: true, message: 'Zpráva byla úspěšně odeslána!' });
+    // Log the response data
+    console.log('Backend response data:', data);
+
+    if (!response.ok) {
+      return NextResponse.json(
+        { 
+          error: 'Failed to submit contact form',
+          details: data,
+          status: response.status,
+          subscribed: false
+        },
+        { 
+          status: response.status,
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'POST, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+          }
+        }
+      );
+    }
+
+    // Check if data is already a parsed object or a string
+    let responseObject = data;
+    if (typeof data === 'string') {
+      // Convert string to object with a message field
+      responseObject = { message: data, subscribed: false };
+    }
+
+    // Make sure all required fields are present
+    if (!responseObject.subscribed) {
+      responseObject.subscribed = false;
+    }
+
+    return NextResponse.json(
+      responseObject,
+      {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'POST, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        }
+      }
+    );
   } catch (error) {
-    console.error('Error submitting contact form:', error);
-    return Response.json(
-      { success: false, message: 'Něco se pokazilo. Zkuste to prosím znovu.' },
-      { status: 500 }
+    // Log the full error
+    console.error('Error in contact form submission:', error);
+    
+    return NextResponse.json(
+      { 
+        error: 'Internal server error',
+        details: error.message,
+        subscribed: false
+      },
+      { 
+        status: 500,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'POST, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        }
+      }
     );
   }
+}
+
+// Handle OPTIONS request for CORS preflight
+export async function OPTIONS() {
+  return NextResponse.json(
+    {},
+    {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+      }
+    }
+  );
 } 
