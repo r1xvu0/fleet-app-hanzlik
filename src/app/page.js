@@ -29,22 +29,22 @@ export default function HomePage() {
 
         <div className="max-w-7xl mx-auto text-center relative z-10">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-            Join Prague's Leading
+            Staň se součástí moderní flotily
             <span className="block bg-clip-text text-transparent bg-gradient-to-r from-indigo-200 to-sky-200">
-              Taxi Fleet
+              Flotila Praha
             </span>
           </h1>
           <p className="text-xl md:text-2xl mb-12 max-w-2xl mx-auto text-indigo-100">
-            Maximize your earnings with our advanced booking system, premium
-            rates, and 24/7 driver support
+            Ať už jsi ostřílený řidič, nebo teprve začínáš, ve flotile tě rádi přivítáme!<br />
+            Stačí vyplnit kontaktní formulář, napsat nebo zavolat.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 sm:space-x-6">
             <Link href="/contact" className="bg-indigo-500 hover:bg-indigo-400 px-8 py-4 rounded-xl text-lg font-semibold transition-all shadow-lg hover:shadow-xl">
-              Join Now
+              Přidejte se k nám
               <ArrowRightIcon className="w-5 h-5 ml-2 inline-block" />
             </Link>
             <Link href="/how-it-works" className="border-2 border-white/30 backdrop-blur-sm bg-white/10 hover:bg-white/20 px-8 py-4 rounded-xl text-lg font-semibold transition-all">
-              Learn More
+              Více informací
             </Link>
           </div>
         </div>
@@ -53,32 +53,32 @@ export default function HomePage() {
       {/* Features Section */}
       <section className="py-16 px-4 bg-gradient-to-b from-white to-indigo-50">
         <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4 text-indigo-900">Why Join Flotila Praha?</h2>
+          <h2 className="text-3xl font-bold mb-4 text-indigo-900">Proč jezdit s námi?</h2>
           <p className="text-lg text-gray-600 mb-16 max-w-3xl mx-auto">
-            We provide the best conditions for taxi drivers and food couriers in Prague
+            Proč si jako řidič vybrat právě naši flotilu?
           </p>
           
           <div className="grid md:grid-cols-4 gap-8">
             {[
               {
                 icon: <StarIcon className="w-10 h-10 text-indigo-500" />,
-                title: "Premium Partners",
-                description: "Work with established platforms like Bolt and Uber",
+                title: "Ověření partneři",
+                description: "Spolupracujeme s platformami jako Bolt a Uber",
               },
               {
                 icon: <CurrencyDollarIcon className="w-10 h-10 text-indigo-500" />,
-                title: "Competitive Rates",
-                description: "Maximize your earnings with our favorable commission structure",
+                title: "Moderní vozidla",
+                description: "Každý z nás jezdí s prověřeným autem v perfektním stavu. Žádné starosti s opravami, jen sedneš a jedeš",
               },
               {
                 icon: <ClockIcon className="w-10 h-10 text-indigo-500" />,
-                title: "Flexible Hours",
-                description: "Set your own schedule and work when it suits you",
+                title: "Flexibilita",
+                description: "Jezdi kdy chceš. V týdnu nebo o víkendu, přes den nebo noc.",
               },
               {
                 icon: <ChartBarIcon className="w-10 h-10 text-indigo-500" />,
-                title: "Career Growth",
-                description: "Opportunities to grow as we expand our operations",
+                title: "Podpora a zázemí",
+                description: "Nefunguje něco? Máš dotaz? Narozdíl od jiných, jsme tu skutečně pro tebe.",
               }
             ].map((feature, index) => (
               <div key={index} className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-all">
@@ -98,14 +98,12 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           <div className="order-2 md:order-1">
             <h2 className="text-3xl font-bold mb-6 text-indigo-900">
-              Hledáte novou pracovní příležitost jako řidič nebo kurýr?
+              Hledáte novou pracovní příležitost jako řidič?
             </h2>
             <p className="text-lg text-gray-600 mb-8">
-              U nás si můžete vyzkoušet jak práci řidiče, tak i kurýra. A
-              zjistit, která z mobilních aplikací vám nejvíce vyhovuje.
-              Spolupracujeme totiž se všemi! Aplikace můžete u nás i kombinovat
-              a vydělat si tak nadstandardní peníze a zároveň pracovat kdy se
-              vám to hodí!
+              U nás si můžete vyzkoušet práci řidiče. A
+              zjistíte, která z mobilních aplikací vám nejvíce vyhovuje.
+              Spolupracujeme jak s Boltem, tak i s Uberem.
             </p>
             <div className="space-y-4">
               {[
@@ -138,7 +136,7 @@ export default function HomePage() {
             Co budete potřebovat k jízdě?
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
+          <div className="grid md:grid-cols-1 gap-8 mb-12">
             {/* Taxi Driver Requirements */}
             <div className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20 transition-transform hover:scale-[1.02]">
               <div className="flex items-center mb-6">
@@ -149,10 +147,10 @@ export default function HomePage() {
               </div>
               <ul className="space-y-5">
                 {[
-                  "Vlastní auto max 20 let staré nebo od nás půjčené",
+                  // "Vlastní auto max 20 let staré nebo od nás půjčené",
                   "Řidičský průkaz a žlutou kartu",
                   "Mít alespoň 21 let",
-                  "Aplikace BOLT, UBER, LIFTAGO*",
+                  "Aplikace BOLT a UBER",
                 ].map((item, index) => (
                   <li key={index} className="flex items-start">
                     <CheckIcon className="w-5 h-5 text-green-400 mr-3 mt-1" />
@@ -162,27 +160,27 @@ export default function HomePage() {
               </ul>
             </div>
 
-            {/* Courier Requirements */}
-            <div className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20 transition-transform hover:scale-[1.02]">
-              <div className="flex items-center mb-6">
-                <div className="bg-indigo-600/20 p-3 rounded-xl">
-                  <BoltIcon className="w-8 h-8 text-indigo-200" />
-                </div>
-                <h3 className="text-2xl font-bold ml-4">Kurýr JÍDLA</h3>
+          {/* Courier Requirements
+          <div className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20 transition-transform hover:scale-[1.02]">
+            <div className="flex items-center mb-6">
+              <div className="bg-indigo-600/20 p-3 rounded-xl">
+                <BoltIcon className="w-8 h-8 text-indigo-200" />
               </div>
-              <ul className="space-y-5">
-                {[
-                  "Dopravní prostředek bez omezení (kolo, koloběžka, skútr, auto)",
-                  "Mít alespoň 15 let",
-                  "Aplikaci BOLT FOOD, WOLT, FOODORA*",
-                ].map((item, index) => (
-                  <li key={index} className="flex items-start">
-                    <CheckIcon className="w-5 h-5 text-green-400 mr-3 mt-1" />
-                    <span className="text-indigo-100">{item}</span>
-                  </li>
-                ))}
-              </ul>
+              <h3 className="text-2xl font-bold ml-4">Kurýr JÍDLA</h3>
             </div>
+            <ul className="space-y-5">
+              {[
+                "Dopravní prostředek bez omezení (kolo, koloběžka, skútr, auto)",
+                "Mít alespoň 15 let",
+                "Aplikaci BOLT FOOD, WOLT, FOODORA*",
+              ].map((item, index) => (
+                <li key={index} className="flex items-start">
+                  <CheckIcon className="w-5 h-5 text-green-400 mr-3 mt-1" />
+                  <span className="text-indigo-100">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div> */}
           </div>
 
           {/* Note Section */}
@@ -190,7 +188,7 @@ export default function HomePage() {
             <div className="flex items-start">
               <DevicePhoneMobileIcon className="w-6 h-6 mr-3 flex-shrink-0 text-indigo-300" />
               <p className="text-indigo-100">
-                *Nemáte aplikace nebo vám nefungují? Nevadí! Zdarma vám je
+                *Nemáte aplikace, nebo vám nefungují? Nevadí! Zdarma vám je
                 pomůžeme zaregistrovat a zprovoznit. Napište nám zprávu!
               </p>
             </div>
@@ -199,7 +197,7 @@ export default function HomePage() {
       </section>
 
       {/* Statistics Section */}
-      <section className="py-16 px-4 bg-white">
+      {/* <section className="py-16 px-4 bg-white">
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-16 text-indigo-900">
             Join Our Growing Community
@@ -219,7 +217,7 @@ export default function HomePage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       <CarRental />
       <ContactSection />

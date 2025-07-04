@@ -11,9 +11,9 @@ export default function Layout({ children }) {
         <div className="max-w-7xl mx-auto px-4 py-16 grid md:grid-cols-4 gap-10">
           <div className="space-y-4">
             <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-200 to-sky-200">Flotila Praha</h3>
-            <p className="text-indigo-200">
+            {/* <p className="text-indigo-200">
               Connecting professional drivers since 2025
-            </p>
+            </p> */}
             <div className="flex space-x-4 mt-4">
               <a href="#" className="text-indigo-200 hover:text-white p-2 rounded-full bg-indigo-800 hover:bg-indigo-700 transition-all">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
@@ -33,14 +33,14 @@ export default function Layout({ children }) {
             </div>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-white">Quick Links</h4>
+            <h4 className="text-lg font-semibold mb-4 text-white">Rychlé odkazy</h4>
             <ul className="space-y-3 text-indigo-200">
               <li>
-                <Link href="/about" className="hover:text-white flex items-center">
+                <Link href="/" className="hover:text-white flex items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
-                  About Us
+                  O nás
                 </Link>
               </li>
               <li>
@@ -48,7 +48,7 @@ export default function Layout({ children }) {
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
-                  Driver Benefits
+                  Výhody pro řidiče
                 </Link>
               </li>
               <li>
@@ -56,20 +56,20 @@ export default function Layout({ children }) {
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
-                  Contact Support
+                  Kontakt
                 </Link>
               </li>
             </ul>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-white">Services</h4>
+            <h4 className="text-lg font-semibold mb-4 text-white">Služby</h4>
             <ul className="space-y-3 text-indigo-200">
               <li>
                 <Link href="/bolt" className="hover:text-white flex items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
-                  Bolt Driving
+                  Jezdit s Boltem
                 </Link>
               </li>
               <li>
@@ -77,28 +77,28 @@ export default function Layout({ children }) {
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
-                  Uber Partnership
+                  Jezdit s Uberem
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href="/bolt-food" className="hover:text-white flex items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
-                  Food Delivery
+                  Rozvoz jídla
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-white">Legal</h4>
+            <h4 className="text-lg font-semibold mb-4 text-white">Právní informace</h4>
             <ul className="space-y-3 text-indigo-200">
               <li>
                 <Link href="/privacy" className="hover:text-white flex items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
-                  Privacy Policy
+                  Ochrana osobních údajů
                 </Link>
               </li>
               <li>
@@ -106,7 +106,7 @@ export default function Layout({ children }) {
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
-                  Terms of Service
+                  Podmínky použití
                 </Link>
               </li>
             </ul>
@@ -114,8 +114,8 @@ export default function Layout({ children }) {
         </div>
         <div className="border-t border-indigo-800 mt-10">
           <div className="max-w-7xl mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-indigo-300 text-sm">© {new Date().getFullYear()} Flotila Praha. All rights reserved.</p>
-            <p className="text-indigo-300 text-sm mt-2 md:mt-0">Designed with ❤️ in Prague</p>
+            <p className="text-indigo-300 text-sm">© {new Date().getFullYear()} Flotila Praha. Všechna práva vyhrazena.</p>
+            <p className="text-indigo-300 text-sm mt-2 md:mt-0">Vytvořeno s ❤️ v Praze</p>
           </div>
         </div>
       </footer>

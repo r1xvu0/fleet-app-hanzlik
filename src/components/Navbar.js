@@ -47,20 +47,21 @@ const ContactButton = ({ children, mobile = false, onMobileClick = () => {} }) =
 };
 
 export const TopBar = () => (
-  <div className="bg-gradient-to-r from-indigo-900 to-indigo-800 text-white py-2 px-4">
-    <div className="max-w-7xl mx-auto flex justify-between items-center text-sm">
-      <div className="flex items-center space-x-4">
-        <div className="flex items-center">
-          <EnvelopeIcon className="w-4 h-4 mr-1" />
-          <span>flotila.praha1@gmail.com</span>
-        </div>
-      </div>
-      <div className="flex items-center">
-        <MapPinIcon className="w-4 h-4 mr-1" />
-        <span>Prague, Czech Republic</span>
-      </div>
-    </div>
-  </div>
+  // <div className="bg-gradient-to-r from-indigo-900 to-indigo-800 text-white py-2 px-4">
+  //   <div className="max-w-7xl mx-auto flex justify-between items-center text-sm">
+  //     <div className="flex items-center space-x-4">
+  //       <div className="flex items-center">
+  //         <EnvelopeIcon className="w-4 h-4 mr-1" />
+  //         <span>flotila.praha1@gmail.com</span>
+  //       </div>
+  //     </div>
+  //     <div className="flex items-center">
+  //       <MapPinIcon className="w-4 h-4 mr-1" />
+  //       <span>Prague, Czech Republic</span>
+  //     </div>
+  //   </div>
+  // </div>
+  <></>
 );
 
 export const MainNavigation = () => {
@@ -92,9 +93,9 @@ export const MainNavigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6">
-            <Link href="/about" className="text-gray-700 hover:text-indigo-600 font-medium py-2 transition-colors">
+            {/* <Link href="/about" className="text-gray-700 hover:text-indigo-600 font-medium py-2 transition-colors">
               O nás
-            </Link>
+            </Link> */}
             <Link href="/benefits" className="text-gray-700 hover:text-indigo-600 font-medium py-2 transition-colors">
               Výhody
             </Link>
@@ -187,7 +188,7 @@ export const ServicesBar = () => (
           Bolt
         </Link>
         <Link href="/uber" className="text-gray-700 hover:text-indigo-600 flex items-center whitespace-nowrap transition-colors">
-          <span className="w-2 h-2 rounded-full bg-indigo-500 mr-2"></span>
+          <span className="w-2 h-2 rounded-full bg-black mr-2"></span>
           Uber
         </Link>
         {/* <Link href="/wolt" className="text-gray-700 hover:text-indigo-600 flex items-center whitespace-nowrap transition-colors">
@@ -212,7 +213,7 @@ export const SecondaryNavigation = () => (
     <div className="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row justify-between">
       <div className="flex overflow-x-auto no-scrollbar space-x-6 md:space-x-8">
       <Link href="/" className="text-gray-700 hover:text-indigo-600 whitespace-nowrap transition-colors">
-          Domů
+          O nás
         </Link>
         <Link href="/how-it-works" className="text-gray-700 hover:text-indigo-600 whitespace-nowrap transition-colors">
           Jak to funguje
@@ -224,7 +225,7 @@ export const SecondaryNavigation = () => (
           FAQ
         </Link>
       </div>
-      <div className="flex items-center space-x-4 mt-3 md:mt-0">
+      {/* <div className="flex items-center space-x-4 mt-3 md:mt-0">
         <a
           href="https://m.me/your-page"
           target="_blank"
@@ -241,7 +242,7 @@ export const SecondaryNavigation = () => (
           <EnvelopeIcon className="w-4 h-4 mr-1" />
           <span className="text-sm">Email</span>
         </a>
-      </div>
+      </div> */}
     </div>
   </div>
 );

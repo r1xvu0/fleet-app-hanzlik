@@ -27,7 +27,7 @@ export default function BenefitsPage() {
         <div className="max-w-6xl mx-auto text-center relative z-10">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">Výhody spolupráce s námi</h1>
           <p className="text-xl text-indigo-100">
-            Proč se řidiči vracejí a doporučují nás dalším
+            Proč si nás řidiči vybírají a doporučují ostatním?
           </p>
         </div>
       </section>
@@ -36,30 +36,20 @@ export default function BenefitsPage() {
       <section className="py-20 px-4 bg-white">
         <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
           {[
-            {
-              icon: CurrencyEuroIcon,
-              title: "Nejvyšší výdělky",
-              description: "Až o 30% vyšší příjmy díky prémiovým tarifům",
-            },
-            {
-              icon: HeartIcon,
-              title: "Zdravotní pojištění",
-              description: "Příspěvek na zdravotní pojištění pro stálé řidiče",
-            },
+            // {
+            //   icon: CurrencyEuroIcon,
+            //   title: "Nejvyšší výdělky",
+            //   description: "Až o 30% vyšší příjmy díky prémiovým tarifům",
+            // },
             {
               icon: ClockIcon,
-              title: "Flexibilní rozvrh",
-              description: "Vybírejte si směny podle svých možností",
+              title: "Flexibilní pracovní rozvrh",
+              description: "Jezděte podle svých možností",
             },
             {
               icon: ShieldCheckIcon,
               title: "Kompletní pojištění",
               description: "Všechna vozidla mají havarijní pojištění",
-            },
-            {
-              icon: UserGroupIcon,
-              title: "Komunita řidičů",
-              description: "Pravidelné meetupy a sdílení zkušeností",
             },
             {
               icon: ArrowsRightLeftIcon,
@@ -112,7 +102,7 @@ export default function BenefitsPage() {
                     others: "Vlastní",
                   },
                   { feature: "Přístup k vozům", us: "Ano", others: "Ne" },
-                  { feature: "Bonusové programy", us: "Ano", others: "Ne" },
+                  // { feature: "Bonusové programy", us: "Ano", others: "Ne" },
                 ].map((row, index) => (
                   <tr key={index} className="border-t">
                     <td className="py-4 font-semibold text-gray-800">{row.feature}</td>
@@ -144,7 +134,7 @@ export default function BenefitsPage() {
         </section> */}
 
       {/* Testimonials */}
-      <section className="bg-indigo-900 text-white py-20 px-4">
+      {/* <section className="bg-indigo-900 text-white py-20 px-4">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
           <div className="space-y-8">
             <h2 className="text-3xl font-bold">Co říkají naši řidiči</h2>
@@ -169,10 +159,10 @@ export default function BenefitsPage() {
           </div>
           <div className="bg-gray-100 rounded-xl h-96"></div>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA Section */}
-      <section className="bg-white py-20 px-4">
+      {/* <section className="bg-white py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-6 text-gray-900">Přidejte se k nejlepším</h2>
           <p className="mb-8 text-lg text-gray-600">
@@ -187,7 +177,7 @@ export default function BenefitsPage() {
             </button>
           </div>
         </div>
-      </section>
+      </section> */}
     </>
   );
 }

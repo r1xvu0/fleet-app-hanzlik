@@ -48,17 +48,17 @@ export default function ContactPage() {
         {[
           {
             title: "Telefonická podpora",
-            text: "Nonstop dostupná",
+            text: "Od 8:00 do 20:00",
             icon: PhoneIcon,
-            link: "tel:+420123456789",
+            link: "tel:+420774982052",
             color: "bg-indigo-600",
             hover: "hover:bg-indigo-700"
           },
           {
             title: "Emailová podpora",
-            text: "Odpovíme do 2 hodin",
+            text: "Odpovíme hned jak to bude možné",
             icon: EnvelopeIcon,
-            link: "mailto:info@driverhome.cz",
+            link: "mailto:flotila.praha1@gmail.com",
             color: "bg-indigo-700",
             hover: "hover:bg-indigo-800"
           },
@@ -69,6 +69,14 @@ export default function ContactPage() {
             link: "#contact-form",
             color: "bg-indigo-800",
             hover: "hover:bg-indigo-900"
+          },
+          {
+            title: "WhatsApp",
+            text: "Od 8:00 do 20:00",
+            icon: PhoneIcon,
+            link: "https://wa.me/420774982052",
+            color: "bg-indigo-600",
+            hover: "hover:bg-indigo-700"
           }
         ].map((item, index) => (
           <a 
@@ -105,7 +113,7 @@ export default function ContactPage() {
                 <div>
                   <h3 className="font-medium text-gray-900">Pracovní doba</h3>
                   <p className="text-gray-700">Pondělí - Pátek: 8:00 - 20:00</p>
-                  <p className="text-gray-700">Víkendy: 10:00 - 18:00</p>
+                  {/* <p className="text-gray-700">Víkendy: 10:00 - 18:00</p> */}
                 </div>
               </div>
               
@@ -115,7 +123,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-medium text-gray-900">Adresa kanceláře</h3>
-                  <p className="text-gray-700">Pražská 123, Praha 1</p>
+                  <p className="text-gray-700">Travná, xxx</p>
                   <p className="text-gray-700">15000 Praha, Česká republika</p>
                 </div>
               </div>
@@ -126,7 +134,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-medium text-gray-900">Technická podpora</h3>
-                  <p className="text-gray-700">Nepřetržitě 24/7</p>
+                  <p className="text-gray-700">Od 8:00 do 20:00</p>
                   <p className="text-gray-700">Podpora při problémech v terénu</p>
                 </div>
               </div>
@@ -139,12 +147,12 @@ export default function ContactPage() {
       <section className="bg-indigo-600 text-white py-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4">Připraveni začít jezdit?</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">Registrujte se ještě dnes a začněte si vydělávat jako řidič s naší flotilou.</p>
+          <p className="text-xl mb-8 max-w-2xl mx-auto">Registrujte se ještě dnes a začněte si vydělávat jako řidič v naší flotilou.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="#contact-form" className="px-8 py-3 bg-white text-indigo-600 font-medium rounded-lg hover:bg-gray-100 transition-colors">
               Kontaktovat nás
             </a>
-            <a href="/cars" className="px-8 py-3 bg-indigo-700 text-white font-medium rounded-lg hover:bg-indigo-800 transition-colors">
+            <a href="/cars" className="px-8 py-3 bg-white text-indigo-600 font-medium rounded-lg hover:bg-gray-100 transition-colors">
               Prohlédnout vozidla
             </a>
           </div>

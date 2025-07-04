@@ -13,7 +13,7 @@ export default function CarRental() {
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-indigo-900">Nabídka našich vozů</h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Široký výběr kvalitních vozů k pronájmu nebo do odkupu za výhodných podmínek
+            Každý z nás ví, jak moc záleží na tom, v čem celý den jezdíš. Proto naše flotila nabízí pohodlné, spolehlivé a udržované vozy, na které je spoleh.
           </p>
         </div>
         
@@ -42,7 +42,7 @@ export default function CarRental() {
                 </div>
               </div>
               
-              <div className="border-t border-gray-200 pt-6 mb-6">
+              {/* <div className="border-t border-gray-200 pt-6 mb-6">
                 <h4 className="text-xl font-semibold mb-4 text-indigo-900">Auto do odkupu</h4>
                 <p className="text-gray-600 mb-6">
                   Nemáte vlastní auto a nechcete platit stále někde nájem? Vemte si od nás auto do odkupu! 
@@ -52,7 +52,7 @@ export default function CarRental() {
                 <div className="bg-indigo-50 p-4 rounded-xl text-indigo-900 font-medium">
                   Po zaplacení poslední splátky je auto vaše. Další splátky/nájem již neplatíte, jelikož jezdíte s vlastním autem!
                 </div>
-              </div>
+              </div> */}
               
               <Link href="/cars" className="bg-indigo-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-indigo-700 transition-all flex items-center justify-center md:justify-start w-full md:w-auto shadow-lg hover:shadow-xl">
                 Zobrazit nabídku

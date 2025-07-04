@@ -50,20 +50,20 @@ import {
                 {[
                   {
                     icon: DocumentTextIcon,
-                    title: "Online Registrace",
+                    title: "Online registrace",
                     description: "Vyplňte základní údaje ve formuláři a přiložte potřebné dokumenty",
                     time: "5 minut"
                   },
                   {
                     icon: ShieldCheckIcon,
-                    title: "Ověření Dokumentů",
+                    title: "Ověření dokumentů",
                     description: "Náš tým zkontroluje váš řidičský průkaz, profesní průkaz a další potřebné dokumenty",
                     time: "24h proces"
                   },
                   {
                     icon: TruckIcon,
-                    title: "Start Práce",
-                    description: "Začnete přijímat zakázky přímo v aplikaci a vydělávat s naší flotilou",
+                    title: "Start práce",
+                    description: "Začněte přijímat zakázky přímo v aplikaci a vydělávat s naší flotilou",
                     time: "Okamžitý start"
                   }
                 ].map((step, index) => (
@@ -138,7 +138,7 @@ import {
                 <ul className="space-y-4">
                   {[
                     'Chytrý telefon s datovým připojením',
-                    'Vlastní nebo půjčené vozidlo od naší flotily',
+                    'Půjčené vozidlo od naší flotily',
                     'Aktivní účet v aplikaci partnerů (Bolt/Uber)',
                     'Bankovní účet pro výplaty výdělků'
                   ].map((item, index) => (
@@ -153,51 +153,13 @@ import {
           </div>
         </section>
   
-        {/* FAQ Section */}
-        <section className="py-20 px-4 bg-white border-t border-gray-100">
-          <div className="max-w-7xl mx-auto">
-            <div className="flex items-center justify-center mb-12">
-              <div className="bg-indigo-100 p-3 rounded-xl mr-4">
-                <QuestionMarkCircleIcon className="w-8 h-8 text-indigo-600" />
-              </div>
-              <h2 className="text-3xl font-bold text-gray-900">
-                Často kladené dotazy
-              </h2>
-            </div>
-            
-            <div className="grid md:grid-cols-2 gap-6">
-              {[
-                {
-                  question: "Jak často vyplácíte výdělky?",
-                  answer: "Výdělky vyplácíme každý týden, vždy v pátek dopoledne. Peníze se připíší na váš účet během následujícího pracovního dne."
-                },
-                {
-                  question: "Musím mít vlastní auto?",
-                  answer: "Není nutné - nabízíme možnost pronájmu vozidel včetně kompletního pojištění a údržby."
-                },
-                {
-                  question: "Je školení placené?",
-                  answer: "Základní školení poskytujeme zdarma všem novým řidičům. Specializovaná školení pro VIP klienty mohou být zpoplatněna."
-                },
-                {
-                  question: "Jak funguje pojištění?",
-                  answer: "Všechna naše vozidla mají kompletní pojištění v ceně pronájmu, včetně havarijního pojištění a pojištění odpovědnosti."
-                }
-              ].map((faq, index) => (
-                <div key={index} className="bg-white p-6 rounded-xl border border-gray-100 hover:border-indigo-200 hover:shadow-md transition-all">
-                  <h3 className="font-semibold text-xl mb-3 text-gray-900">{faq.question}</h3>
-                  <p className="text-gray-600">{faq.answer}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+
 
         {/* Earnings Calculator Section */}
-        <EarningsCalculator />
+        {/* <EarningsCalculator /> */}
   
         {/* CTA Section */}
-        <section className="relative bg-gradient-to-br from-indigo-600 to-indigo-800 py-20 px-4 overflow-hidden">
+        {/* <section className="relative bg-gradient-to-br from-indigo-600 to-indigo-800 py-20 px-4 overflow-hidden">
           <div className="absolute inset-0 opacity-10">
             <div className="absolute right-1/4 top-1/4 w-64 h-64 bg-white rounded-full"></div>
             <div className="absolute left-1/4 bottom-1/4 w-64 h-64 bg-white rounded-full"></div>
@@ -226,7 +188,7 @@ import {
               </Link>
             </div>
           </div>
-        </section>
+        </section> */}
       </>
     );
   }

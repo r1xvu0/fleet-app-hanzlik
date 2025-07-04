@@ -14,8 +14,8 @@ import {
         {/* Hero Section */}
         <section className="bg-indigo-900 text-white py-32 px-4">
           <div className="max-w-6xl mx-auto text-center">
-            <h1 className="text-4xl font-bold mb-6">Transparentní ceník</h1>
-            <p className="text-xl">Platíte pouze za to, co skutečně využíváte</p>
+            <h1 className="text-4xl font-bold mb-6">Typy jízd</h1>
+            <p className="text-xl">Můžete si vybrat, co chcete jezdit</p>
           </div>
         </section>
   
@@ -35,7 +35,7 @@ import {
                 ]
               },
               {
-                title: "Professional",
+                title: "Comfort",
                 price: "12%",
                 description: "Pro aktivní řidiče",
                 features: [
@@ -47,7 +47,7 @@ import {
                 popular: true
               },
               {
-                title: "Enterprise",
+                title: "Premium",
                 price: "Individuální",
                 description: "Pro firemní flotily",
                 features: [
@@ -98,8 +98,8 @@ import {
                   <tr>
                     <th className="text-left py-4 text-gray-800">Funkce</th>
                     <th className="text-left py-4 text-gray-800">Standard</th>
-                    <th className="text-left py-4 text-gray-800">Professional</th>
-                    <th className="text-left py-4 text-gray-800">Enterprise</th>
+                    <th className="text-left py-4 text-gray-800">Comfort</th>
+                    <th className="text-left py-4 text-gray-800">Premium</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -122,33 +122,7 @@ import {
           </div>
         </section>
   
-        {/* FAQ */}
-        <section className="py-20 px-4 bg-white">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold mb-12 text-center text-black">Časté dotazy</h2>
-            <div className="space-y-6">
-              {[
-                {
-                  question: "Můžu změnit tarif později?",
-                  answer: "Ano, tarif můžete změnit kdykoliv s měsíční výpovědní lhůtou"
-                },
-                {
-                  question: "Jsou nějaké skryté poplatky?",
-                  answer: "Ne, všechny poplatky jsou jasně uvedeny v ceníku"
-                },
-                {
-                  question: "Co když nebudu spokojen?",
-                  answer: "Nabízíme 14-denní garanci vrácení peněz"
-                }
-              ].map((faq, index) => (
-                <div key={index} className="border rounded-lg p-6 hover:border-indigo-100 transition-colors">
-                  <h3 className="font-semibold text-lg mb-2 text-gray-900">{faq.question}</h3>
-                  <p className="text-gray-700">{faq.answer}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+
       </>
     );
   }

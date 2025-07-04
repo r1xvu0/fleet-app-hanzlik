@@ -107,9 +107,9 @@ export default function CarsPage() {
       <section className="relative bg-gradient-to-b from-indigo-900 to-indigo-700 text-white py-32 px-4">
         <div className="absolute inset-0 opacity-20 bg-[url('/images/pattern-grid.svg')] bg-center"></div>
         <div className="max-w-6xl mx-auto text-center relative z-10">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Naše moderní vozový park</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">Náš moderní vozový park</h1>
           <p className="text-xl max-w-2xl mx-auto">
-            Vyberte si z nejoblíbenějších modelů v Praze pro vaši práci v přepravních službách
+            Vyberte si z nejoblíbenějších modelů aut pro vaši práci v řidiče.
           </p>
         </div>
       </section>
@@ -274,10 +274,10 @@ export default function CarsPage() {
       <section className="bg-indigo-600 text-white py-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4">Připraveni začít?</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">Kontaktujte nás ještě dnes a rezervujte si vůz, který vám pomůže vydělávat.</p>
-          <Link href="/contact" className="px-8 py-3 bg-white text-indigo-600 rounded-lg font-medium hover:bg-indigo-50 transition-colors inline-block">
+          <p className="text-xl mb-8 max-w-2xl mx-auto">Kontaktujte nás ještě dnes a vyberte si vůz, který vám pomůže vydělávat.</p>
+          {/* <Link href="/contact" className="px-8 py-3 bg-white text-indigo-600 rounded-lg font-medium hover:bg-indigo-50 transition-colors inline-block">
             Rezervovat vozidlo
-          </Link>
+          </Link> */}
         </div>
       </section>
     </>

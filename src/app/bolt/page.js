@@ -37,7 +37,7 @@ export default function BoltPage() {
           <div className="flex flex-col sm:flex-row justify-center gap-6 sm:space-x-6">
             <Link
               href="/contact"
-              className="bg-[#212121] hover:bg-[#3a3a3a] text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all shadow-lg hover:shadow-xl"
+              className="border-2 border-white/30 backdrop-blur-sm bg-white/10 hover:bg-white/20 px-8 py-4 rounded-xl text-lg font-semibold transition-all"
             >
               Přihlásit se k Bolt
               <ArrowRightIcon className="w-5 h-5 ml-2 inline-block" />
@@ -137,10 +137,10 @@ export default function BoltPage() {
               </div>
               <ul className="space-y-5">
                 {[
-                  "Vůz do 8 let stáří",
+                  // "Vůz do 8 let stáří",
                   "Řidičský průkaz skupiny B",
-                  "Profesní průkaz řidiče",
-                  "Smartphone s datovým připojením",
+                  "Profesní průkaz řidiče (žlutá karta)",
+                  "Chytrý telefon s datovým připojením",
                 ].map((item, index) => (
                   <li key={index} className="flex items-center">
                     <CheckIcon className="w-5 h-5 flex-shrink-0 text-[#3FC3C6] mr-3" />
@@ -159,9 +159,8 @@ export default function BoltPage() {
               <ul className="space-y-5">
                 {[
                   "Pravidelné týdenní výplaty",
-                  "24/7 podpora v češtině",
                   "Komplexní pojištění vozidla",
-                  "Zcela flexibilní pracovní rozvrh",
+                  "Zcela flexibilní pracovní doba",
                 ].map((item, index) => (
                   <li key={index} className="flex items-center">
                     <CheckIcon className="w-5 h-5 flex-shrink-0 text-white mr-3" />
@@ -207,9 +206,9 @@ export default function BoltPage() {
           </div>
           <Link
             href="/contact"
-            className="inline-flex items-center bg-black text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-gray-900 transition-all shadow-lg hover:shadow-xl"
+            className="inline-flex items-center border-2 border-white/30 backdrop-blur-sm bg-white/10 hover:bg-white/20 px-8 py-4 rounded-xl text-lg font-semibold transition-all"
           >
-            Přihlásit se k Bolt
+            Přihlásit se k Boltu
             <ArrowRightIcon className="w-5 h-5 ml-2" />
           </Link>
         </div>

@@ -29,24 +29,24 @@ export default function UberPage() {
             <ShoppingBagIcon className="h-16 w-16 text-white" />
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-            Spolupracujte s Uber přes naši flotilu
+            Spolupracujte s Uberem přes naši flotilu
           </h1>
           <p className="text-xl md:text-2xl mb-12 max-w-2xl mx-auto text-gray-300">
-            Největší síť řidičů v České republice
+            Nejvyšší výdělky v Praze s prémiovou podporou
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-6 sm:space-x-6">
             <Link
               href="/contact"
-              className="bg-white hover:bg-gray-300 text-black px-8 py-4 rounded-xl text-lg font-semibold transition-all shadow-lg hover:shadow-xl"
+              className="border-2 border-white/30 backdrop-blur-sm bg-white/10 hover:bg-white/20 px-8 py-4 rounded-xl text-lg font-semibold transition-all"
             >
-              Připojit se k Uber
+              Připojit se k Uberu
               <ArrowRightIcon className="w-5 h-5 ml-2 inline-block" />
             </Link>
             <Link
               href="/how-it-works"
               className="border-2 border-white/30 backdrop-blur-sm bg-white/10 hover:bg-white/20 px-8 py-4 rounded-xl text-lg font-semibold transition-all"
             >
-              Zjistit více
+              Více informací
             </Link>
           </div>
         </div>
@@ -135,19 +135,19 @@ export default function UberPage() {
             <div className="bg-gradient-to-br from-[#000000] to-[#1A1A1A] text-white p-8 rounded-2xl shadow-xl transition-transform hover:scale-[1.02]">
               <div className="mb-6 flex items-center">
                 <div className="bg-white/10 p-3 rounded-xl mr-4">
-                  <CheckIcon className="w-8 h-8 text-[#3FC3C6]" />
+                  <CheckIcon className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold">Požadavky pro řidiče</h3>
               </div>
               <ul className="space-y-5">
                 {[
-                  "Vůz do 8 let stáří",
+                  // "Vůz do 8 let stáří",
                   "Řidičský průkaz skupiny B",
-                  "Profesní průkaz řidiče",
-                  "Smartphone s datovým připojením",
+                  "Profesní průkaz řidiče (žlutá karta)",
+                  "Chytrý telefon s datovým připojením",
                 ].map((item, index) => (
                   <li key={index} className="flex items-center">
-                    <CheckIcon className="w-5 h-5 flex-shrink-0 text-[#3FC3C6] mr-3" />
+                    <CheckIcon className="w-5 h-5 flex-shrink-0 text-white mr-3" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -163,9 +163,9 @@ export default function UberPage() {
               <ul className="space-y-5">
                 {[
                   "Pravidelné týdenní výplaty",
-                  "24/7 podpora v češtině",
+                  "24/7 podpora",
                   "Komplexní pojištění vozidla",
-                  "Zcela flexibilní pracovní rozvrh",
+                  "Zcela flexibilní pracovní doba",
                 ].map((item, index) => (
                   <li key={index} className="flex items-center">
                     <CheckIcon className="w-5 h-5 flex-shrink-0 text-white mr-3" />
@@ -200,19 +200,18 @@ export default function UberPage() {
         </div>
 
         <div className="max-w-5xl mx-auto text-center relative z-10">
-          <DevicePhoneMobileIcon className="h-16 w-16 mx-auto mb-6 text-[#3FC3C6]" />
+          <DevicePhoneMobileIcon className="h-16 w-16 mx-auto mb-6 text-white" />
           <h2 className="text-3xl md:text-4xl font-bold mb-8">
             Začněte vydělávat již dnes!
           </h2>
           <p className="text-gray-300 mb-10 max-w-2xl mx-auto">
-            Připojte se k Uber přes naši flotilu a získejte nejlepší podmínky na
-            trhu. Naši specialisté vám pomohou s registrací a prvními kroky.
+          Připojte se k našemu týmu profesionálních řidičů a využijte všech výhod, které Bolt ve spolupráci s naší flotilou nabízí.
           </p>
           <Link
             href="/contact"
-            className="bg-[#3FC3C6] hover:bg-[#35ADB0] text-black px-8 py-4 rounded-xl text-lg font-semibold transition-all shadow-lg hover:shadow-xl inline-flex items-center"
+            className="border-2 border-white/30 backdrop-blur-sm bg-white/10 hover:bg-white/20 px-8 py-4 rounded-xl text-lg font-semibold transition-all inline-flex items-center"
           >
-            Připojit se k Uber
+            Připojit se k Uberu
             <ArrowRightIcon className="w-5 h-5 ml-2" />
           </Link>
         </div>

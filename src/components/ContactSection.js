@@ -278,11 +278,11 @@ export default function ContactSection() {
                       onChange={handleChange}
                     >
                       <option value="" className="text-gray-800">Vyberte národnost</option>
-                      <option value="CZ" className="text-gray-800">Česká republika</option>
-                      <option value="SK" className="text-gray-800">Slovenská republika</option>
-                      <option value="PL" className="text-gray-800">Polsko</option>
-                      <option value="DE" className="text-gray-800">Německo</option>
-                      <option value="UA" className="text-gray-800">Ukrajina</option>
+                      <option value="CZ" className="text-gray-800">Česká</option>
+                      <option value="SK" className="text-gray-800">Slovenská</option>
+                      <option value="PL" className="text-gray-800">Polská</option>
+                      <option value="DE" className="text-gray-800">Německá</option>
+                      <option value="UA" className="text-gray-800">Ukrajinská</option>
                       <option value="OTHER" className="text-gray-800">Jiné</option>
                     </select>
                   </div>
@@ -364,12 +364,12 @@ export default function ContactSection() {
                   <label className="block text-indigo-200 mb-3 text-sm">Ovládané jazyky</label>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                     {[
-                      { value: "cs", label: "Čeština" },
-                      { value: "sk", label: "Slovenština" },
-                      { value: "en", label: "Angličtina" },
-                      { value: "de", label: "Němčina" },
-                      { value: "pl", label: "Polština" },
-                      { value: "uk", label: "Ukrajinština" }
+                      { value: "cs", label: "čeština" },
+                      { value: "sk", label: "slovenština" },
+                      { value: "en", label: "angličtina" },
+                      { value: "de", label: "němčina" },
+                      { value: "pl", label: "polština" },
+                      { value: "uk", label: "ukrajinština" }
                     ].map((language, index) => (
                       <label key={index} className="flex items-center p-2 border border-indigo-300/20 rounded-lg hover:bg-white/5 transition-colors">
                         <input
@@ -455,12 +455,27 @@ export default function ContactSection() {
 
                 <div className="flex items-center p-4 bg-white/10 border border-indigo-300/20 rounded-xl backdrop-blur-sm transition-transform hover:scale-[1.02]">
                   <div className="bg-indigo-600/30 p-3 rounded-lg">
+                    <PhoneIcon className="w-6 h-6 text-indigo-300" />
+                  </div>
+                  <div className="ml-4">
+                    <h3 className="font-semibold text-white">WhatsApp</h3>
+                    <a
+                      href="https://wa.me/420774982052"
+                      className="text-indigo-300 hover:text-white transition-colors"
+                    >
+                      https://wa.me/420774982052
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-center p-4 bg-white/10 border border-indigo-300/20 rounded-xl backdrop-blur-sm transition-transform hover:scale-[1.02]">
+                  <div className="bg-indigo-600/30 p-3 rounded-lg">
                     <EnvelopeIcon className="w-6 h-6 text-indigo-300" />
                   </div>
                   <div className="ml-4">
                     <h3 className="font-semibold text-white">Email</h3>
                     <a
-                      href="mailto:info@driverhome.cz"
+                      href="mailto:flotila.praha1@gmail.com"
                       className="text-indigo-300 hover:text-white transition-colors"
                     >
                       flotila.praha1@gmail.com
@@ -475,10 +490,10 @@ export default function ContactSection() {
                   <div className="ml-4">
                     <h3 className="font-semibold text-white">Telefon</h3>
                     <a
-                      href="tel:+420777888999"
+                      href="tel:+420774982052"
                       className="text-indigo-300 hover:text-white transition-colors"
                     >
-                      +420 777 888 999
+                      +420 774 982 052
                     </a>
                   </div>
                 </div>
@@ -490,7 +505,7 @@ export default function ContactSection() {
                   <div className="ml-4">
                     <h3 className="font-semibold text-white">Kde nás najdete?</h3>
                     <p className="text-indigo-300">
-                      Vlněna 5, Trnitá, 602 00 Brno
+                      Travná, xxx
                     </p>
                   </div>
                 </div>

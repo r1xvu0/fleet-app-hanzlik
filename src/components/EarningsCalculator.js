@@ -56,7 +56,7 @@ export default function EarningsCalculator() {
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4 text-gray-900">Spočítejte si svůj výdělek</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Pomocí naší kalkulačky si můžete odhadnout, kolik byste si mohli vydělat jako řidič v naší flotile.
+            Pomocí naší kalkulačky si můžete vypočítat, kolik byste si mohli vydělat jako řidič v naší flotile.
           </p>
         </div>
 
@@ -171,7 +171,7 @@ export default function EarningsCalculator() {
             </div>
 
             {/* Bonus Information */}
-            {bonus > 0 && (
+            {/* {bonus > 0 && (
               <div className="bg-indigo-700 p-4 rounded-lg mb-8">
                 <div className="flex items-start">
                   <CurrencyDollarIcon className="w-5 h-5 text-indigo-200 mr-2 flex-shrink-0 mt-0.5" />
@@ -183,7 +183,7 @@ export default function EarningsCalculator() {
                   </div>
                 </div>
               </div>
-            )}
+            )} */}
 
             {/* Yearly Estimate */}
             <div className="border-t border-indigo-700 pt-6 mt-6">

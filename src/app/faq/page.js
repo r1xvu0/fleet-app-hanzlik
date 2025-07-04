@@ -19,7 +19,7 @@ export default function FAQPage() {
         {
           question: "Jaké dokumenty potřebuji k registraci?",
           answer:
-            "Stačí platný řidičský průkaz, občanský průkaz a žádost o registraci. Pro taxi navíc potřebujete profesní průkaz.",
+            "Stačí platný řidičský průkaz, občanský průkaz a žádost o registraci. Pro taxi navíc potřebujete žlutou kartu.",
         },
         {
           question: "Jak dlouho trvá schválení registrace?",
@@ -33,12 +33,32 @@ export default function FAQPage() {
       items: [
         {
           question: "Jak často vyplácíte výdělky?",
-          answer: "Výdělky vyplácíme každý týden v pátek na váš bankovní účet.",
+          answer: "Výdělky vyplácíme každý týden, vždy v pátek dopoledne. Peníze se připíší na váš účet během následujícího pracovního dne.",
         },
         {
           question: "Jaké jsou poplatky flotily?",
           answer:
             "Základní poplatek je 15% z jízdného, s možností snížení na 12% při vyšším počtu jízd.",
+        },
+        {
+          question: "Můžu změnit tarif později?",
+          answer: "Ano, tarif můžete změnit kdykoliv s měsíční výpovědní lhůtou",
+        },
+        {
+          question: "Jsou nějaké skryté poplatky?",
+          answer: "Ne, všechny poplatky jsou jasně uvedeny v ceníku",
+        },
+        {
+          question: "Co když nebudu spokojen?",
+          answer: "Nabízíme 14-denní garanci vrácení peněz",
+        },
+        {
+          question: "Musím mít vlastní auto?",
+          answer: "Není nutné - nabízíme možnost pronájmu vozidel včetně kompletního pojištění a údržby.",
+        },
+        {
+          question: "Jak funguje pojištění?",
+          answer: "Všechna naše vozidla mají kompletní pojištění v ceně pronájmu, včetně havarijního pojištění a pojištění odpovědnosti.",
         },
       ],
     },
@@ -49,12 +69,12 @@ export default function FAQPage() {
         {
           question: "Co když mi nefunguje aplikace?",
           answer:
-            "Naše technická podpora je dostupná 24/7 na telefonu +420 123 456 789.",
+            "Naše technická podpora je dostupná 24/7 na telefonu +420 774 982 052.",
         },
         {
           question: "Mohu používat více aplikací současně?",
           answer:
-            "Ano, naše flotila podporuje kombinaci Bolt, Uber a Liftago v rámci jednoho účtu.",
+            "Ano, naše flotila podporuje kombinaci Bolt a Uber v rámci jednoho účtu.",
         },
       ],
     },
@@ -158,13 +178,13 @@ export default function FAQPage() {
           </p>
           <div className="flex flex-wrap justify-center gap-6">
             <a
-              href="tel:+420123456789"
+              href="tel:+420774982052"
               className="bg-white px-6 py-4 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center border border-gray-100"
             >
               <div className="bg-indigo-50 p-2 rounded-lg mr-3">
                 <PhoneIcon className="w-5 h-5 text-indigo-600" />
               </div>
-              <span className="font-medium text-gray-800">+420 123 456 789</span>
+              <span className="font-medium text-gray-800">+420 774 982 052</span>
             </a>
             <a
               href="mailto:podpora@driverhome.cz"
@@ -173,7 +193,7 @@ export default function FAQPage() {
               <div className="bg-indigo-50 p-2 rounded-lg mr-3">
                 <EnvelopeIcon className="w-5 h-5 text-indigo-600" />
               </div>
-              <span className="font-medium text-gray-800">podpora@driverhome.cz</span>
+              <span className="font-medium text-gray-800">flotila.praha1@gmail.com</span>
             </a>
           </div>
           
