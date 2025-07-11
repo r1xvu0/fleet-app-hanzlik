@@ -452,7 +452,7 @@ export default function ContactSection() {
                     </a>
                   </div>
                 </div>
-
+{/* 
                 <div className="flex items-center p-4 bg-white/10 border border-indigo-300/20 rounded-xl backdrop-blur-sm transition-transform hover:scale-[1.02]">
                   <div className="bg-indigo-600/30 p-3 rounded-lg">
                     <PhoneIcon className="w-6 h-6 text-indigo-300" />
@@ -466,7 +466,7 @@ export default function ContactSection() {
                       https://wa.me/420774982052
                     </a>
                   </div>
-                </div>
+                </div> */}
 
                 <div className="flex items-center p-4 bg-white/10 border border-indigo-300/20 rounded-xl backdrop-blur-sm transition-transform hover:scale-[1.02]">
                   <div className="bg-indigo-600/30 p-3 rounded-lg">

@@ -163,7 +163,7 @@ export default function UberPage() {
               <ul className="space-y-5">
                 {[
                   "Pravidelné týdenní výplaty",
-                  "24/7 podpora",
+                  // "24/7 podpora",
                   "Komplexní pojištění vozidla",
                   "Zcela flexibilní pracovní doba",
                 ].map((item, index) => (

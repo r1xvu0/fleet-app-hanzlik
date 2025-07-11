@@ -96,12 +96,12 @@ export const MainNavigation = () => {
             {/* <Link href="/about" className="text-gray-700 hover:text-indigo-600 font-medium py-2 transition-colors">
               O nás
             </Link> */}
-            <Link href="/benefits" className="text-gray-700 hover:text-indigo-600 font-medium py-2 transition-colors">
+            {/* <Link href="/benefits" className="text-gray-700 hover:text-indigo-600 font-medium py-2 transition-colors">
               Výhody
-            </Link>
-            <Link href="/pricing" className="text-gray-700 hover:text-indigo-600 font-medium py-2 transition-colors">
+            </Link> */}
+            {/* <Link href="/pricing" className="text-gray-700 hover:text-indigo-600 font-medium py-2 transition-colors">
               Ceník
-            </Link>
+            </Link> */}
             {/* <Link href="/cars" className="text-gray-700 hover:text-indigo-600 font-medium py-2 transition-colors">
               Naše vozy
             </Link>
@@ -137,13 +137,13 @@ export const MainNavigation = () => {
               >
                 O nás
               </Link>
-              <Link 
+              {/* <Link 
                 href="/benefits" 
                 className="text-gray-700 hover:text-indigo-600 py-2 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Výhody
-              </Link>
+              </Link> */}
               <Link 
                 href="/pricing" 
                 className="text-gray-700 hover:text-indigo-600 py-2 transition-colors"

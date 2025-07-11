@@ -69,7 +69,7 @@ export default function FAQPage() {
         {
           question: "Co když mi nefunguje aplikace?",
           answer:
-            "Naše technická podpora je dostupná 24/7 na telefonu +420 774 982 052.",
+            "Naše technická podpora je dostupná pět dní v týdnu od 8:00 do 16:00 hodin na .",
         },
         {
           question: "Mohu používat více aplikací současně?",

@@ -30,7 +30,7 @@ export default function CarRental() {
               <div className="space-y-4 mb-8">
                 <div className="flex items-start">
                   <CheckIcon className="w-5 h-5 text-green-500 mr-2 mt-1 flex-shrink-0" />
-                  <p className="text-gray-700">Auta do nájmu od <span className="font-semibold text-indigo-900">3 500,- Kč/týden</span> včetně flotily, servisu a pojištění</p>
+                  <p className="text-gray-700">Auta do nájmu od <span className="font-semibold text-indigo-900">4 500,- Kč/týden</span> včetně flotily, servisu a pojištění</p>
                 </div>
                 <div className="flex items-start">
                   <CheckIcon className="w-5 h-5 text-green-500 mr-2 mt-1 flex-shrink-0" />
@@ -74,10 +74,10 @@ export default function CarRental() {
                     <div className="font-bold text-2xl">10+</div>
                     <div className="text-sm">Modelů vozů</div>
                   </div>
-                  <div>
+                  {/* <div>
                     <div className="font-bold text-2xl">24/7</div>
                     <div className="text-sm">Technická podpora</div>
-                  </div>
+                  </div> */}
                   <div>
                     <div className="font-bold text-2xl">100%</div>
                     <div className="text-sm">Pojištění</div>

@@ -70,7 +70,7 @@ export default function BenefitsPage() {
       </section>
 
       {/* Comparison Section */}
-      <section className="bg-indigo-50 py-20 px-4">
+      {/* <section className="bg-indigo-50 py-20 px-4">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold mb-12 text-center text-gray-900">
             Proč zvolit nás?
@@ -91,11 +91,11 @@ export default function BenefitsPage() {
                     us: "10-15%",
                     others: "20-30%",
                   },
-                  {
-                    feature: "Dostupná podpora",
-                    us: "24/7",
-                    others: "Jen v pracovní dny",
-                  },
+                  // {
+                  //   feature: "Dostupná podpora",
+                  //   us: "24/7",
+                  //   others: "Jen v pracovní dny",
+                  // },
                   {
                     feature: "Pojištění vozidla",
                     us: "V ceně",
@@ -114,7 +114,7 @@ export default function BenefitsPage() {
             </table>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Stats Section */}
       {/* <section className="py-20 px-4 bg-white">
