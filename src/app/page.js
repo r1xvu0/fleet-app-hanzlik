@@ -57,8 +57,8 @@ export default function HomePage() {
           <p className="text-lg text-gray-600 mb-16 max-w-3xl mx-auto">
             Proč si jako řidič vybrat právě naši flotilu?
           </p>
-          
-          <div className="grid md:grid-cols-4 gap-8">
+
+          <div className="grid md:grid-cols-3 gap-8 justify-items-center">
             {[
               {
                 icon: <StarIcon className="w-10 h-10 text-indigo-500" />,
@@ -120,9 +120,9 @@ export default function HomePage() {
             </div>
           </div>
           <div className="order-1 md:order-2 bg-gradient-to-br from-indigo-100 to-indigo-50 rounded-3xl shadow-lg p-6 h-96 flex items-center justify-center">
-            <img 
-              src="https://placehold.co/600x400/indigo/white?text=Car+Image" 
-              alt="Taxi fleet" 
+            <img
+              src="https://placehold.co/600x400/indigo/white?text=Car+Image"
+              alt="Taxi fleet"
               className="w-full h-auto max-h-80 object-cover rounded-2xl shadow-inner"
             />
           </div>
@@ -160,7 +160,7 @@ export default function HomePage() {
               </ul>
             </div>
 
-          {/* Courier Requirements
+            {/* Courier Requirements
           <div className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20 transition-transform hover:scale-[1.02]">
             <div className="flex items-center mb-6">
               <div className="bg-indigo-600/20 p-3 rounded-xl">

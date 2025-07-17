@@ -44,7 +44,7 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Cards */}
-      <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 py-16 px-4 relative z-10">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 py-16 px-4 relative z-10">
         {[
           // {
           //   title: "Telefonická podpora",
@@ -105,7 +105,7 @@ export default function ContactPage() {
               Důležité informace
             </h2>
             
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 gap-6">
               <div className="flex items-start">
                 <div className="bg-indigo-100 p-2 rounded-lg mr-4 mt-1">
                   <CheckIcon className="w-5 h-5 text-indigo-600" />
