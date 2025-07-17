@@ -114,16 +114,17 @@ export default function EarningsCalculator() {
               <div className="flex items-start">
                 <CurrencyDollarIcon className="w-5 h-5 text-indigo-600 mr-2 flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-medium text-gray-700">Hodinová sazba: {hourlyEarnings} Kč</p>
-                  <p className="text-sm text-gray-600 mt-1">
+                  <p className="font-medium text-gray-700">Průměrná hodinová sazba: {hourlyEarnings} Kč</p>
+                  {/* <p className="font-medium text-gray-700">Hodinová sazba: od 250 - 550 Kč</p> */}
+                  {/* <p className="text-sm text-gray-600 mt-1">
                     Fixní hodinová sazba za vaši práci.
-                  </p>
+                  </p> */}
                 </div>
               </div>
             </div>
 
             {/* Commission Information */}
-            <div className="mt-6 bg-indigo-50 p-4 rounded-lg">
+            {/* <div className="mt-6 bg-indigo-50 p-4 rounded-lg">
               <div className="flex items-start">
                 <InformationCircleIcon className="w-5 h-5 text-indigo-600 mr-2 flex-shrink-0 mt-0.5" />
                 <p className="text-sm text-gray-700">
@@ -131,7 +132,7 @@ export default function EarningsCalculator() {
                   Pro řidiče s vysokým výkonem můžeme nabídnout nižší provizi.
                 </p>
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Results Side */}
