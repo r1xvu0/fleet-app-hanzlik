@@ -97,7 +97,7 @@ export default function ContactPage() {
       <ContactSection />
       
       {/* Additional Information Section */}
-      <div className="bg-gradient-to-b from-indigo-950 to-indigo-900 py-16 px-4">
+      {/* <div className="bg-gradient-to-b from-indigo-950 to-indigo-900 py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
             <h2 className="text-2xl font-bold mb-6 text-gray-900 flex items-center">
@@ -113,11 +113,11 @@ export default function ContactPage() {
                 <div>
                   <h3 className="font-medium text-gray-900">Pracovní doba kanceláře</h3>
                   <p className="text-gray-700">Pondělí - Pátek: 9:00 - 17:00</p>
-                  {/* <p className="text-gray-700">Víkendy: 10:00 - 18:00</p> */}
+                  <p className="text-gray-700">Víkendy: 10:00 - 18:00</p>
                 </div>
               </div>
               
-              {/* <div className="flex items-start">
+              <div className="flex items-start">
                 <div className="bg-indigo-100 p-2 rounded-lg mr-4 mt-1">
                   <CheckIcon className="w-5 h-5 text-indigo-600" />
                 </div>
@@ -126,7 +126,7 @@ export default function ContactPage() {
                   <p className="text-gray-700">Travná, xxx</p>
                   <p className="text-gray-700">15000 Praha, Česká republika</p>
                 </div>
-              </div> */}
+              </div>
               
               <div className="flex items-start">
                 <div className="bg-indigo-100 p-2 rounded-lg mr-4 mt-1">
@@ -141,7 +141,7 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       
       {/* CTA Section */}
       <section className="bg-indigo-600 text-white py-16 px-4">

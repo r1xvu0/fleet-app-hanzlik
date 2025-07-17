@@ -205,7 +205,7 @@ export default function UberPage() {
             Začněte vydělávat již dnes!
           </h2>
           <p className="text-gray-300 mb-10 max-w-2xl mx-auto">
-          Připojte se k našemu týmu profesionálních řidičů a využijte všech výhod, které Bolt ve spolupráci s naší flotilou nabízí.
+          Připojte se k našemu týmu profesionálních řidičů a využijte všech výhod, které Uber ve spolupráci s naší flotilou nabízí.
           </p>
           <Link
             href="/contact"
