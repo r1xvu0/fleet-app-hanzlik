@@ -35,15 +35,15 @@ export default function FAQPage() {
           question: "Jak často vyplácíte výdělky?",
           answer: "Výdělky vyplácíme každý týden, vždy v pátek dopoledne. Peníze se připíší na váš účet během následujícího pracovního dne.",
         },
-        {
-          question: "Jaké jsou poplatky flotily?",
-          answer:
-            "Základní poplatek je 15% z jízdného, s možností snížení na 12% při vyšším počtu jízd.",
-        },
-        {
-          question: "Můžu změnit tarif později?",
-          answer: "Ano, tarif můžete změnit kdykoliv s měsíční výpovědní lhůtou",
-        },
+        // {
+        //   question: "Jaké jsou poplatky flotily?",
+        //   answer:
+        //     "Základní poplatek je 15% z jízdného, s možností snížení na 12% při vyšším počtu jízd.",
+        // },
+        // {
+        //   question: "Můžu změnit tarif později?",
+        //   answer: "Ano, tarif můžete změnit kdykoliv s měsíční výpovědní lhůtou",
+        // },
         {
           question: "Jsou nějaké skryté poplatky?",
           answer: "Ne, všechny poplatky jsou jasně uvedeny v ceníku",
@@ -66,11 +66,11 @@ export default function FAQPage() {
       name: "Technické otázky",
       icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>,
       items: [
-        {
-          question: "Co když mi nefunguje aplikace?",
-          answer:
-            "Naše technická podpora je dostupná pět dní v týdnu od 8:00 do 16:00 hodin na .",
-        },
+        // {
+        //   question: "Co když mi nefunguje aplikace?",
+        //   answer:
+        //     "Naše technická podpora je dostupná pět dní v týdnu od 8:00 do 16:00 hodin na .",
+        // },
         {
           question: "Mohu používat více aplikací současně?",
           answer:
@@ -177,7 +177,7 @@ export default function FAQPage() {
             Náš tým vám rád pomůže s jakýmkoliv dotazem, kontaktujte nás
           </p>
           <div className="flex flex-wrap justify-center gap-6">
-            <a
+            {/* <a
               href="tel:+420774982052"
               className="bg-white px-6 py-4 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center border border-gray-100"
             >
@@ -185,15 +185,15 @@ export default function FAQPage() {
                 <PhoneIcon className="w-5 h-5 text-indigo-600" />
               </div>
               <span className="font-medium text-gray-800">+420 774 982 052</span>
-            </a>
+            </a> */}
             <a
-              href="mailto:podpora@driverhome.cz"
+              href="mailto:fleets@flotila-praha.eu"
               className="bg-white px-6 py-4 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center border border-gray-100"
             >
               <div className="bg-indigo-50 p-2 rounded-lg mr-3">
                 <EnvelopeIcon className="w-5 h-5 text-indigo-600" />
               </div>
-              <span className="font-medium text-gray-800">flotila.praha1@gmail.com</span>
+              <span className="font-medium text-gray-800">fleets@flotila-praha.eu</span>
             </a>
           </div>
           

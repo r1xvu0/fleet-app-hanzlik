@@ -75,11 +75,11 @@ export default function HomePage() {
                 title: "Flexibilita",
                 description: "Jezdi kdy chceš. V týdnu nebo o víkendu, přes den nebo noc.",
               },
-              {
-                icon: <ChartBarIcon className="w-10 h-10 text-indigo-500" />,
-                title: "Podpora a zázemí",
-                description: "Nefunguje něco? Máš dotaz? Narozdíl od jiných, jsme tu skutečně pro tebe.",
-              }
+              // {
+              //   icon: <ChartBarIcon className="w-10 h-10 text-indigo-500" />,
+              //   title: "Podpora a zázemí",
+              //   description: "Nefunguje něco? Máš dotaz? Narozdíl od jiných, jsme tu skutečně pro tebe.",
+              // }
             ].map((feature, index) => (
               <div key={index} className="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition-all">
                 <div className="bg-indigo-50 w-16 h-16 mx-auto mb-6 rounded-lg flex items-center justify-center">

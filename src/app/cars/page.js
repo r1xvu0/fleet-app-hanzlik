@@ -220,7 +220,7 @@ export default function CarsPage() {
               <ul className="space-y-3">
                 <li className="flex items-start">
                   <CheckCircleIcon className="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-700">Neomezený kilometr</span>
+                  <span className="text-gray-700">Neomezený nájezd</span>
                 </li>
                 <li className="flex items-start">
                   <CheckCircleIcon className="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />

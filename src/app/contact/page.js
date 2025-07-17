@@ -46,19 +46,19 @@ export default function ContactPage() {
       {/* Contact Cards */}
       <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 py-16 px-4 relative z-10">
         {[
-          {
-            title: "Telefonická podpora",
-            text: "Od 8:00 do 20:00",
-            icon: PhoneIcon,
-            link: "tel:+420774982052",
-            color: "bg-indigo-600",
-            hover: "hover:bg-indigo-700"
-          },
+          // {
+          //   title: "Telefonická podpora",
+          //   text: "Od 8:00 do 20:00",
+          //   icon: PhoneIcon,
+          //   link: "tel:+420774982052",
+          //   color: "bg-indigo-600",
+          //   hover: "hover:bg-indigo-700"
+          // },
           {
             title: "Emailová podpora",
             text: "Odpovíme hned jak to bude možné",
             icon: EnvelopeIcon,
-            link: "mailto:flotila.praha1@gmail.com",
+            link: "mailto:fleets@flotila-praha.eu",
             color: "bg-indigo-700",
             hover: "hover:bg-indigo-800"
           },
@@ -70,14 +70,14 @@ export default function ContactPage() {
             color: "bg-indigo-800",
             hover: "hover:bg-indigo-900"
           },
-          {
-            title: "WhatsApp",
-            text: "Od 8:00 do 20:00",
-            icon: PhoneIcon,
-            link: "https://wa.me/420774982052",
-            color: "bg-indigo-600",
-            hover: "hover:bg-indigo-700"
-          }
+          // {
+          //   title: "WhatsApp",
+          //   text: "Od 9:00 do 17:00",
+          //   icon: PhoneIcon,
+          //   link: "https://wa.me/420774982052",
+          //   color: "bg-indigo-600",
+          //   hover: "hover:bg-indigo-700"
+          // }
         ].map((item, index) => (
           <a 
             key={index} 
@@ -111,8 +111,8 @@ export default function ContactPage() {
                   <CheckIcon className="w-5 h-5 text-indigo-600" />
                 </div>
                 <div>
-                  <h3 className="font-medium text-gray-900">Pracovní doba</h3>
-                  <p className="text-gray-700">Pondělí - Pátek: 8:00 - 20:00</p>
+                  <h3 className="font-medium text-gray-900">Pracovní doba kanceláře</h3>
+                  <p className="text-gray-700">Pondělí - Pátek: 9:00 - 17:00</p>
                   {/* <p className="text-gray-700">Víkendy: 10:00 - 18:00</p> */}
                 </div>
               </div>
@@ -121,11 +121,11 @@ export default function ContactPage() {
                 <div className="bg-indigo-100 p-2 rounded-lg mr-4 mt-1">
                   <CheckIcon className="w-5 h-5 text-indigo-600" />
                 </div>
-                <div>
+                {/* <div>
                   <h3 className="font-medium text-gray-900">Adresa kanceláře</h3>
                   <p className="text-gray-700">Travná, xxx</p>
                   <p className="text-gray-700">15000 Praha, Česká republika</p>
-                </div>
+                </div> */}
               </div>
               
               <div className="flex items-start">
@@ -134,7 +134,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-medium text-gray-900">Technická podpora</h3>
-                  <p className="text-gray-700">Od 8:00 do 20:00</p>
+                  <p className="text-gray-700">Od 9:00 do 17:00</p>
                   <p className="text-gray-700">Podpora při problémech v terénu</p>
                 </div>
               </div>
