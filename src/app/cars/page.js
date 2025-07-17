@@ -241,10 +241,10 @@ export default function CarsPage() {
                   <CheckCircleIcon className="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
                   <span className="text-gray-700">24/7 Asistence na silnici</span>
                 </li>
-                <li className="flex items-start">
+                {/* <li className="flex items-start">
                   <CheckCircleIcon className="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
                   <span className="text-gray-700">Technická podpora v případě problémů</span>
-                </li>
+                </li> */}
               </ul>
             </div>
             

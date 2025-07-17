@@ -443,12 +443,12 @@ export default function ContactSection() {
                   <div className="ml-4">
                     <h3 className="font-semibold text-white">FB Messenger</h3>
                     <a
-                      href="https://m.me/driverhomecz"
+                      href="https://m.me/flotilapraha"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-indigo-300 hover:text-white transition-colors"
                     >
-                      m.me/driverhomecz
+                      m.me/flotilapraha
                     </a>
                   </div>
                 </div>
@@ -483,7 +483,7 @@ export default function ContactSection() {
                   </div>
                 </div>
 
-                <div className="flex items-center p-4 bg-white/10 border border-indigo-300/20 rounded-xl backdrop-blur-sm transition-transform hover:scale-[1.02]">
+                {/* <div className="flex items-center p-4 bg-white/10 border border-indigo-300/20 rounded-xl backdrop-blur-sm transition-transform hover:scale-[1.02]">
                   <div className="bg-indigo-600/30 p-3 rounded-lg">
                     <PhoneIcon className="w-6 h-6 text-indigo-300" />
                   </div>
@@ -496,9 +496,9 @@ export default function ContactSection() {
                       +420 774 982 052
                     </a>
                   </div>
-                </div>
+                </div> */}
 
-                <div className="flex items-center p-4 bg-white/10 border border-indigo-300/20 rounded-xl backdrop-blur-sm transition-transform hover:scale-[1.02]">
+                {/* <div className="flex items-center p-4 bg-white/10 border border-indigo-300/20 rounded-xl backdrop-blur-sm transition-transform hover:scale-[1.02]">
                   <div className="bg-indigo-600/30 p-3 rounded-lg">
                     <MapPinIcon className="w-6 h-6 text-indigo-300" />
                   </div>
@@ -508,7 +508,7 @@ export default function ContactSection() {
                       Travná, xxx
                     </p>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
 
@@ -516,7 +516,7 @@ export default function ContactSection() {
               <h3 className="text-2xl font-semibold mb-4 text-white">Sledujte nás</h3>
               <div className="flex space-x-4">
                 <a
-                  href="https://facebook.com/driverhomecz"
+                  href="https://facebook.com/flotilapraha"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-white/10 hover:bg-white/20 p-3 rounded-full transition-all"
