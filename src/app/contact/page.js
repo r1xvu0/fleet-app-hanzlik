@@ -117,16 +117,16 @@ export default function ContactPage() {
                 </div>
               </div>
               
-              <div className="flex items-start">
+              {/* <div className="flex items-start">
                 <div className="bg-indigo-100 p-2 rounded-lg mr-4 mt-1">
                   <CheckIcon className="w-5 h-5 text-indigo-600" />
                 </div>
-                {/* <div>
+                <div>
                   <h3 className="font-medium text-gray-900">Adresa kanceláře</h3>
                   <p className="text-gray-700">Travná, xxx</p>
                   <p className="text-gray-700">15000 Praha, Česká republika</p>
-                </div> */}
-              </div>
+                </div>
+              </div> */}
               
               <div className="flex items-start">
                 <div className="bg-indigo-100 p-2 rounded-lg mr-4 mt-1">
