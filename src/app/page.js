@@ -47,7 +47,7 @@ export default function HomePage() {
           </h1>
           <p className="text-xl md:text-2xl mb-12 max-w-2xl mx-auto text-indigo-100">
             Ať už jsi ostřílený řidič, nebo teprve začínáš, ve flotile tě rádi přivítáme!<br />
-            Stačí vyplnit kontaktní formulář, napsat nebo zavolat.
+            Stačí vyplnit kontaktní formulář nebo napsat.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4 sm:space-x-6">
             <Link href="/contact" className="bg-indigo-500 hover:bg-indigo-400 px-8 py-4 rounded-xl text-lg font-semibold transition-all shadow-lg hover:shadow-xl">

@@ -109,7 +109,7 @@ export default function CarsPage() {
         <div className="max-w-6xl mx-auto text-center relative z-10">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">Náš moderní vozový park</h1>
           <p className="text-xl max-w-2xl mx-auto">
-            Vyberte si z nejoblíbenějších modelů aut pro vaši práci v řidiče.
+            Vyberte si z nejoblíbenějších modelů aut pro vaši práci řidiče.
           </p>
         </div>
       </section>
