@@ -31,7 +31,7 @@ export default function TermsOfUsePage() {
                   <p><strong className="text-white">Sídlo:</strong> Travná 1285, Kyje, 198 00 Praha 9</p>
                   <p><strong className="text-white">IČO:</strong> 05592089</p>
                   <p><strong className="text-white">Web:</strong> <a href="https://www.flotila-praha.eu" className="text-indigo-400 hover:text-indigo-300">www.flotila-praha.eu</a></p>
-                  <p><strong className="text-white">E-mail:</strong> <a href="mailto:fleets@flotila-praha.eu" className="text-indigo-400 hover:text-indigo-300">fleets@flotila-praha.eu</a></p>
+                  <p><strong className="text-white">E-mail:</strong> <a href="mailto:flotila.praha1@gmail.com" className="text-indigo-400 hover:text-indigo-300">flotila.praha1@gmail.com</a></p>
                 </div>
               </div>
             </div>
@@ -119,7 +119,7 @@ export default function TermsOfUsePage() {
               <div>
                 <p className="mb-2">
                   <strong>Email:</strong> 
-                  <a href="mailto:fleets@flotila-praha.eu" className="text-indigo-200 hover:text-white ml-1">fleets@flotila-praha.eu</a>
+                  <a href="mailto:flotila.praha1@gmail.com" className="text-indigo-200 hover:text-white ml-1">flotila.praha1@gmail.com</a>
                 </p>
                 <p className="mb-2">
                   <strong>Web:</strong> 

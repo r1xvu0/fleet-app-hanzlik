@@ -58,7 +58,7 @@ export default function ContactPage() {
             title: "Emailová podpora",
             text: "Odpovíme hned jak to bude možné",
             icon: EnvelopeIcon,
-            link: "mailto:fleets@flotila-praha.eu",
+            link: "mailto:flotila.praha1@gmail.com",
             color: "bg-indigo-700",
             hover: "hover:bg-indigo-800"
           },

@@ -187,13 +187,13 @@ export default function FAQPage() {
               <span className="font-medium text-gray-800">+420 774 982 052</span>
             </a> */}
             <a
-              href="mailto:fleets@flotila-praha.eu"
+              href="mailto:flotila.praha1@gmail.com"
               className="bg-white px-6 py-4 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center border border-gray-100"
             >
               <div className="bg-indigo-50 p-2 rounded-lg mr-3">
                 <EnvelopeIcon className="w-5 h-5 text-indigo-600" />
               </div>
-              <span className="font-medium text-gray-800">fleets@flotila-praha.eu</span>
+              <span className="font-medium text-gray-800">flotila.praha1@gmail.com</span>
             </a>
           </div>
           

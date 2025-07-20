@@ -24,7 +24,7 @@ export default function PrivacyPolicyPage() {
               <h2 className="text-xl font-bold mb-4 text-white">Souhlas s poskytnutím osobních údajů</h2>
               <p className="mb-4">
                 Informace o Správci osobních údajů a o Zpracovateli osobních údajů jsou k dostání na emailové adrese: 
-                <a href="mailto:fleets@flotila-praha.eu" className="text-indigo-400 hover:text-indigo-300 ml-1">fleets@flotila-praha.eu</a>
+                <a href="mailto:flotila.praha1@gmail.com" className="text-indigo-400 hover:text-indigo-300 ml-1">flotila.praha1@gmail.com</a>
               </p>
               <p>Osobní údaje je oprávněn také zpracovávat kterýkoliv zaměstnanec správce.</p>
             </div>
@@ -93,7 +93,7 @@ export default function PrivacyPolicyPage() {
               </p>
               <p className="mb-4">
                 Jako subjekt údajů jsem informován o tom, že souhlas s poskytnutím údajů mohu odvolat vyplněním formuláře a odesláním e-mailu na adresu 
-                <a href="mailto:fleets@flotila-praha.eu" className="text-indigo-400 hover:text-indigo-300 ml-1">fleets@flotila-praha.eu</a>
+                <a href="mailto:flotila.praha1@gmail.com" className="text-indigo-400 hover:text-indigo-300 ml-1">flotila.praha1@gmail.com</a>
               </p>
               <p className="mb-4">
                 Jako subjekt údajů mám právo požádat o informaci o zpracování mých osobních údajů, přičemž tuto informaci je správce povinen mi bez zbytečného odkladu předat. Obsah informace je dán ustanovením článku 15 nařízení GDPR. Správce má právo za poskytnutí informace požadovat přiměřenou úhradu nepřevyšující náklady nezbytné na poskytnutí informace.
@@ -128,7 +128,7 @@ export default function PrivacyPolicyPage() {
             <h2 className="text-xl font-bold mb-4">Kontakt pro otázky ohledně ochrany osobních údajů</h2>
             <p className="mb-2">
               <strong>Email:</strong> 
-              <a href="mailto:fleets@flotila-praha.eu" className="text-indigo-200 hover:text-white ml-1">fleets@flotila-praha.eu</a>
+              <a href="mailto:flotila.praha1@gmail.com" className="text-indigo-200 hover:text-white ml-1">flotila.praha1@gmail.com</a>
             </p>
             <p className="text-sm text-indigo-200">
               Pro jakékoliv dotazy týkající se zpracování vašich osobních údajů nás neváhejte kontaktovat.
