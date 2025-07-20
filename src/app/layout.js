@@ -57,7 +57,7 @@ export const metadata = {
     canonical: 'http://flotila-praha.eu',
   },
   verification: {
-    google: 'your-google-verification-code',
+    google: 'zZ3S3EBzjLXQYRn0OgK6Jiwg6joWpugG0zqTUONeryE',
   },
 };
 
