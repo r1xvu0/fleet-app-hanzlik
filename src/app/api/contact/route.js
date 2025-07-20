@@ -1,111 +1,52 @@
-import { NextResponse } from 'next/server';
-
+// app/api/contact/route.js
 export async function POST(request) {
   try {
     const body = await request.json();
-    
-    // Log the request body for debugging
-    console.log('Contact form submission:', body);
+    console.log('Contact form data received:', body);
     
     const backendUrl = process.env.BACKEND_API_URL || 'http://localhost:8080';
+    console.log('Sending to backend:', `${backendUrl}/api/contact`);
     
     const response = await fetch(`${backendUrl}/api/contact`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
       },
       body: JSON.stringify(body),
     });
 
-    // Log the response status and headers
     console.log('Backend response status:', response.status);
-    console.log('Backend response headers:', Object.fromEntries(response.headers.entries()));
 
+    // Try to parse response as JSON
     let data;
-    const contentType = response.headers.get('content-type');
-    if (contentType && contentType.includes('application/json')) {
-      data = await response.json();
-    } else {
-      data = await response.text();
-    }
+    const responseText = await response.text();
+    console.log('Backend response text:', responseText);
     
-    // Log the response data
-    console.log('Backend response data:', data);
-
-    if (!response.ok) {
-      return NextResponse.json(
-        { 
-          error: 'Failed to submit contact form',
-          details: data,
-          status: response.status,
-          subscribed: false
-        },
-        { 
-          status: response.status,
-          headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'POST, OPTIONS',
-            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-          }
-        }
+    try {
+      data = JSON.parse(responseText);
+    } catch (parseError) {
+      console.error('Failed to parse backend response as JSON:', parseError);
+      return Response.json(
+        { error: 'Backend returned invalid response: ' + responseText },
+        { status: 500 }
       );
     }
 
-    // Check if data is already a parsed object or a string
-    let responseObject = data;
-    if (typeof data === 'string') {
-      // Convert string to object with a message field
-      responseObject = { message: data, subscribed: false };
+    if (!response.ok) {
+      console.error('Backend error:', data);
+      return Response.json(
+        { error: data.error || 'Failed to submit contact form' },
+        { status: response.status }
+      );
     }
 
-    // Make sure all required fields are present
-    if (!responseObject.subscribed) {
-      responseObject.subscribed = false;
-    }
-
-    return NextResponse.json(
-      responseObject,
-      {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'POST, OPTIONS',
-          'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-        }
-      }
-    );
+    console.log('Contact form submitted successfully:', data);
+    return Response.json(data);
   } catch (error) {
-    // Log the full error
-    console.error('Error in contact form submission:', error);
-    
-    return NextResponse.json(
-      { 
-        error: 'Internal server error',
-        details: error.message,
-        subscribed: false
-      },
-      { 
-        status: 500,
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'POST, OPTIONS',
-          'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-        }
-      }
+    console.error('Contact API error:', error);
+    return Response.json(
+      { error: 'Internal server error: ' + error.message },
+      { status: 500 }
     );
   }
 }
-
-// Handle OPTIONS request for CORS preflight
-export async function OPTIONS() {
-  return NextResponse.json(
-    {},
-    {
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-      }
-    }
-  );
-} 

@@ -22,7 +22,8 @@ export default function ContactSection() {
     message: '',
     euDriverLicense: false,
     licenseIssuanceDate: '',
-    gender: ''
+    gender: '',
+    newsletter: true
   });
   
   // Form status
@@ -37,8 +38,8 @@ export default function ContactSection() {
     const { name, value, type, checked } = e.target;
     
     if (type === 'checkbox') {
-      if (name === 'euDriverLicense') {
-        // Handle EU driver license checkbox
+      if (name === 'euDriverLicense' || name === 'newsletter') {
+        // Handle EU driver license and newsletter checkboxes
         setFormData({
           ...formData,
           [name]: checked
@@ -134,7 +135,8 @@ export default function ContactSection() {
           message: '',
           euDriverLicense: false,
           licenseIssuanceDate: '',
-          gender: ''
+          gender: '',
+          newsletter: true
         });
       } else {
         console.error('Contact form submission failed:', data);
@@ -403,8 +405,9 @@ export default function ContactSection() {
                       type="checkbox"
                       name="newsletter"
                       id="newsletter"
+                      checked={formData.newsletter}
+                      onChange={handleChange}
                       className="w-4 h-4 text-indigo-600 focus:ring-indigo-500 mr-3"
-                      defaultChecked
                     />
                     <label htmlFor="newsletter" className="text-indigo-200 text-sm">
                       Souhlasím s přijímáním newsletteru a aktuálních nabídek.

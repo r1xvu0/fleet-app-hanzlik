@@ -1,7 +1,7 @@
 // app/cars/page.js
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   CheckCircleIcon,
   XMarkIcon,
@@ -21,81 +21,32 @@ import Link from "next/link";
 
 export default function CarsPage() {
   const [activeFilter, setActiveFilter] = useState("all");
+  const [cars, setCars] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const cars = [
-    {
-      id: 1,
-      name: "Škoda Octavia 1.6 TDI",
-      price: "3,990 Kč",
-      type: "Diesel",
-      year: 2022,
-      fuelType: "Diesel",
-      power: "116 HP",
-      seats: 5,
-      features: ["Klimatizace", "Parkovací senzory", "Navigace", "Bluetooth"],
-      image: "/images/skoda-octavia.jpg",
-    },
-    {
-      id: 2,
-      name: "Škoda Octavia RS",
-      price: "5,990 Kč",
-      type: "Diesel",
-      year: 2022,
-      fuelType: "Diesel",
-      power: "149 HP",
-      seats: 5,
-      features: ["Klimatizace", "Parkovací senzory", "Navigace", "Bluetooth", "Sportovní sedadla"],
-      image: "/images/skoda-octavia.jpg",
-    },
-    {
-      id: 3,
-      name: "Toyota Corolla Hybrid",
-      price: "6,490 Kč",
-      type: "Hybrid",
-      year: 2023,
-      fuelType: "Hybrid",
-      power: "122 HP",
-      seats: 5,
-      features: ["Klimatizace", "Autonomní brzdění", "Adaptivní tempomat", "Android Auto/Apple CarPlay"],
-      image: "/images/toyota-corolla.jpg",
-    },
-    {
-      id: 4,
-      name: "Toyota Camry Hybrid",
-      price: "7,990 Kč",
-      type: "Hybrid",
-      year: 2023,
-      fuelType: "Hybrid",
-      power: "218 HP",
-      seats: 5,
-      features: ["Kožená sedadla", "Panoramatická střecha", "Premium audio", "Bezdrátové nabíjení"],
-      image: "/images/toyota-camry.jpg",
-    },
-    {
-      id: 5,
-      name: "Škoda Enyaq iV",
-      price: "8,490 Kč",
-      type: "Elektromobil",
-      year: 2023,
-      fuelType: "Elektro",
-      power: "204 HP",
-      seats: 5,
-      features: ["Dojezd 520 km", "Rychlonabíjení", "Head-up displej", "Matrix LED světlomety"],
-      image: "/images/skoda-enyaq.jpg",
-    },
-    {
-      id: 6,
-      name: "Tesla Model 3",
-      price: "9,990 Kč",
-      type: "Elektromobil",
-      year: 2023,
-      fuelType: "Elektro",
-      power: "283 HP",
-      seats: 5,
-      features: ["Autopilot", "Dojezd 580 km", "15\" dotykový displej", "Prémiové audio"],
-      image: "/images/tesla-model3.jpg",
-    }
-  ];
+  // Fetch cars from API
+  useEffect(() => {
+    const fetchCars = async () => {
+      try {
+        const response = await fetch('/api/cars');
+        if (response.ok) {
+          const data = await response.json();
+          // Parse features JSON string to array for each car
+          const carsWithParsedFeatures = data.map(car => ({
+            ...car,
+            features: JSON.parse(car.features || '[]')
+          }));
+          setCars(carsWithParsedFeatures);
+        }
+      } catch (error) {
+        console.error('Error fetching cars:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCars();
+  }, []);
 
   const filteredCars = activeFilter === 'all' 
     ? cars 
@@ -117,7 +68,7 @@ export default function CarsPage() {
       {/* Car Filter */}
       <div className="max-w-6xl mx-auto py-12 px-4">
         <div className="flex flex-wrap gap-4 mb-8 justify-center">
-          {["all", "Hybrid", "Elektromobil", "Diesel"].map((filter) => (
+          {["all", "Diesel", "Benzín", "Hybrid", "Elektromobil"].map((filter) => (
             <button
               key={filter}
               onClick={() => setActiveFilter(filter)}
@@ -135,8 +86,29 @@ export default function CarsPage() {
 
       {/* Car Grid */}
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 pb-20">
-        {filteredCars.map((car) => (
-          <Link
+        {loading ? (
+          // Loading skeleton
+          Array.from({ length: 6 }).map((_, index) => (
+            <div key={index} className="bg-white rounded-xl shadow-md overflow-hidden animate-pulse">
+              <div className="h-48 bg-gray-300"></div>
+              <div className="p-6">
+                <div className="h-6 bg-gray-300 rounded mb-3"></div>
+                <div className="space-y-3 mb-4">
+                  <div className="h-4 bg-gray-200 rounded"></div>
+                  <div className="h-4 bg-gray-200 rounded"></div>
+                  <div className="h-4 bg-gray-200 rounded"></div>
+                </div>
+                <div className="h-10 bg-gray-300 rounded"></div>
+              </div>
+            </div>
+          ))
+        ) : filteredCars.length === 0 ? (
+          <div className="col-span-full text-center py-12">
+            <p className="text-gray-500 text-lg">Žádná vozidla nenalezena.</p>
+          </div>
+        ) : (
+          filteredCars.map((car) => (
+            <Link
             key={car.id}
             href={`/cars/${car.id}`}
             className="bg-white rounded-xl shadow-md overflow-hidden cursor-pointer hover:shadow-xl transition-all hover:-translate-y-1"
@@ -175,13 +147,34 @@ export default function CarsPage() {
                   </span>
                   <span className="text-gray-800">{car.year}</span>
                 </p>
+                <p className="flex justify-between items-center">
+                  <span className="flex items-center text-gray-700">
+                    <CheckCircleIcon className="w-5 h-5 mr-2 text-indigo-600" />
+                    Dostupnost:
+                  </span>
+                  <span className={`px-2 py-1 text-xs rounded-full font-medium ${
+                    car.available === 'Dostupné' ? 'bg-green-100 text-green-800' :
+                    car.available === 'Rezervováno' ? 'bg-yellow-100 text-yellow-800' :
+                    'bg-red-100 text-red-800'
+                  }`}>
+                    {car.available}
+                  </span>
+                </p>
               </div>
-              <div className="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition-colors font-medium block text-center">
-                Více informací
+              <div className={`w-full py-3 rounded-lg font-medium block text-center transition-colors ${
+                car.available === 'Dostupné' 
+                  ? 'bg-indigo-600 text-white hover:bg-indigo-700' 
+                  : car.available === 'Rezervováno'
+                  ? 'bg-yellow-500 text-white hover:bg-yellow-600'
+                  : 'bg-gray-400 text-gray-200 cursor-not-allowed'
+              }`}>
+                {car.available === 'Dostupné' ? 'Více informací' : 
+                 car.available === 'Rezervováno' ? 'Rezervováno' : 'Nedostupné'}
               </div>
             </div>
           </Link>
-        ))}
+          ))
+        )}
       </div>
 
       {/* Rental Conditions */}

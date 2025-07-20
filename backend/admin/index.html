@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flotila Praha - Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+</head>
+<body class="bg-gray-100">
+    <div x-data="adminApp()" x-init="init()">
+        <!-- Login Screen -->
+        <div x-show="!isLoggedIn" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-900 to-indigo-700">
+            <div class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-md">
+                <div class="text-center mb-8">
+                    <div class="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                        </svg>
+                    </div>
+                    <h1 class="text-2xl font-bold text-gray-900">Admin Přihlášení</h1>
+                    <p class="text-gray-600 mt-2">Flotila Praha</p>
+                </div>
+                
+                <form @submit.prevent="login()">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-medium mb-2">
+                            Uživatelské jméno
+                        </label>
+                        <input x-model="credentials.username" type="text" required
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-gray-700 text-sm font-medium mb-2">
+                            Heslo
+                        </label>
+                        <input x-model="credentials.password" type="password" required
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                    </div>
+                    <button type="submit" :disabled="loading"
+                            class="w-full bg-indigo-600 text-white py-3 px-4 rounded-lg hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium">
+                        <span x-show="!loading">Přihlásit se</span>
+                        <span x-show="loading">Přihlašování...</span>
+                    </button>
+                </form>
+                
+                <div x-show="error" x-text="error" class="mt-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg text-sm"></div>
+                
+                <div class="mt-6 text-center text-sm text-gray-500">
+                    <p>Výchozí přihlášení: <strong>admin</strong> / <strong>admin123</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Dashboard -->
+        <div x-show="isLoggedIn" class="min-h-screen">
+            <!-- Header -->
+            <header class="bg-white shadow-sm border-b">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex justify-between items-center py-4">
+                        <div class="flex items-center">
+                            <div class="bg-indigo-600 w-8 h-8 rounded-lg flex items-center justify-center mr-3">
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg>
+                            </div>
+                            <h1 class="text-xl font-bold text-gray-900">Flotila Praha</h1>
+                            <span class="ml-2 px-2 py-1 bg-indigo-100 text-indigo-800 text-xs rounded-full">Admin</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="text-sm text-gray-500">
+                                Přihlášen jako <strong>admin</strong>
+                            </div>
+                            <button @click="logout()" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors text-sm font-medium">
+                                Odhlásit se
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Navigation Tabs -->
+            <nav class="bg-white border-b">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex space-x-8">
+                        <button @click="activeTab = 'dashboard'" 
+                                :class="activeTab === 'dashboard' ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'"
+                                class="py-4 px-1 border-b-2 font-medium text-sm transition-colors">
+                            <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
+                            </svg>
+                            Dashboard
+                        </button>
+                        <button @click="activeTab = 'cars'" 
+                                :class="activeTab === 'cars' ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'"
+                                class="py-4 px-1 border-b-2 font-medium text-sm transition-colors">
+                            <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                            </svg>
+                            Vozidla (<span x-text="cars.length"></span>)
+                        </button>
+                        <button @click="activeTab = 'contacts'" 
+                                :class="activeTab === 'contacts' ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'"
+                                class="py-4 px-1 border-b-2 font-medium text-sm transition-colors">
+                            <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a2 2 0 01-2-2v-6a2 2 0 012-2h8z"></path>
+                            </svg>
+                            Kontakty (<span x-text="contacts.length"></span>)
+                        </button>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Dashboard Tab -->
+            <div x-show="activeTab === 'dashboard'" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-2">Přehled</h2>
+                    <p class="text-gray-600">Vítejte v administračním rozhraní Flotila Praha</p>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <div class="flex items-center">
+                            <div class="bg-blue-500 rounded-md p-3">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-600">Celkem vozidel</p>
+                                <p class="text-2xl font-bold text-gray-900" x-text="cars.length"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <div class="flex items-center">
+                            <div class="bg-green-500 rounded-md p-3">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-600">Dostupná vozidla</p>
+                                <p class="text-2xl font-bold text-gray-900" x-text="getAvailableCarsCount()"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <div class="flex items-center">
+                            <div class="bg-yellow-500 rounded-md p-3">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a2 2 0 01-2-2v-6a2 2 0 012-2h8z"></path>
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-600">Nové kontakty</p>
+                                <p class="text-2xl font-bold text-gray-900" x-text="contacts.filter(contact => contact.status === 'new').length"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <div class="flex items-center">
+                            <div class="bg-purple-500 rounded-md p-3">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-600">Celkem kontaktů</p>
+                                <p class="text-2xl font-bold text-gray-900" x-text="contacts.length"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-lg shadow">
+                        <div class="px-6 py-4 border-b border-gray-200">
+                            <h3 class="text-lg font-medium text-gray-900">Nejnovější kontakty</h3>
+                        </div>
+                        <div class="p-6">
+                            <div class="space-y-4">
+                                <template x-for="contact in contacts.slice(0, 5)" :key="contact.id">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <p class="text-sm font-medium text-gray-900" x-text="contact.name"></p>
+                                            <p class="text-sm text-gray-500" x-text="contact.email"></p>
+                                        </div>
+                                        <div class="text-right">
+                                            <span :class="getStatusColor(contact.status)" 
+                                                  class="px-2 py-1 text-xs rounded-full" 
+                                                  x-text="getStatusText(contact.status)"></span>
+                                            <p class="text-xs text-gray-500 mt-1" 
+                                               x-text="new Date(contact.createdAt).toLocaleDateString('cs-CZ')"></p>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                            <div class="mt-4">
+                                <button @click="activeTab = 'contacts'" 
+                                        class="text-indigo-600 hover:text-indigo-500 text-sm font-medium">
+                                    Zobrazit všechny kontakty →
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow">
+                        <div class="px-6 py-4 border-b border-gray-200">
+                            <h3 class="text-lg font-medium text-gray-900">Rychlé akce</h3>
+                        </div>
+                        <div class="p-6">
+                            <div class="space-y-4">
+                                <button @click="activeTab = 'cars'; showAddCarForm()" 
+                                        class="w-full bg-indigo-600 text-white px-4 py-3 rounded-lg hover:bg-indigo-700 transition-colors text-left">
+                                    <div class="flex items-center">
+                                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                        </svg>
+                                        Přidat nové vozidlo
+                                    </div>
+                                </button>
+                                <button @click="activeTab = 'contacts'" 
+                                        class="w-full bg-green-600 text-white px-4 py-3 rounded-lg hover:bg-green-700 transition-colors text-left">
+                                    <div class="flex items-center">
+                                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a2 2 0 01-2-2v-6a2 2 0 012-2h8z"></path>
+                                        </svg>
+                                        Zobrazit nové kontakty
+                                    </div>
+                                </button>
+                                <button @click="loadCars(); loadContacts()" 
+                                        class="w-full bg-gray-600 text-white px-4 py-3 rounded-lg hover:bg-gray-700 transition-colors text-left">
+                                    <div class="flex items-center">
+                                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                                        </svg>
+                                        Obnovit data
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>   
+         <!-- Cars Tab -->
+            <div x-show="activeTab === 'cars'" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-900">Správa vozidel</h2>
+                        <p class="text-gray-600 mt-1">Spravujte vozový park flotily</p>
+                    </div>
+                    <button @click="showAddCarForm()" 
+                            class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors font-medium">
+                        <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                        Přidat vozidlo
+                    </button>
+                </div>
+
+                <!-- Cars List -->
+                <div class="bg-white rounded-lg shadow overflow-hidden">
+                    <table class="w-full">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Název</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cena</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Typ</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rok</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dostupné</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Akce</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <template x-for="car in cars" :key="car.id">
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm font-medium text-gray-900" x-text="car.name"></div>
+                                        <div class="text-sm text-gray-500" x-text="car.power"></div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900" x-text="car.price"></td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 py-1 text-xs rounded-full bg-blue-100 text-blue-800" x-text="car.type"></span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900" x-text="car.year"></td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span :class="getAvailabilityColor(car.available)"
+                                              class="px-2 py-1 text-xs rounded-full font-medium">
+                                            <span x-text="car.available"></span>
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                        <button @click="editCar(car)" class="text-indigo-600 hover:text-indigo-900 mr-4">
+                                            Upravit
+                                        </button>
+                                        <button @click="deleteCar(car.id)" class="text-red-600 hover:text-red-900">
+                                            Smazat
+                                        </button>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Contacts Tab -->
+            <div x-show="activeTab === 'contacts'" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-900">Kontaktní formuláře</h2>
+                        <p class="text-gray-600 mt-1">Spravujte dotazy od potenciálních řidičů</p>
+                    </div>
+                    <select x-model="contactFilter" @change="loadContacts()" 
+                            class="border border-gray-300 rounded-lg px-3 py-2 text-sm">
+                        <option value="">Všechny kontakty</option>
+                        <option value="new">Nové</option>
+                        <option value="contacted">Kontaktované</option>
+                        <option value="closed">Uzavřené</option>
+                    </select>
+                </div>
+
+                <!-- Contacts List -->
+                <div class="bg-white rounded-lg shadow overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jméno</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Telefon</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Národnost</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Datum</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Akce</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <template x-for="contact in contacts" :key="contact.id">
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="text-sm font-medium text-gray-900" x-text="contact.name"></div>
+                                            <div class="text-sm text-gray-500" x-text="contact.gender === 'M' ? 'Muž' : 'Žena'"></div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <a :href="'mailto:' + contact.email" x-text="contact.email" 
+                                               class="text-indigo-600 hover:text-indigo-900 text-sm"></a>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900" x-text="contact.phoneNumber"></td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900" x-text="contact.nationality"></td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <select :value="contact.status" @change="updateContactStatus(contact.id, $event.target.value)"
+                                                    class="text-sm border border-gray-300 rounded px-2 py-1">
+                                                <option value="new">Nový</option>
+                                                <option value="contacted">Kontaktovaný</option>
+                                                <option value="closed">Uzavřený</option>
+                                            </select>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" 
+                                            x-text="new Date(contact.createdAt).toLocaleDateString('cs-CZ')"></td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                            <div class="flex space-x-3">
+                                                <button @click="viewContact(contact)" class="text-indigo-600 hover:text-indigo-900">
+                                                    Detail
+                                                </button>
+                                                <a :href="'mailto:' + contact.email + '?subject=Flotila Praha - Odpověď na váš dotaz&body=Dobrý den ' + contact.name + ',%0D%0A%0D%0ADěkujeme za váš zájem o spolupráci s Flotila Praha.%0D%0A%0D%0AS pozdravem,%0D%0AFlotila Praha'"
+                                                   class="text-green-600 hover:text-green-900 flex items-center"
+                                                   title="Odeslat email">
+                                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                                    </svg>
+                                                    Email
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Car Form Modal -->
+        <div x-show="showCarForm" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-white p-6 rounded-lg w-full max-w-2xl max-h-screen overflow-y-auto m-4">
+                <h3 class="text-lg font-bold mb-4" x-text="editingCar ? 'Upravit vozidlo' : 'Přidat vozidlo'"></h3>
+                <form @submit.prevent="saveCar()">
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Název</label>
+                            <input x-model="carForm.name" type="text" required 
+                                   class="w-full border border-gray-300 rounded px-3 py-2">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Cena</label>
+                            <input x-model="carForm.price" type="text" required 
+                                   class="w-full border border-gray-300 rounded px-3 py-2">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Typ</label>
+                            <select x-model="carForm.type" required class="w-full border border-gray-300 rounded px-3 py-2">
+                                <option value="">Vyberte typ</option>
+                                <option value="Diesel">Diesel</option>
+                                <option value="Benzín">Benzín</option>
+                                <option value="Hybrid">Hybrid</option>
+                                <option value="Elektromobil">Elektromobil</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Rok</label>
+                            <input x-model="carForm.year" type="number" required 
+                                   class="w-full border border-gray-300 rounded px-3 py-2">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Palivo</label>
+                            <input x-model="carForm.fuelType" type="text" required 
+                                   class="w-full border border-gray-300 rounded px-3 py-2">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Výkon</label>
+                            <input x-model="carForm.power" type="text" required 
+                                   class="w-full border border-gray-300 rounded px-3 py-2">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Počet sedadel</label>
+                            <input x-model="carForm.seats" type="number" required 
+                                   class="w-full border border-gray-300 rounded px-3 py-2">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Obrázek URL</label>
+                            <input x-model="carForm.image" type="text" 
+                                   class="w-full border border-gray-300 rounded px-3 py-2">
+                        </div>
+                    </div>
+                    
+                    <!-- Technical Specifications -->
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Motor</label>
+                            <input x-model="carForm.engine" type="text" 
+                                   class="w-full border border-gray-300 rounded px-3 py-2"
+                                   placeholder="1.6 TDI">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Spotřeba</label>
+                            <input x-model="carForm.consumption" type="text" 
+                                   class="w-full border border-gray-300 rounded px-3 py-2"
+                                   placeholder="4.5 l/100km">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Převodovka</label>
+                            <input x-model="carForm.transmission" type="text" 
+                                   class="w-full border border-gray-300 rounded px-3 py-2"
+                                   placeholder="Manuální, 6-stupňová">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Kufr</label>
+                            <input x-model="carForm.trunk" type="text" 
+                                   class="w-full border border-gray-300 rounded px-3 py-2"
+                                   placeholder="600 litrů">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Rozměry</label>
+                            <input x-model="carForm.dimensions" type="text" 
+                                   class="w-full border border-gray-300 rounded px-3 py-2"
+                                   placeholder="4,689 x 1,829 x 1,470 mm">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Hmotnost</label>
+                            <input x-model="carForm.weight" type="text" 
+                                   class="w-full border border-gray-300 rounded px-3 py-2"
+                                   placeholder="1,350 kg">
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium mb-1">Popis</label>
+                        <textarea x-model="carForm.description" rows="3" 
+                                  class="w-full border border-gray-300 rounded px-3 py-2"
+                                  placeholder="Detailní popis vozidla..."></textarea>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium mb-1">Výbava (jedna na řádek)</label>
+                        <textarea x-model="featuresText" rows="4" 
+                                  class="w-full border border-gray-300 rounded px-3 py-2"
+                                  placeholder="Klimatizace&#10;Navigace&#10;Bluetooth"></textarea>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium mb-1">Dostupnost</label>
+                        <select x-model="carForm.available" required class="w-full border border-gray-300 rounded px-3 py-2">
+                            <option value="Dostupné">Dostupné</option>
+                            <option value="Rezervováno">Rezervováno</option>
+                            <option value="Nedostupné">Nedostupné</option>
+                        </select>
+                    </div>
+                    <div class="flex justify-end space-x-2">
+                        <button type="button" @click="showCarForm = false" 
+                                class="px-4 py-2 border border-gray-300 rounded hover:bg-gray-50">
+                            Zrušit
+                        </button>
+                        <button type="submit" :disabled="loading"
+                                class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 disabled:opacity-50">
+                            <span x-show="!loading">Uložit</span>
+                            <span x-show="loading">Ukládání...</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Contact Detail Modal -->
+        <div x-show="showContactDetail" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-white p-6 rounded-lg w-full max-w-2xl max-h-screen overflow-y-auto m-4">
+                <h3 class="text-lg font-bold mb-4">Detail kontaktu</h3>
+                <div x-show="selectedContact">
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-600">Jméno</label>
+                            <p x-text="selectedContact?.name" class="font-medium"></p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-600">Email</label>
+                            <p x-text="selectedContact?.email" class="font-medium"></p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-600">Telefon</label>
+                            <p x-text="selectedContact?.phoneNumber" class="font-medium"></p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-600">Národnost</label>
+                            <p x-text="selectedContact?.nationality" class="font-medium"></p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-600">Pohlaví</label>
+                            <p x-text="selectedContact?.gender === 'M' ? 'Muž' : 'Žena'" class="font-medium"></p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-600">Datum vydání ŘP</label>
+                            <p x-text="selectedContact?.licenseIssuanceDate" class="font-medium"></p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-600">Jazyky</label>
+                        <p x-text="formatLanguages(selectedContact?.languages)" class="font-medium"></p>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-600">Zpráva</label>
+                        <p x-text="selectedContact?.message" class="bg-gray-50 p-3 rounded"></p>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-600">EU řidičský průkaz</label>
+                        <p x-text="selectedContact?.euDriverLicense ? 'Ano' : 'Ne'" class="font-medium"></p>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-600">Newsletter</label>
+                        <p x-text="selectedContact?.newsletter ? 'Ano' : 'Ne'" class="font-medium"></p>
+                    </div>
+                </div>
+                <div class="flex justify-end">
+                    <button @click="showContactDetail = false" 
+                            class="px-4 py-2 border border-gray-300 rounded hover:bg-gray-50">
+                        Zavřít
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div> 
+   <script>
+        function adminApp() {
+            return {
+                isLoggedIn: false,
+                activeTab: 'dashboard',
+                loading: false,
+                error: '',
+                credentials: {
+                    username: '',
+                    password: ''
+                },
+                cars: [],
+                contacts: [],
+                contactFilter: '',
+                showCarForm: false,
+                showContactDetail: false,
+                editingCar: null,
+                selectedContact: null,
+                carForm: {
+                    name: '',
+                    price: '',
+                    type: '',
+                    year: new Date().getFullYear(),
+                    fuelType: '',
+                    power: '',
+                    seats: 5,
+                    features: '',
+                    image: '',
+                    available: 'Dostupné',
+                    description: '',
+                    engine: '',
+                    consumption: '',
+                    transmission: '',
+                    trunk: '',
+                    dimensions: '',
+                    weight: ''
+                },
+                featuresText: '',
+
+                init() {
+                    // Clear any stored token on init to force fresh login
+                    localStorage.removeItem('admin_token');
+                    this.isLoggedIn = false;
+                    // Initialize contact refresh when logged in
+                    this.startContactRefresh();
+                },
+
+                async login() {
+                    this.loading = true;
+                    this.error = '';
+                    
+                    try {
+                        const response = await fetch('/admin/login', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(this.credentials)
+                        });
+
+                        const data = await response.json();
+                        
+                        if (response.ok) {
+                            localStorage.setItem('admin_token', data.token);
+                            this.isLoggedIn = true;
+                            this.activeTab = 'dashboard';
+                            await this.loadCars();
+                            await this.loadContacts();
+                        } else {
+                            this.error = 'Neplatné přihlašovací údaje';
+                        }
+                    } catch (error) {
+                        this.error = 'Chyba připojení k serveru';
+                        console.error('Login error:', error);
+                    }
+                    
+                    this.loading = false;
+                },
+
+                logout() {
+                    localStorage.removeItem('admin_token');
+                    this.isLoggedIn = false;
+                    this.activeTab = 'dashboard';
+                    this.credentials = { username: '', password: '' };
+                    this.cars = [];
+                    this.contacts = [];
+                },
+
+                async loadCars() {
+                    try {
+                        const response = await fetch('/admin/cars');
+                        if (response.ok) {
+                            this.cars = await response.json();
+                        }
+                    } catch (error) {
+                        console.error('Error loading cars:', error);
+                    }
+                },
+
+                async loadContacts() {
+                    try {
+                        let url = '/admin/contacts';
+                        if (this.contactFilter) {
+                            url += `?status=${this.contactFilter}`;
+                        }
+                        const response = await fetch(url);
+                        if (response.ok) {
+                            this.contacts = await response.json();
+                        }
+                    } catch (error) {
+                        console.error('Error loading contacts:', error);
+                    }
+                },
+
+                editCar(car) {
+                    this.editingCar = car;
+                    this.carForm = { ...car };
+                    this.featuresText = JSON.parse(car.features || '[]').join('\n');
+                    this.showCarForm = true;
+                },
+
+                async saveCar() {
+                    this.loading = true;
+                    
+                    // Convert features text to JSON array
+                    const features = this.featuresText.split('\n').filter(f => f.trim()).map(f => f.trim());
+                    this.carForm.features = JSON.stringify(features);
+                    
+                    try {
+                        const url = this.editingCar ? `/admin/cars/${this.editingCar.id}` : '/admin/cars';
+                        const method = this.editingCar ? 'PUT' : 'POST';
+                        
+                        const response = await fetch(url, {
+                            method: method,
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(this.carForm)
+                        });
+
+                        if (response.ok) {
+                            this.showCarForm = false;
+                            await this.loadCars();
+                            this.resetCarForm();
+                        }
+                    } catch (error) {
+                        console.error('Error saving car:', error);
+                    }
+                    
+                    this.loading = false;
+                },
+
+                async deleteCar(id) {
+                    if (confirm('Opravdu chcete smazat toto vozidlo?')) {
+                        try {
+                            const response = await fetch(`/admin/cars/${id}`, {
+                                method: 'DELETE'
+                            });
+                            
+                            if (response.ok) {
+                                await this.loadCars();
+                            }
+                        } catch (error) {
+                            console.error('Error deleting car:', error);
+                        }
+                    }
+                },
+
+                resetCarForm() {
+                    this.carForm = {
+                        name: '',
+                        price: '',
+                        type: '',
+                        year: new Date().getFullYear(),
+                        fuelType: '',
+                        power: '',
+                        seats: 5,
+                        features: '',
+                        image: '',
+                        available: 'Dostupné',
+                        description: '',
+                        engine: '',
+                        consumption: '',
+                        transmission: '',
+                        trunk: '',
+                        dimensions: '',
+                        weight: ''
+                    };
+                    this.featuresText = '';
+                    this.editingCar = null;
+                },
+
+                async updateContactStatus(id, status) {
+                    try {
+                        const response = await fetch(`/admin/contacts/${id}`, {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ status })
+                        });
+                        
+                        if (response.ok) {
+                            await this.loadContacts();
+                        }
+                    } catch (error) {
+                        console.error('Error updating contact:', error);
+                    }
+                },
+
+                viewContact(contact) {
+                    this.selectedContact = contact;
+                    this.showContactDetail = true;
+                },
+
+                formatLanguages(languagesJson) {
+                    try {
+                        const languages = JSON.parse(languagesJson || '[]');
+                        const langMap = {
+                            'cs': 'čeština',
+                            'sk': 'slovenština', 
+                            'en': 'angličtina',
+                            'de': 'němčina',
+                            'pl': 'polština',
+                            'uk': 'ukrajinština'
+                        };
+                        return languages.map(lang => langMap[lang] || lang).join(', ');
+                    } catch {
+                        return languagesJson || '';
+                    }
+                },
+
+                getStatusColor(status) {
+                    switch(status) {
+                        case 'new': return 'bg-yellow-100 text-yellow-800';
+                        case 'contacted': return 'bg-blue-100 text-blue-800';
+                        case 'closed': return 'bg-green-100 text-green-800';
+                        default: return 'bg-gray-100 text-gray-800';
+                    }
+                },
+
+                getStatusText(status) {
+                    switch(status) {
+                        case 'new': return 'Nový';
+                        case 'contacted': return 'Kontaktovaný';
+                        case 'closed': return 'Uzavřený';
+                        default: return status;
+                    }
+                },
+
+                getAvailabilityColor(status) {
+                    switch(status) {
+                        case 'Dostupné': return 'bg-green-100 text-green-800';
+                        case 'Rezervováno': return 'bg-yellow-100 text-yellow-800';
+                        case 'Nedostupné': return 'bg-red-100 text-red-800';
+                        default: return 'bg-gray-100 text-gray-800';
+                    }
+                },
+
+                // Fix the dashboard stats for new availability system
+                getAvailableCarsCount() {
+                    return this.cars.filter(car => car.available === 'Dostupné').length;
+                },
+
+                // Fix the car form reset issue by properly resetting when adding new car
+                showAddCarForm() {
+                    this.resetCarForm();
+                    this.showCarForm = true;
+                    this.editingCar = null;
+                },
+
+                // Fix contact refresh by adding auto-refresh functionality
+                startContactRefresh() {
+                    // Refresh contacts every 30 seconds when on contacts tab
+                    setInterval(() => {
+                        if (this.activeTab === 'contacts' && this.isLoggedIn) {
+                            this.loadContacts();
+                        }
+                    }, 30000);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
