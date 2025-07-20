@@ -1,4 +1,16 @@
 // app/about/page.js
+
+export const metadata = {
+  title: "O nás - Flotila Praha | Historie největší taxi flotily v Praze",
+  description: "Poznejte historii Flotila Praha. Od roku 2015 propojujeme řidiče s městem. Přes 1000 spokojených řidičů, 15+ měst v ČR, 24/7 podpora. Staňte se součástí našeho týmu!",
+  keywords: "o nás flotila Praha, historie taxi Praha, největší flotila ČR, taxi služby Praha historie",
+  openGraph: {
+    title: "O nás - Flotila Praha",
+    description: "Poznejte historii největší taxi flotily v Praze od roku 2015",
+    url: "http://flotila-praha.eu/about",
+  },
+};
+
 import {
   BuildingLibraryIcon,
   UserGroupIcon,

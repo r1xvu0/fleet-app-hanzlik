@@ -1,5 +1,15 @@
 // app/contact/page.js
-'use client'
+
+export const metadata = {
+  title: "Kontakt - Flotila Praha | Staňte se řidičem taxi",
+  description: "Kontaktujte Flotila Praha a staňte se řidičem taxi. Email: flotila.praha1@gmail.com. Rychlá registrace, moderní vozidla, spolupráce s Bolt a Uber.",
+  keywords: "kontakt flotila Praha, registrace řidič taxi, email flotila Praha, taxi řidič kontakt",
+  openGraph: {
+    title: "Kontakt - Flotila Praha",
+    description: "Kontaktujte nás a staňte se řidičem taxi v Praze",
+    url: "http://flotila-praha.eu/contact",
+  },
+};
 
 import {
   CheckIcon,

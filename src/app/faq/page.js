@@ -1,4 +1,16 @@
 // app/faq/page.js
+
+export const metadata = {
+  title: "FAQ - Často kladené dotazy | Flotila Praha",
+  description: "Odpovědi na nejčastější otázky o práci řidiče taxi v Praze. Registrace, dokumenty, výplaty, pojištění. Flotila Praha - největší taxi flotila v ČR.",
+  keywords: "FAQ taxi Praha, otázky řidič taxi, registrace taxi dotazy, flotila Praha FAQ, taxi řidič otázky",
+  openGraph: {
+    title: "FAQ - Často kladené dotazy | Flotila Praha",
+    description: "Odpovědi na nejčastější otázky o práci řidiče taxi v Praze",
+    url: "http://flotila-praha.eu/faq",
+  },
+};
+
 import {
   QuestionMarkCircleIcon,
   ChatBubbleBottomCenterTextIcon,

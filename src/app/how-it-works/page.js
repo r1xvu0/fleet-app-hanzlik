@@ -1,4 +1,16 @@
 // app/how-it-works/page.js
+
+export const metadata = {
+  title: "Jak to funguje - Flotila Praha | Staňte se řidičem za 3 kroky",
+  description: "Jednoduchý proces registrace řidiče taxi v Praze. 1) Online registrace 2) Ověření dokumentů 3) Start práce. Rychlá registrace, moderní vozidla, spolupráce s Bolt a Uber.",
+  keywords: "jak se stát řidič taxi, registrace řidič Praha, proces registrace taxi, flotila Praha registrace",
+  openGraph: {
+    title: "Jak to funguje - Flotila Praha",
+    description: "Staňte se řidičem taxi za 3 jednoduché kroky",
+    url: "http://flotila-praha.eu/how-it-works",
+  },
+};
+
 import {
   DocumentTextIcon,
   ShieldCheckIcon,

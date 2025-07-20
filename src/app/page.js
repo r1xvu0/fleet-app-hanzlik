@@ -1,5 +1,16 @@
 import CarRental from "@/components/CarRental";
 import ContactSection from "@/components/ContactSection";
+
+export const metadata = {
+  title: "Flotila Praha - Staňte se řidičem taxi | Bolt & Uber partneři",
+  description: "Připojte se k největší taxi flotile v Praze! Moderní vozidla, flexibilní pracovní doba, spolupráce s Bolt a Uber. Registrace zdarma, týdenní výplaty. Kontaktujte nás!",
+  keywords: "taxi řidič Praha, Bolt řidič, Uber řidič, práce řidič, flotila Praha, taxi služby, půjčení auta taxi, výdělek řidič",
+  openGraph: {
+    title: "Flotila Praha - Staňte se řidičem taxi",
+    description: "Připojte se k největší taxi flotile v Praze! Moderní vozidla, flexibilní pracovní doba.",
+    url: "http://flotila-praha.eu",
+  },
+};
 import {
   CheckIcon,
   BoltIcon,
