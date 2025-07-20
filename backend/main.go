@@ -1,6 +1,8 @@
 package main
 
 import (
+	"crypto/sha256"
+	"encoding/hex"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -140,12 +142,35 @@ type ContactForm struct {
 }
 
 type Admin struct {
-	ID       uint   `json:"id" gorm:"primaryKey"`
-	Username string `json:"username" gorm:"unique;not null"`
-	Password string `json:"-" gorm:"not null"` // Hidden in JSON
+	ID        uint      `json:"id" gorm:"primaryKey"`
+	Username  string    `json:"username" gorm:"unique;not null"`
+	Password  string    `json:"-" gorm:"not null"` // Hidden in JSON
+	Email     string    `json:"email"`
+	Role      string    `json:"role" gorm:"default:admin"` // admin, superadmin
+	Active    bool      `json:"active" gorm:"default:true"`
+	CreatedAt time.Time `json:"createdAt"`
+	UpdatedAt time.Time `json:"updatedAt"`
 }
 
 var db *gorm.DB
+
+// Password hashing functions
+func hashPassword(password string) string {
+	hash := sha256.Sum256([]byte(password))
+	return hex.EncodeToString(hash[:])
+}
+
+func verifyPassword(password, hash string) bool {
+	return hashPassword(password) == hash
+}
+
+// Get environment variable with default
+func getEnv(key, defaultValue string) string {
+	if value := os.Getenv(key); value != "" {
+		return value
+	}
+	return defaultValue
+}
 
 // HTTP logging middleware
 func loggingMiddleware(next http.Handler) http.Handler {
@@ -223,6 +248,8 @@ func main() {
 	admin.HandleFunc("/cars/{id}", handleAdminCarUpdate).Methods("PUT", "DELETE", "OPTIONS")
 	admin.HandleFunc("/contacts", handleAdminContacts).Methods("GET", "OPTIONS")
 	admin.HandleFunc("/contacts/{id}", handleAdminContactUpdate).Methods("PUT", "OPTIONS")
+	admin.HandleFunc("/users", handleAdminUsers).Methods("GET", "POST", "OPTIONS")
+	admin.HandleFunc("/users/{id}", handleAdminUserUpdate).Methods("PUT", "DELETE", "OPTIONS")
 
 	// Serve admin interface
 	r.PathPrefix("/admin/").Handler(http.StripPrefix("/admin/", http.FileServer(http.Dir("./admin/"))))
@@ -235,9 +262,19 @@ func main() {
 	logInfo("Configuring CORS...")
 	// CORS
 	c := cors.New(cors.Options{
-		AllowedOrigins: []string{"*"},
+		AllowedOrigins: []string{
+			"http://localhost:3000",
+			"http://localhost:3001", 
+			"https://flotila-praha.eu",
+			"http://flotila-praha.eu",
+			"https://www.flotila-praha.eu",
+			"http://www.flotila-praha.eu",
+			"https://flotila-praha.eu:3000",
+			"http://flotila-praha.eu:3000",
+		},
 		AllowedMethods: []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
 		AllowedHeaders: []string{"*"},
+		AllowCredentials: true,
 	})
 
 	handler := c.Handler(r)
@@ -258,17 +295,27 @@ func main() {
 }
 
 func seedData() {
-	// Create default admin user
+	// Create default admin user from environment variables
 	var adminCount int64
 	db.Model(&Admin{}).Count(&adminCount)
 	if adminCount == 0 {
+		defaultUsername := getEnv("ADMIN_USERNAME", "admin")
+		defaultPassword := getEnv("ADMIN_PASSWORD", "admin123")
+		defaultEmail := getEnv("ADMIN_EMAIL", "admin@flotila-praha.eu")
+		
 		admin := Admin{
-			Username: "admin",
-			Password: "admin123", // In production, hash this!
+			Username: defaultUsername,
+			Password: hashPassword(defaultPassword),
+			Email:    defaultEmail,
+			Role:     "superadmin",
+			Active:   true,
 		}
 		db.Create(&admin)
-		logSuccess("Default admin created: admin/admin123")
-		logWarning("⚠️  Change default credentials in production!")
+		logSuccess(fmt.Sprintf("Default admin created: %s", defaultUsername))
+		if defaultPassword == "admin123" {
+			logWarning("⚠️  Using default password! Set ADMIN_PASSWORD environment variable!")
+		}
+		logInfo(fmt.Sprintf("📧 Admin email: %s", defaultEmail))
 	} else {
 		logInfo("Admin user already exists")
 	}
@@ -448,6 +495,8 @@ func handleGetCar(w http.ResponseWriter, r *http.Request) {
 
 // Admin Handlers
 func handleAdminLogin(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	
 	if r.Method == "OPTIONS" {
 		return
 	}
@@ -458,13 +507,28 @@ func handleAdminLogin(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if err := json.NewDecoder(r.Body).Decode(&credentials); err != nil {
-		http.Error(w, "Invalid JSON", http.StatusBadRequest)
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(map[string]string{
+			"error": "Invalid JSON format",
+		})
 		return
 	}
 
 	var admin Admin
-	if err := db.Where("username = ? AND password = ?", credentials.Username, credentials.Password).First(&admin).Error; err != nil {
-		http.Error(w, "Invalid credentials", http.StatusUnauthorized)
+	if err := db.Where("username = ? AND active = ?", credentials.Username, true).First(&admin).Error; err != nil {
+		w.WriteHeader(http.StatusUnauthorized)
+		json.NewEncoder(w).Encode(map[string]string{
+			"error": "Invalid credentials",
+		})
+		return
+	}
+
+	// Verify password using hash
+	if !verifyPassword(credentials.Password, admin.Password) {
+		w.WriteHeader(http.StatusUnauthorized)
+		json.NewEncoder(w).Encode(map[string]string{
+			"error": "Invalid credentials",
+		})
 		return
 	}
 
@@ -472,9 +536,14 @@ func handleAdminLogin(w http.ResponseWriter, r *http.Request) {
 		"success": true,
 		"message": "Login successful",
 		"token":   "simple-token", // In production, use proper JWT
+		"user": map[string]interface{}{
+			"id":       admin.ID,
+			"username": admin.Username,
+			"email":    admin.Email,
+			"role":     admin.Role,
+		},
 	}
 
-	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(response)
 }
 
@@ -585,4 +654,170 @@ func handleAdminContactUpdate(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(contact)
+}
+
+// Admin User Management Handlers
+func handleAdminUsers(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	
+	switch r.Method {
+	case "GET":
+		var users []Admin
+		db.Find(&users)
+		json.NewEncoder(w).Encode(users)
+
+	case "POST":
+		var newUser struct {
+			Username string `json:"username"`
+			Password string `json:"password"`
+			Email    string `json:"email"`
+			Role     string `json:"role"`
+		}
+		
+		if err := json.NewDecoder(r.Body).Decode(&newUser); err != nil {
+			w.WriteHeader(http.StatusBadRequest)
+			json.NewEncoder(w).Encode(map[string]string{
+				"error": "Invalid JSON format",
+			})
+			return
+		}
+
+		// Validate required fields
+		if newUser.Username == "" || newUser.Password == "" {
+			w.WriteHeader(http.StatusBadRequest)
+			json.NewEncoder(w).Encode(map[string]string{
+				"error": "Username and password are required",
+			})
+			return
+		}
+
+		// Check if username already exists
+		var existingUser Admin
+		if err := db.Where("username = ?", newUser.Username).First(&existingUser).Error; err == nil {
+			w.WriteHeader(http.StatusConflict)
+			json.NewEncoder(w).Encode(map[string]string{
+				"error": "Username already exists",
+			})
+			return
+		}
+
+		// Set default role if not provided
+		if newUser.Role == "" {
+			newUser.Role = "admin"
+		}
+
+		admin := Admin{
+			Username: newUser.Username,
+			Password: hashPassword(newUser.Password),
+			Email:    newUser.Email,
+			Role:     newUser.Role,
+			Active:   true,
+		}
+
+		if err := db.Create(&admin).Error; err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			json.NewEncoder(w).Encode(map[string]string{
+				"error": "Failed to create user",
+			})
+			return
+		}
+
+		logSuccess(fmt.Sprintf("New admin user created: %s", admin.Username))
+		json.NewEncoder(w).Encode(admin)
+	}
+}
+
+func handleAdminUserUpdate(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	vars := mux.Vars(r)
+	id := vars["id"]
+
+	switch r.Method {
+	case "PUT":
+		var user Admin
+		if err := db.First(&user, id).Error; err != nil {
+			w.WriteHeader(http.StatusNotFound)
+			json.NewEncoder(w).Encode(map[string]string{
+				"error": "User not found",
+			})
+			return
+		}
+
+		var updateData struct {
+			Username string `json:"username"`
+			Password string `json:"password"`
+			Email    string `json:"email"`
+			Role     string `json:"role"`
+			Active   *bool  `json:"active"` // Pointer to handle false values
+		}
+
+		if err := json.NewDecoder(r.Body).Decode(&updateData); err != nil {
+			w.WriteHeader(http.StatusBadRequest)
+			json.NewEncoder(w).Encode(map[string]string{
+				"error": "Invalid JSON format",
+			})
+			return
+		}
+
+		// Update fields if provided
+		if updateData.Username != "" {
+			user.Username = updateData.Username
+		}
+		if updateData.Password != "" {
+			user.Password = hashPassword(updateData.Password)
+		}
+		if updateData.Email != "" {
+			user.Email = updateData.Email
+		}
+		if updateData.Role != "" {
+			user.Role = updateData.Role
+		}
+		if updateData.Active != nil {
+			user.Active = *updateData.Active
+		}
+
+		if err := db.Save(&user).Error; err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			json.NewEncoder(w).Encode(map[string]string{
+				"error": "Failed to update user",
+			})
+			return
+		}
+
+		logSuccess(fmt.Sprintf("Admin user updated: %s", user.Username))
+		json.NewEncoder(w).Encode(user)
+
+	case "DELETE":
+		// Prevent deletion of the last superadmin
+		var superAdminCount int64
+		db.Model(&Admin{}).Where("role = ? AND active = ?", "superadmin", true).Count(&superAdminCount)
+		
+		var userToDelete Admin
+		if err := db.First(&userToDelete, id).Error; err != nil {
+			w.WriteHeader(http.StatusNotFound)
+			json.NewEncoder(w).Encode(map[string]string{
+				"error": "User not found",
+			})
+			return
+		}
+
+		if userToDelete.Role == "superadmin" && superAdminCount <= 1 {
+			w.WriteHeader(http.StatusBadRequest)
+			json.NewEncoder(w).Encode(map[string]string{
+				"error": "Cannot delete the last superadmin user",
+			})
+			return
+		}
+
+		if err := db.Delete(&Admin{}, id).Error; err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			json.NewEncoder(w).Encode(map[string]string{
+				"error": "Failed to delete user",
+			})
+			return
+		}
+
+		logWarning(fmt.Sprintf("Admin user deleted: %s", userToDelete.Username))
+		w.WriteHeader(http.StatusNoContent)
+	}
 }
