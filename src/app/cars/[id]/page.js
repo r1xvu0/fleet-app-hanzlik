@@ -150,11 +150,11 @@ export default function CarDetailPage() {
                     </li>
                     <li className="flex items-start">
                       <CheckCircleIcon className="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">Záloha 10,000 Kč (vratná při vrácení vozidla)</span>
+                      <span className="text-gray-700">Kauce {car.kauce || '10,000 Kč'} (vratná při vrácení vozidla)</span>
                     </li>
                     <li className="flex items-start">
                       <CheckCircleIcon className="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-700">Účet v jedné z partnerských aplikací (Bolt, Uber, Liftago)</span>
+                      <span className="text-gray-700">Účet v jedné z partnerských aplikací (Bolt, Uber)</span>
                     </li>
                   </ul>
                 </div>
@@ -219,10 +219,10 @@ export default function CarDetailPage() {
                     <span className="font-bold text-gray-900">{car.price}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-700">Záloha:</span>
-                    <span className="font-bold text-gray-900">10,000 Kč</span>
+                    <span className="text-gray-700">Kauce:</span>
+                    <span className="font-bold text-gray-900">{car.kauce || '10,000 Kč'}</span>
                   </div>
-                  <div className="flex justify-between">
+                  {/* <div className="flex justify-between">
                     <span className="text-gray-700">Cena měsíc:</span>
                     <span className="font-bold text-gray-900">
                       {(() => {
@@ -231,7 +231,7 @@ export default function CarDetailPage() {
                         return `${monthlyPrice.toLocaleString('cs-CZ')} Kč`;
                       })()}
                     </span>
-                  </div>
+                  </div> */}
                 </div>
               </div>
 
