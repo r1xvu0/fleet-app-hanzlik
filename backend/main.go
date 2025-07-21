@@ -117,6 +117,7 @@ type Car struct {
 	Consumption  string    `json:"consumption"`
 	Transmission string    `json:"transmission"`
 	Type         string    `json:"type" gorm:"default:''"`  // Added to fix database constraint
+	Kauce        string    `json:"kauce" gorm:"default:10,000 Kč"`  // New field for deposit amount
 	CreatedAt    time.Time `json:"createdAt"`
 	UpdatedAt    time.Time `json:"updatedAt"`
 }
@@ -337,6 +338,7 @@ func seedData() {
 				Engine:       "1.6 TDI",
 				Consumption:  "4.5 l/100km",
 				Transmission: "Manuální, 6-stupňová",
+				Kauce:        "10,000 Kč",
 			},
 			{
 				Name:         "Škoda Octavia 1.4 TSI",
@@ -352,6 +354,7 @@ func seedData() {
 				Engine:       "1.4 TSI",
 				Consumption:  "5.8 l/100km",
 				Transmission: "Automatická DSG, 7-stupňová",
+				Kauce:        "12,000 Kč",
 			},
 			{
 				Name:         "Toyota Corolla Hybrid",
@@ -367,6 +370,7 @@ func seedData() {
 				Engine:       "1.8 Hybrid",
 				Consumption:  "3.8 l/100km",
 				Transmission: "Automatická e-CVT",
+				Kauce:        "15,000 Kč",
 			},
 			{
 				Name:         "Tesla Model 3",
@@ -382,6 +386,7 @@ func seedData() {
 				Engine:       "Elektrický motor",
 				Consumption:  "15.5 kWh/100km",
 				Transmission: "Automatická, 1-stupňová",
+				Kauce:        "25,000 Kč",
 			},
 		}
 		

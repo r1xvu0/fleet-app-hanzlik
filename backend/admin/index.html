@@ -533,6 +533,12 @@
                                    class="w-full border border-gray-300 rounded px-3 py-2"
                                    placeholder="Manuální, 6-stupňová">
                         </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Kauce</label>
+                            <input x-model="carForm.kauce" type="text" 
+                                   class="w-full border border-gray-300 rounded px-3 py-2"
+                                   placeholder="10,000 Kč">
+                        </div>
                     </div>
                     
                     <div class="mb-4">
@@ -917,7 +923,8 @@
                         description: '',
                         engine: '',
                         consumption: '',
-                        transmission: ''
+                        transmission: '',
+                        kauce: '10,000 Kč'
                     };
                     this.featuresText = '';
                     this.editingCar = null;

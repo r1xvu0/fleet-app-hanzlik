@@ -1,0 +1,6 @@
+@echo off
+echo Running Kauce field migration...
+go run migrate_kauce.go
+echo.
+echo Migration completed! Press any key to continue...
+pause >nul
