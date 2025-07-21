@@ -337,7 +337,7 @@ export default function CarDetailPage() {
                 <ul className="space-y-2 ml-4">
                   <li>• <strong>1 000,- Kč</strong> – při poškození čelního skla nebo defektu kola.</li>
                   <li>• <strong>2 000,- Kč</strong> – za každé porušení zákazu kouření znečištění interiéru.</li>
-                  <li>• <strong>5 000,- Kč</strong> – za neoznámení dopravní nehody nebo nového poškození, nenahlášení potřebného servisu auta, ztrátě klíče.</li>
+                  <li>• <strong>4 000,- Kč</strong> – za neoznámení dopravní nehody nebo nového poškození, nenahlášení potřebného servisu auta, ztrátě klíče.</li>
                   <li>• <strong>10 000,- Kč</strong> – jakékoli nové poškození na voze včetně škody i na zaparkovaném autě.</li>
                 </ul>
               </div>
