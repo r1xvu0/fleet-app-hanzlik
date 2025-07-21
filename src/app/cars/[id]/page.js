@@ -21,12 +21,12 @@ export default function CarDetailPage() {
   const [loading, setLoading] = useState(true);
   const params = useParams();
   const carId = parseInt(params.id);
-  
+
   // Fetch car data from API
   useEffect(() => {
     const fetchCar = async () => {
       setLoading(true);
-      
+
       try {
         const response = await fetch(`/api/cars/${carId}`);
         if (response.ok) {
@@ -50,12 +50,12 @@ export default function CarDetailPage() {
         setLoading(false);
       }
     };
-    
+
     if (carId) {
       fetchCar();
     }
   }, [carId]);
-  
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -63,7 +63,7 @@ export default function CarDetailPage() {
       </div>
     );
   }
-  
+
   if (!car) {
     return (
       <div className="min-h-screen flex items-center justify-center flex-col px-4 text-center">
@@ -76,7 +76,7 @@ export default function CarDetailPage() {
       </div>
     );
   }
-  
+
   return (
     <div className="bg-white min-h-screen">
       {/* Breadcrumb */}
@@ -91,16 +91,16 @@ export default function CarDetailPage() {
           </div>
         </div>
       </div>
-      
+
       {/* Car Overview */}
       <section className="py-12 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row gap-10">
             {/* Car Image */}
             <div className="md:w-1/2">
-              <div className="bg-gray-200 rounded-xl overflow-hidden h-96 relative">
+              <div className="bg-gray-200 rounded-xl overflow-hidden h-96 relative mb-6">
                 {car.image && (
-                  <Image 
+                  <Image
                     src={car.image}
                     alt={car.name}
                     fill
@@ -108,13 +108,64 @@ export default function CarDetailPage() {
                   />
                 )}
               </div>
+
+              {/* Rental Terms - under image */}
+              <div className="grid grid-cols-1 gap-4">
+                <div className="bg-white border border-gray-200 p-6 rounded-xl shadow-sm">
+                  <h3 className="font-bold text-lg mb-4 text-gray-900">Co je zahrnuto v ceně</h3>
+                  <ul className="space-y-3">
+                    <li className="flex items-start">
+                      <CheckCircleIcon className="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">Kompletní pojištění (havarijní pojištění, povinné ručení)</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircleIcon className="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">Pravidelný servis a údržba vozidla</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircleIcon className="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">Zimní a letní pneumatiky dle sezóny</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircleIcon className="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">Neomezený počet kilometrů</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircleIcon className="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">24/7 asistenční služba</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="bg-white border border-gray-200 p-6 rounded-xl shadow-sm">
+                  <h3 className="font-bold text-lg mb-4 text-gray-900">Podmínky pro řidiče</h3>
+                  <ul className="space-y-3">
+                    <li className="flex items-start">
+                      <CheckCircleIcon className="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">Minimální věk 21 let</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircleIcon className="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">Řidičský průkaz skupiny B (minimálně 2 roky)</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircleIcon className="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">Záloha 10,000 Kč (vratná při vrácení vozidla)</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircleIcon className="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                      <span className="text-gray-700">Účet v jedné z partnerských aplikací (Bolt, Uber, Liftago)</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
-            
+
             {/* Car Details */}
             <div className="md:w-1/2">
               <h1 className="text-3xl font-bold mb-4 text-gray-900">{car.name}</h1>
               <p className="text-gray-600 mb-6">{car.description}</p>
-              
+
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <div className="flex items-center">
                   <BeakerIcon className="w-5 h-5 mr-2 text-indigo-600" />
@@ -146,18 +197,17 @@ export default function CarDetailPage() {
                 )}
                 <div className="flex items-center">
                   <CheckCircleIcon className="w-5 h-5 mr-2 text-indigo-600" />
-                  <span><span className="font-medium text-gray-900">Dostupnost:</span> 
-                    <span className={`ml-2 px-2 py-1 text-xs rounded-full font-medium ${
-                      car.available === 'Dostupné' ? 'bg-green-100 text-green-800' :
+                  <span><span className="font-medium text-gray-900">Dostupnost:</span>
+                    <span className={`ml-2 px-2 py-1 text-xs rounded-full font-medium ${car.available === 'Dostupné' ? 'bg-green-100 text-green-800' :
                       car.available === 'Rezervováno' ? 'bg-yellow-100 text-yellow-800' :
-                      'bg-red-100 text-red-800'
-                    }`}>
+                        'bg-red-100 text-red-800'
+                      }`}>
                       {car.available}
                     </span>
                   </span>
                 </div>
               </div>
-              
+
               <div className="bg-indigo-50 p-6 rounded-lg mb-6">
                 <h3 className="text-lg font-bold mb-4 flex items-center text-gray-900">
                   <CurrencyDollarIcon className="w-5 h-5 mr-2 text-indigo-600" />
@@ -184,7 +234,7 @@ export default function CarDetailPage() {
                   </div>
                 </div>
               </div>
-              
+
               <div className="flex flex-col sm:flex-row gap-4">
                 {car.available === 'Dostupné' ? (
                   <Link href="/contact" className="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition-colors font-medium text-center">
@@ -208,12 +258,12 @@ export default function CarDetailPage() {
           </div>
         </div>
       </section>
-      
+
       {/* Car Specifications */}
       <section className="py-12 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl font-bold mb-8 text-gray-900">Technické specifikace</h2>
-          
+
           <div className="grid md:grid-cols-3 gap-6">
             {car.engine && (
               <div className="bg-white p-4 rounded-lg shadow-sm">
@@ -249,12 +299,12 @@ export default function CarDetailPage() {
           </div>
         </div>
       </section>
-      
+
       {/* Car Features */}
       <section className="py-12 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl font-bold mb-8 text-gray-900">Vybavení a funkce</h2>
-          
+
           <div className="grid md:grid-cols-2 gap-4">
             {car.features.map((feature, index) => (
               <div key={index} className="flex items-center p-4 bg-gray-50 rounded-lg">
@@ -265,62 +315,44 @@ export default function CarDetailPage() {
           </div>
         </div>
       </section>
-      
+
       {/* Rental Terms */}
       <section className="py-12 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl font-bold mb-8 text-gray-900">Podmínky pronájmu</h2>
-          
-          <div className="bg-white p-6 rounded-xl shadow-sm mb-6">
-            <h3 className="font-bold text-lg mb-4 text-gray-900">Co je zahrnuto v ceně</h3>
-            <ul className="space-y-3">
-              <li className="flex items-start">
-                <CheckCircleIcon className="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700">Kompletní pojištění (havarijní pojištění, povinné ručení)</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircleIcon className="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700">Pravidelný servis a údržba vozidla</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircleIcon className="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700">Zimní a letní pneumatiky dle sezóny</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircleIcon className="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700">Neomezený počet kilometrů</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircleIcon className="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700">24/7 asistenční služba</span>
-              </li>
-            </ul>
-          </div>
-          
+          {/* <h2 className="text-2xl font-bold mb-8 text-gray-900">Podmínky pronájmu</h2> */}
+
+
+
           <div className="bg-white p-6 rounded-xl shadow-sm">
-            <h3 className="font-bold text-lg mb-4 text-gray-900">Podmínky pro řidiče</h3>
-            <ul className="space-y-3">
-              <li className="flex items-start">
-                <CheckCircleIcon className="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700">Minimální věk 21 let</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircleIcon className="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700">Řidičský průkaz skupiny B (minimálně 2 roky)</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircleIcon className="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700">Záloha 10,000 Kč (vratná při vrácení vozidla)</span>
-              </li>
-              <li className="flex items-start">
-                <CheckCircleIcon className="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700">Účet v jedné z partnerských aplikací (Bolt, Uber, Liftago)</span>
-              </li>
-            </ul>
+            <h3 className="font-bold text-2xl mb-4 text-gray-900">Podmínky Nájmu:</h3>
+            <div className="space-y-4 text-gray-700">
+              <p>• Při předání auta, stačí zaplatit kauci (hotově, na účet), první nájemné se strhává až z vašeho výdělku.</p>
+
+              <p>• Nájemné se platí každé pondělí stržením z vašeho výdělku nebo platbou na náš účet (vkladem hotovosti).</p>
+
+              <p>• V případě půjčení nebo vrácení auta v průběhu týdne se platí jen poměrová část týdenního nájemného.</p>
+
+              <p>• Pro pozastavení nájmu, např. v případě nemoci, je potřeba nám auto vrátit, až vrácením auta se stopuje i placení nájmu.</p>
+
+              <div className="mt-6">
+                <h4 className="font-semibold text-gray-900 mb-3">Při poškození vozu se platí spoluúčast:</h4>
+                <ul className="space-y-2 ml-4">
+                  <li>• <strong>1 000,- Kč</strong> – při poškození čelního skla (i nezaviněném) nebo defektu kola (i nezaviněném)</li>
+                  <li>• <strong>2 000,- Kč</strong> – za každé porušení zákazu kouření (platí pro řidiče i zákazníky), znečištění interiéru</li>
+                  <li>• <strong>5 000,- Kč</strong> – za neoznámení dopravní nehody nebo nového poškození, nenahlášení potřebného servisu auta, ztrátě klíčů</li>
+                  <li>• <strong>10 000,- Kč</strong> – jakékoli nové poškození na voze včetně škody i na zaparkovaném autě (nezaviněném)</li>
+                </ul>
+              </div>
+
+              <div className="mt-6">
+                <h4 className="font-semibold text-gray-900 mb-3">Pokuty za rychlost, parkování a další:</h4>
+                <p>Za přestupky v době půjčení auta nese zodpovědnost nájemce (řidič), tj. jakékoli došlé pokuty mu budou přeposlány ke kontrole a následně 100% z došlé pokuty mu bude strženo z výdělku v dalším týdnu po předání pokuty.</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
-      
+
       {/* CTA */}
       <section className="bg-indigo-600 text-white py-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
