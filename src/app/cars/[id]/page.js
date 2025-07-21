@@ -233,24 +233,7 @@ export default function CarDetailPage() {
                 <div className="text-lg text-gray-900">{car.transmission}</div>
               </div>
             )}
-            {car.trunk && (
-              <div className="bg-white p-4 rounded-lg shadow-sm">
-                <div className="font-medium text-gray-500 mb-1">Kufr</div>
-                <div className="text-lg text-gray-900">{car.trunk}</div>
-              </div>
-            )}
-            {car.dimensions && (
-              <div className="bg-white p-4 rounded-lg shadow-sm">
-                <div className="font-medium text-gray-500 mb-1">Rozměry</div>
-                <div className="text-lg text-gray-900">{car.dimensions}</div>
-              </div>
-            )}
-            {car.weight && (
-              <div className="bg-white p-4 rounded-lg shadow-sm">
-                <div className="font-medium text-gray-500 mb-1">Hmotnost</div>
-                <div className="text-lg text-gray-900">{car.weight}</div>
-              </div>
-            )}
+
             <div className="bg-white p-4 rounded-lg shadow-sm">
               <div className="font-medium text-gray-500 mb-1">Počet míst</div>
               <div className="text-lg text-gray-900">{car.seats}</div>

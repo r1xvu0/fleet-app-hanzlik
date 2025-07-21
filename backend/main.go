@@ -105,7 +105,6 @@ type Car struct {
 	ID           uint      `json:"id" gorm:"primaryKey"`
 	Name         string    `json:"name" gorm:"not null"`
 	Price        string    `json:"price" gorm:"not null"`
-	Type         string    `json:"type" gorm:"not null"`
 	Year         int       `json:"year" gorm:"not null"`
 	FuelType     string    `json:"fuelType" gorm:"not null"`
 	Power        string    `json:"power" gorm:"not null"`
@@ -117,9 +116,6 @@ type Car struct {
 	Engine       string    `json:"engine"`
 	Consumption  string    `json:"consumption"`
 	Transmission string    `json:"transmission"`
-	Trunk        string    `json:"trunk"`
-	Dimensions   string    `json:"dimensions"`
-	Weight       string    `json:"weight"`
 	CreatedAt    time.Time `json:"createdAt"`
 	UpdatedAt    time.Time `json:"updatedAt"`
 }
@@ -329,7 +325,6 @@ func seedData() {
 			{
 				Name:         "Škoda Octavia 1.6 TDI",
 				Price:        "3,990 Kč",
-				Type:         "Diesel",
 				Year:         2022,
 				FuelType:     "Diesel",
 				Power:        "116 HP",
@@ -341,14 +336,10 @@ func seedData() {
 				Engine:       "1.6 TDI",
 				Consumption:  "4.5 l/100km",
 				Transmission: "Manuální, 6-stupňová",
-				Trunk:        "600 litrů",
-				Dimensions:   "4,689 x 1,829 x 1,470 mm",
-				Weight:       "1,350 kg",
 			},
 			{
 				Name:         "Škoda Octavia 1.4 TSI",
 				Price:        "4,490 Kč",
-				Type:         "Benzín",
 				Year:         2023,
 				FuelType:     "Benzín",
 				Power:        "150 HP",
@@ -360,14 +351,10 @@ func seedData() {
 				Engine:       "1.4 TSI",
 				Consumption:  "5.8 l/100km",
 				Transmission: "Automatická DSG, 7-stupňová",
-				Trunk:        "600 litrů",
-				Dimensions:   "4,689 x 1,829 x 1,470 mm",
-				Weight:       "1,320 kg",
 			},
 			{
 				Name:         "Toyota Corolla Hybrid",
 				Price:        "6,490 Kč",
-				Type:         "Hybrid",
 				Year:         2023,
 				FuelType:     "Hybrid",
 				Power:        "122 HP",
@@ -379,14 +366,10 @@ func seedData() {
 				Engine:       "1.8 Hybrid",
 				Consumption:  "3.8 l/100km",
 				Transmission: "Automatická e-CVT",
-				Trunk:        "471 litrů",
-				Dimensions:   "4,630 x 1,780 x 1,435 mm",
-				Weight:       "1,400 kg",
 			},
 			{
 				Name:         "Tesla Model 3",
 				Price:        "9,990 Kč",
-				Type:         "Elektromobil",
 				Year:         2023,
 				FuelType:     "Elektro",
 				Power:        "283 HP",
@@ -398,9 +381,6 @@ func seedData() {
 				Engine:       "Elektrický motor",
 				Consumption:  "15.5 kWh/100km",
 				Transmission: "Automatická, 1-stupňová",
-				Trunk:        "425 litrů + 117 litrů (frunk)",
-				Dimensions:   "4,694 x 1,849 x 1,443 mm",
-				Weight:       "1,830 kg",
 			},
 		}
 		

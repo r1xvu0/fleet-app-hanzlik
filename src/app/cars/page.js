@@ -50,7 +50,7 @@ export default function CarsPage() {
 
   const filteredCars = activeFilter === 'all' 
     ? cars 
-    : cars.filter(car => car.type === activeFilter);
+    : cars.filter(car => car.fuelType === activeFilter);
 
   return (
     <>
@@ -68,7 +68,7 @@ export default function CarsPage() {
       {/* Car Filter */}
       <div className="max-w-6xl mx-auto py-12 px-4">
         <div className="flex flex-wrap gap-4 mb-8 justify-center">
-          {["all", "Diesel", "Benzín", "Hybrid", "Elektromobil"].map((filter) => (
+          {["all", "Diesel", "Benzín", "Hybrid", "Elektro"].map((filter) => (
             <button
               key={filter}
               onClick={() => setActiveFilter(filter)}
@@ -136,9 +136,9 @@ export default function CarsPage() {
                 <p className="flex justify-between items-center">
                   <span className="flex items-center text-gray-700">
                     <BeakerIcon className="w-5 h-5 mr-2 text-indigo-600" />
-                    Typ:
+                    Palivo:
                   </span>
-                  <span className="text-gray-800">{car.type}</span>
+                  <span className="text-gray-800">{car.fuelType}</span>
                 </p>
                 <p className="flex justify-between items-center">
                   <span className="flex items-center text-gray-700">
