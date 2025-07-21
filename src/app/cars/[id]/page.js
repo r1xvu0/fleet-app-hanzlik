@@ -326,27 +326,25 @@ export default function CarDetailPage() {
           <div className="bg-white p-6 rounded-xl shadow-sm">
             <h3 className="font-bold text-2xl mb-4 text-gray-900">Podmínky Nájmu:</h3>
             <div className="space-y-4 text-gray-700">
-              <p>• Při předání auta, stačí zaplatit kauci (hotově, na účet), první nájemné se strhává až z vašeho výdělku.</p>
+              <p>• Při předání auta, stačí zaplatit kauci první nájemné se strhává až z vašeho výdělku.</p>
 
-              <p>• Nájemné se platí každé pondělí stržením z vašeho výdělku nebo platbou na náš účet (vkladem hotovosti).</p>
+              <p>• Nájemné se platí každé úterý stržením z vašeho výdělku.</p>
 
-              <p>• V případě půjčení nebo vrácení auta v průběhu týdne se platí jen poměrová část týdenního nájemného.</p>
-
-              <p>• Pro pozastavení nájmu, např. v případě nemoci, je potřeba nám auto vrátit, až vrácením auta se stopuje i placení nájmu.</p>
+              <p>• Pro pozastavení nájmu v případě nemoci, je potřeba nám auto vrátit, až vrácením auta se stopuje placení nájmu.</p>
 
               <div className="mt-6">
                 <h4 className="font-semibold text-gray-900 mb-3">Při poškození vozu se platí spoluúčast:</h4>
                 <ul className="space-y-2 ml-4">
-                  <li>• <strong>1 000,- Kč</strong> – při poškození čelního skla (i nezaviněném) nebo defektu kola (i nezaviněném)</li>
-                  <li>• <strong>2 000,- Kč</strong> – za každé porušení zákazu kouření (platí pro řidiče i zákazníky), znečištění interiéru</li>
-                  <li>• <strong>5 000,- Kč</strong> – za neoznámení dopravní nehody nebo nového poškození, nenahlášení potřebného servisu auta, ztrátě klíčů</li>
-                  <li>• <strong>10 000,- Kč</strong> – jakékoli nové poškození na voze včetně škody i na zaparkovaném autě (nezaviněném)</li>
+                  <li>• <strong>1 000,- Kč</strong> – při poškození čelního skla nebo defektu kola.</li>
+                  <li>• <strong>2 000,- Kč</strong> – za každé porušení zákazu kouření znečištění interiéru.</li>
+                  <li>• <strong>5 000,- Kč</strong> – za neoznámení dopravní nehody nebo nového poškození, nenahlášení potřebného servisu auta, ztrátě klíče.</li>
+                  <li>• <strong>10 000,- Kč</strong> – jakékoli nové poškození na voze včetně škody i na zaparkovaném autě.</li>
                 </ul>
               </div>
 
               <div className="mt-6">
                 <h4 className="font-semibold text-gray-900 mb-3">Pokuty za rychlost, parkování a další:</h4>
-                <p>Za přestupky v době půjčení auta nese zodpovědnost nájemce (řidič), tj. jakékoli došlé pokuty mu budou přeposlány ke kontrole a následně 100% z došlé pokuty mu bude strženo z výdělku v dalším týdnu po předání pokuty.</p>
+                <p>Za přestupky v době půjčení auta nese zodpovědnost nájemce vozu, jakékoli došlé pokuty mu budou přeposlány ke kontrole a následně bude účtována plná výše z dané pokuty.</p>
               </div>
             </div>
           </div>
