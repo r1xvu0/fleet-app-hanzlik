@@ -189,12 +189,12 @@ export default function CarsPage() {
                 <div className="bg-green-100 p-3 rounded-full mr-4">
                   <ShieldCheckIcon className="w-6 h-6 text-green-600" />
                 </div>
-                <h3 className="font-bold text-lg text-gray-900">Záloha a pojištění</h3>
+                <h3 className="font-bold text-lg text-gray-900">Kauce a pojištění</h3>
               </div>
               <ul className="space-y-3">
                 <li className="flex items-start">
                   <CheckCircleIcon className="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-700">Záloha 10 000 Kč (vratná při vrácení vozu)</span>
+                  <span className="text-gray-700">Kauce dle zvoleného vozu (vratná při vrácení vozu)</span>
                 </li>
                 <li className="flex items-start">
                   <CheckCircleIcon className="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
