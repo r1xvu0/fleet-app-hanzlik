@@ -116,6 +116,7 @@ type Car struct {
 	Engine       string    `json:"engine"`
 	Consumption  string    `json:"consumption"`
 	Transmission string    `json:"transmission"`
+	Type         string    `json:"type" gorm:"default:''"`  // Added to fix database constraint
 	CreatedAt    time.Time `json:"createdAt"`
 	UpdatedAt    time.Time `json:"updatedAt"`
 }

@@ -1,0 +1,14 @@
+{
+  "name": "Test Car",
+  "price": "5000 Kč",
+  "year": 2023,
+  "fuelType": "Benzín",
+  "power": "150 HP",
+  "seats": 5,
+  "features": "[\"Test feature\"]",
+  "available": "Dostupné",
+  "description": "Test description",
+  "engine": "1.6 TSI",
+  "consumption": "6.0 l/100km",
+  "transmission": "Manual"
+}
