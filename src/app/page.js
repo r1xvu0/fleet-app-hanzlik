@@ -130,13 +130,13 @@ export default function HomePage() {
               ))}
             </div>
           </div>
-          <div className="order-1 md:order-2 bg-gradient-to-br from-indigo-100 to-indigo-50 rounded-3xl shadow-lg p-6 h-96 flex items-center justify-center">
+          {/* <div className="order-1 md:order-2 bg-gradient-to-br from-indigo-100 to-indigo-50 rounded-3xl shadow-lg p-6 h-96 flex items-center justify-center">
             <img
               src="https://placehold.co/600x400/indigo/white?text=Car+Image"
               alt="Taxi fleet"
               className="w-full h-auto max-h-80 object-cover rounded-2xl shadow-inner"
             />
-          </div>
+          </div> */}
         </div>
       </section>
 
