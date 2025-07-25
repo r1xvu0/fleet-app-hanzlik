@@ -868,6 +868,8 @@
                     // Convert features text to JSON array
                     const features = this.featuresText.split('\n').filter(f => f.trim()).map(f => f.trim());
                     this.carForm.features = JSON.stringify(features);
+                    // Ensure year is a number
+                    this.carForm.year = Number(this.carForm.year);
                     
                     try {
                         const url = this.editingCar ? `/admin/cars/${this.editingCar.id}` : '/admin/cars';
